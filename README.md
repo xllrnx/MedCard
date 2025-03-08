@@ -10,7 +10,7 @@ It is possible to view the list of patients, add new ones and change information
 
 The information required to connect the database used is stored in variables that are included in the startup parameters. These variables are shown in the screenshot below
 
-![DB connection variables](README images\DB_connection_variables.png)
+![DB connection variables](README_images\DB_connection_variables.png)
 
 
 ## Authors
