@@ -1,0 +1,20 @@
+.doctor_dashboard_container {
+    -fx-background-color: #fbf9f1;
+}
+
+.text {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.selected_patient {
+    -fx-background-color: #e5e1da;
+    -fx-background-radius: 12px;
+}
+
+.warning_text {
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}
+
+

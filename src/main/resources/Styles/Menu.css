@@ -1,0 +1,45 @@
+.menu_container {
+    -fx-background-color: #aad7d9;
+}
+
+.text {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.user_container {
+
+}
+.user_name_container {
+
+}
+
+.buttons_container {
+    -fx-alignment: center;
+    -fx-spacing: 10px;
+}
+
+/* Кнопки вкладок на бічній панелі */
+Button {
+    -fx-background-color: #aad7d9; /* Колір фону кнопки */
+    -fx-background-radius: 5px; /* Округлені кути фону */
+
+    -fx-border-color: #fbf9f1; /* Колір межі */
+    -fx-border-width: 3px; /* Ширина межі */
+    -fx-border-radius: 5px; /* Округлені кути межі */
+
+    -fx-font-size: 16; /* Розмір шрифту */
+    -fx-font-weight: bold; /* Стиль шрифту */
+
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
+}
+
+/* Ефект при наведенні */
+Button:hover {
+    -fx-background-color: #87c2c9; /* Трохи темніший відтінок фону при наведенні */
+}
+
+/* Фон кнопки обраної вкладки */
+.selected_button {
+    -fx-background-color: #fbf9f1; /* Колір фону кнопки */
+}

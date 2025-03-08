@@ -1,0 +1,19 @@
+.patient_cell_container {
+    -fx-background-color: #fbf9f1;
+    -fx-background-radius: 12px;
+}
+
+.text {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.delete_button {
+    -fx-background-color: #aad7d9; /* Колір фону */
+    -fx-background-radius: 10px; /* Округлені кути фону */
+
+    -fx-font-size: 16; /* Розмір шрифту */
+    -fx-font-weight: bold; /* Стиль шрифту */
+
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
+}

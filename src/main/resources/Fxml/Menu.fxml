@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="222.0" styleClass="menu_container" stylesheets="@../Styles/Menu.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.medcard.Controllers.MenuController">
+   <VBox alignment="CENTER" layoutY="14.0" prefHeight="162.0" prefWidth="222.0" styleClass="user_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+      <ImageView fx:id="user_icon" fitHeight="132.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../Images/UserIcon.png" />
+      </ImageView>
+      <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="180.0" spacing="5.0" styleClass="user_name_container">
+         <Label fx:id="user_surname" text="Прізвище" />
+         <Label fx:id="user_name" text="Ім'я">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin></Label>
+      </HBox>
+   </VBox>
+   <VBox alignment="TOP_CENTER" layoutY="182.4" prefHeight="324.0" prefWidth="222.0" styleClass="buttons_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
+      <Button fx:id="select_patient_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="select_patient_button" text="Обрати пацієнта">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="information_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="information_button" text="Інформація">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="treatment_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="treatment_button" text="Лікування">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="diagnosis_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="diagnosis_button" text="Діагностика">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="temperature_sheet_button" mnemonicParsing="false" prefHeight="43.0" prefWidth="200.0" styleClass="temperature_sheet_button" text="Температурний лист">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+   </VBox>
+   <VBox alignment="CENTER" layoutY="519.0" prefHeight="99.0" prefWidth="222.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Button fx:id="exit_button" mnemonicParsing="false" prefHeight="43.0" prefWidth="200.0" styleClass="exit_button" text="Вийти з системи" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+   </VBox>
+</AnchorPane>
