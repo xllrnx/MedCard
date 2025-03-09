@@ -3,7 +3,7 @@ package org.example.medcard.Controllers;
 import javafx.scene.control.*;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
-import org.example.medcard.Controllers.Utils.LoginErrors;
+import org.example.medcard.Utils.LoginErrors;
 import org.example.medcard.Models.Model;
 import org.example.medcard.Views.AccountType;
 

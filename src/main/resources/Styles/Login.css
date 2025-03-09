@@ -79,7 +79,7 @@
 
 /* Текст помилки */
 .error_label {
-    -fx-color: #bc2b2b;
+    -fx-color: #ff6961;
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }

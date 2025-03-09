@@ -1,4 +1,4 @@
-package org.example.medcard.Controllers.Utils;
+package org.example.medcard.Utils;
 
 public enum LoginErrors {
     EMPTY_FIELDS("Необхідно заповнити обидва поля!"),

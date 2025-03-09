@@ -1,7 +1,6 @@
 package org.example.medcard.Models;
 
 public class User {
-    private static User instance;
     String login;
     String type;
     String surname;
@@ -16,17 +15,6 @@ public class User {
         this.surname = surname;
         this.name = name;
         this.fathername = fathername;
-    }
-
-    public static User getInstance() {
-        if (instance == null) {
-            instance = new User();
-        }
-        return instance;
-    }
-
-    public static void setInstance(User instance) {
-        User.instance = instance;
     }
 
     public String getLogin() {

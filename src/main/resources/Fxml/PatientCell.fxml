@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="60.0" prefWidth="750.0" styleClass="patient_cell_container" stylesheets="@../../Styles/Doctor/PatientCell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="750.0" styleClass="patient_cell_container" stylesheets="@../Styles/PatientCell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
+      <image>
+         <Image url="@../Images/UserIcon.png" />
+      </image>
+   </ImageView>
+   <HBox alignment="CENTER" layoutX="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="434.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
       <children>
-         <ImageView fitHeight="55.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../../Images/PatientIcon.png" />
-            </image>
-         </ImageView>
-          <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="362.0" spacing="15.0" styleClass="selected_patient">
-              <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-              </padding>
-              <Text fx:id="patient_surname" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vynychenko" wrappingWidth="115.0" />
-              <Text fx:id="patient_name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Oleksandr" wrappingWidth="100.0" />
-              <Text fx:id="patient_fathername" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Serhiyovich" wrappingWidth="110.0" />
-          </HBox>
-          <Text fx:id="patient_date_of_birth" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Дата народження" wrappingWidth="155" />
-          <Button fx:id="delete_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="delete_button" text="Видалити" />
+         <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="276.0">
+            <children>
+                 <Text fx:id="patient_surname" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Прізвище" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" " />
+                 <Text fx:id="patient_name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Ім'я" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" " />
+                 <Text fx:id="patient_fathername" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="По-Батькові" />
+            </children>
+         </TextFlow>
+          <Text fx:id="patient_date_of_birth" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Дата народження" wrappingWidth="150.0" />
       </children>
    </HBox>
+    <Button fx:id="delete_button" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" styleClass="delete_button" text="Видалити" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+   <Button fx:id="select_button" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" styleClass="select_button" text="Обрати" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="5.0" />
 
 </AnchorPane>

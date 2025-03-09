@@ -13,6 +13,7 @@ public class PatientCellController implements Initializable {
     public Text patient_name;
     public Text patient_fathername;
     public Text patient_date_of_birth;
+    public Button select_button;
     public Button delete_button;
 
     private final Patient patient;
@@ -22,6 +23,9 @@ public class PatientCellController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        patient_surname.textProperty().bind(patient.SurnameProperty());
+        patient_name.textProperty().bind(patient.NameProperty());
+        patient_fathername.textProperty().bind(patient.FathernameProperty());
+        patient_date_of_birth.textProperty().bind(patient.DateOfBirthProperty().asString());
     }
 }

@@ -1,0 +1,47 @@
+/* Стилізація основного фону */
+.patient_cell_container {
+    -fx-background-color: #e5e1da;
+    -fx-background-radius: 15px;
+
+}
+
+.text {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.select_button {
+    -fx-background-color: #9AD89A   ; /* Колір фону */
+    -fx-background-radius: 10px; /* Округлені кути фону */
+
+    /*-fx-border-color: #4D6C4D; !* Колір межі *!*/
+    /*-fx-border-width: 3px; !* Ширина межі *!*/
+    /*-fx-border-radius: 10px; !* Округлені кути межі *!*/
+
+    -fx-font-size: 16; /* Розмір шрифту */
+    -fx-font-weight: bold; /* Стиль шрифту */
+
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
+}
+
+.delete_button {
+    -fx-background-color: #ff6961; /* Колір фону */
+    -fx-background-radius: 10px; /* Округлені кути фону */
+
+    /*-fx-border-color: #7F3531; !* Колір межі *!*/
+    /*-fx-border-width: 3px; !* Ширина межі *!*/
+    /*-fx-border-radius: 10px; !* Округлені кути межі *!*/
+
+    -fx-font-size: 16; /* Розмір шрифту */
+    -fx-font-weight: bold; /* Стиль шрифту */
+
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
+}
+
+.select_button:hover {
+    -fx-background-color: #90C890; /* Трохи темніший відтінок фону при наведенні */
+}
+/* Ефект при наведенні */
+.delete_button:hover {
+    -fx-background-color: #DB5851; /* Трохи темніший відтінок фону при наведенні */
+}

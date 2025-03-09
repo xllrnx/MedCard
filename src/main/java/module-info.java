@@ -15,6 +15,6 @@ module org.example.medcard {
     opens org.example.medcard.Controllers.Nurse to javafx.fxml;
     opens org.example.medcard.Models;
     opens org.example.medcard.Views;
-    exports org.example.medcard.Controllers.Utils;
-    opens org.example.medcard.Controllers.Utils to javafx.fxml;
+    exports org.example.medcard.Utils;
+    opens org.example.medcard.Utils to javafx.fxml;
 }

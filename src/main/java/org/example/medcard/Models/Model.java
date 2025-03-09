@@ -1,8 +1,11 @@
 package org.example.medcard.Models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.example.medcard.Views.ViewFactory;
 
 import java.sql.ResultSet;
+import java.time.LocalDate;
 
 public class Model {
     private static Model model;
@@ -14,6 +17,7 @@ public class Model {
     private boolean userLoginSuccessFlag;
 
     // Patient Data Section
+    private final ObservableList<Patient> patients;
 
 
 
@@ -23,6 +27,8 @@ public class Model {
         // User Data section
         this.userLoginSuccessFlag = false;
         this.user = new User("", "", "", "");
+
+        this.patients = FXCollections.observableArrayList();
     }
 
     public static synchronized Model getInstance() {
@@ -54,10 +60,6 @@ public class Model {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public void evaluateUserCredentials(String login, String password) {
         ResultSet resultSet = databaseDriver.getUserData(login, password);
         try {
@@ -77,4 +79,110 @@ public class Model {
             e.printStackTrace();
         }
     }
+
+    public ObservableList<Patient> getPatients() {
+        return patients;
+    }
+
+    public ObservableList<Patient> setPatients() {
+        ObservableList<TreatmentRecord> treatmentRecords;
+        ObservableList<DiagnosisRecord> diagnosisRecords;
+        ObservableList<TemperatureSheetRecord> temperatureSheetRecords;
+
+        ResultSet resultSet = databaseDriver.getAllPatientsData();
+        try {
+            while(resultSet.next()) {
+
+                int patientID = resultSet.getInt("patient_id");
+
+                String surname = resultSet.getString("surname");
+                String name = resultSet.getString("name");
+                String fathername = resultSet.getString("fathername");
+
+                String[] dateParts = resultSet.getString("date_of_birth").split("-");
+                LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+
+                String address = resultSet.getString("address");
+                String phone = resultSet.getString("phone");
+                String sex = resultSet.getString("sex");
+
+                String complaints = resultSet.getString("complaints");
+                String medicalHistory = resultSet.getString("medical_history");
+                boolean status = resultSet.getBoolean("status");
+                treatmentRecords = getTreatmentRecords(patientID);
+                diagnosisRecords = getDiagnosisRecords(patientID);
+                temperatureSheetRecords = getTemperatureSheetRecords(patientID);
+
+                patients.add(new Patient(patientID, surname, name, fathername, date, address, phone, sex, complaints, medicalHistory, status, treatmentRecords, diagnosisRecords, temperatureSheetRecords));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return patients;
+    }
+
+    /*
+     * Utility Method Section
+     * */
+    public ObservableList<TreatmentRecord> getTreatmentRecords(int patientID ) {
+        ObservableList<TreatmentRecord> treatmentRecords = null;
+        ResultSet resultSet = databaseDriver.getTreatmentRecords(patientID);
+        try {
+            while(resultSet.next()) {
+                String prescription = resultSet.getString("prescription");
+                String[] dateParts = resultSet.getString("prescribed_date").split("-");
+                LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+                boolean status = resultSet.getBoolean("status");
+
+                treatmentRecords.add(new TreatmentRecord(prescription, date, status));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return treatmentRecords;
+    }
+
+    public ObservableList<DiagnosisRecord> getDiagnosisRecords(int patientID ) {
+        ObservableList<DiagnosisRecord> diagnosisRecords = null;
+        ResultSet resultSet = databaseDriver.getDiagnosisRecords(patientID);
+        try {
+            while(resultSet.next()) {
+                String prescription = resultSet.getString("prescription");
+                String[] dateParts = resultSet.getString("prescribed_date").split("-");
+                LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+                boolean status = resultSet.getBoolean("status");
+                String result = resultSet.getString("result");
+
+                diagnosisRecords.add(new DiagnosisRecord(prescription, date, status, result));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return diagnosisRecords;
+    }
+
+    public ObservableList<TemperatureSheetRecord> getTemperatureSheetRecords(int patientID ) {
+        ObservableList<TemperatureSheetRecord> temperatureSheetRecords = null;
+        ResultSet resultSet = databaseDriver.getTemperatureSheerRecords(patientID);
+        try {
+            while(resultSet.next()) {
+
+                String[] dateParts = resultSet.getString("check_date").split("-");
+                LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+
+                String prescription = resultSet.getString("part_of_day");
+                int pulse = resultSet.getInt("pulse");
+                int systolicPressure = resultSet.getInt("systolic_pressure");
+                int diastolicPressure = resultSet.getInt("diastolic_pressure");
+                double temperature = resultSet.getDouble("temperature");
+
+                temperatureSheetRecords.add(new TemperatureSheetRecord(date, prescription, pulse, systolicPressure, diastolicPressure, temperature));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return temperatureSheetRecords;
+    }
+
 }
