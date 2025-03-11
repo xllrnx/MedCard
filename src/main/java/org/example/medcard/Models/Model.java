@@ -18,6 +18,7 @@ public class Model {
 
     // Patient Data Section
     private final ObservableList<Patient> patients;
+    private Patient selectedPatient;
 
 
 
@@ -78,6 +79,16 @@ public class Model {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+
+    /*
+    *
+    * */
+
+    public Patient getSelectedPatient() {
+        return selectedPatient;
     }
 
     public ObservableList<Patient> getPatients() {

@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="600.0" prefWidth="850.0"
             styleClass="temperature_sheet_container" stylesheets="@../../Styles/Doctor/DoctorTemperatureSheet.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.medcard.Controllers.Doctor.DoctorTemperatureSheetController">
+            fx:controller="org.example.medcard.Controllers.Doctor.DashboardsControllers.DoctorTemperatureSheetController">
    <HBox alignment="CENTER" layoutX="29.0" layoutY="40.0"
          prefHeight="43.0" prefWidth="790.0" spacing="15.0"
          styleClass="selected_patient"
