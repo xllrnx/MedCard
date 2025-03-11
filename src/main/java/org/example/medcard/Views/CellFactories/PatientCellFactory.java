@@ -1,8 +1,8 @@
-package org.example.medcard.Views;
+package org.example.medcard.Views.CellFactories;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
-import org.example.medcard.Controllers.Doctor.PatientCellController;
+import org.example.medcard.Controllers.Doctor.CellControllers.PatientCellController;
 import org.example.medcard.Models.Patient;
 
 public class PatientCellFactory extends ListCell<Patient> {
