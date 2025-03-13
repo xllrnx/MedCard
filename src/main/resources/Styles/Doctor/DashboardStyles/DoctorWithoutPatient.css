@@ -1,0 +1,10 @@
+.without_patient_container {
+    -fx-background-color: #fbf9f1;
+}
+
+.text {
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}
+
+

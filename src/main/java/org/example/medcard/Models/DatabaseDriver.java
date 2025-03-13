@@ -36,7 +36,7 @@ public class DatabaseDriver {
             PreparedStatement prepStatement = connection.prepareStatement(SQLStatements.SEARCH_USER.getStatement());
             prepStatement.setString(1, login);
             prepStatement.setString(2, password);
-            System.out.println(prepStatement);
+            System.out.println(prepStatement + "\n");
 
             resultSet = statement.executeQuery(prepStatement.toString());
         } catch (SQLException e) {
@@ -93,7 +93,7 @@ public class DatabaseDriver {
 
             PreparedStatement prepStatement = connection.prepareStatement(SQLStatements.GET_LAST_ID.getStatement());
             prepStatement.setString(1, "persons");
-            System.out.println(prepStatement);
+            System.out.println(prepStatement + "\n");
 
             resultSet = statement.executeQuery(prepStatement.toString());
             id = resultSet.getInt("last_id");
@@ -112,7 +112,7 @@ public class DatabaseDriver {
 
             PreparedStatement prepStatement = connection.prepareStatement(SQLStatements.GET_LAST_ID.getStatement());
             prepStatement.setString(1, "patients");
-            System.out.println(prepStatement);
+            System.out.println(prepStatement + "\n");
 
             resultSet = statement.executeQuery(prepStatement.toString());
             id = resultSet.getInt("last_id");
@@ -180,7 +180,7 @@ public class DatabaseDriver {
 
             PreparedStatement prepStatement = connection.prepareStatement(SQLStatements.GET_TEMPERATURE_SHEET_RECORDS.getStatement());
             prepStatement.setInt(1, patientID);
-            System.out.println(prepStatement);
+            System.out.println(prepStatement + "\n");
 
             resultSet = statement.executeQuery(prepStatement.toString());
         } catch (SQLException e) {

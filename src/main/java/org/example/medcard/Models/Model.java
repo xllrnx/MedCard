@@ -13,7 +13,7 @@ public class Model {
     private final DatabaseDriver databaseDriver;
 
     // User Data Section
-    private User user;
+    private final User user;
     private boolean userLoginSuccessFlag;
 
     // Patient Data Section
@@ -30,6 +30,9 @@ public class Model {
         this.user = new User("", "", "", "");
 
         this.patients = FXCollections.observableArrayList();
+        this.selectedPatient = new Patient(-1, "", "", "",
+                LocalDate.of(2000, 1, 1), "", "", "", "", "",
+                true, null, null, null);
     }
 
     public static synchronized Model getInstance() {
@@ -38,6 +41,11 @@ public class Model {
         }
         return model;
     }
+
+    public static void resetModel() {
+        model = null;
+    }
+
 
     public ViewFactory getViewFactory() {
         return viewFactory;
@@ -72,7 +80,7 @@ public class Model {
                 this.user.setFathername(resultSet.getString("fathername"));
                 this.user.setType(resultSet.getString("type"));
 
-                System.out.println(this.user.toString());
+                System.out.println(this.user.toString() + "\n");
 
                 this.userLoginSuccessFlag = true;
             }
@@ -84,18 +92,24 @@ public class Model {
 
 
     /*
-    *
+    * Patient Method Section
     * */
 
     public Patient getSelectedPatient() {
         return selectedPatient;
     }
 
+    public void setSelectedPatient(Patient patient) {
+        this.selectedPatient = patient;
+    }
+
+
+
     public ObservableList<Patient> getPatients() {
         return patients;
     }
 
-    public ObservableList<Patient> setPatients() {
+    public void setPatients() {
         ObservableList<TreatmentRecord> treatmentRecords;
         ObservableList<DiagnosisRecord> diagnosisRecords;
         ObservableList<TemperatureSheetRecord> temperatureSheetRecords;
@@ -110,8 +124,7 @@ public class Model {
                 String name = resultSet.getString("name");
                 String fathername = resultSet.getString("fathername");
 
-                String[] dateParts = resultSet.getString("date_of_birth").split("-");
-                LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+                LocalDate date = resultSet.getDate("date_of_birth").toLocalDate();
 
                 String address = resultSet.getString("address");
                 String phone = resultSet.getString("phone");
@@ -130,20 +143,18 @@ public class Model {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return patients;
     }
 
     /*
      * Utility Method Section
      * */
     public ObservableList<TreatmentRecord> getTreatmentRecords(int patientID ) {
-        ObservableList<TreatmentRecord> treatmentRecords = null;
+        ObservableList<TreatmentRecord> treatmentRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getTreatmentRecords(patientID);
         try {
             while(resultSet.next()) {
                 String prescription = resultSet.getString("prescription");
-                String[] dateParts = resultSet.getString("prescribed_date").split("-");
-                LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+                LocalDate date = resultSet.getDate("prescribed_date").toLocalDate();
                 boolean status = resultSet.getBoolean("status");
 
                 treatmentRecords.add(new TreatmentRecord(prescription, date, status));
@@ -155,14 +166,12 @@ public class Model {
     }
 
     public ObservableList<DiagnosisRecord> getDiagnosisRecords(int patientID ) {
-        ObservableList<DiagnosisRecord> diagnosisRecords = null;
+        ObservableList<DiagnosisRecord> diagnosisRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getDiagnosisRecords(patientID);
         try {
             while(resultSet.next()) {
                 String prescription = resultSet.getString("prescription");
-                String[] dateParts = resultSet.getString("prescribed_date").split("-");
-                LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
-                boolean status = resultSet.getBoolean("status");
+                LocalDate date = resultSet.getDate("prescribed_date").toLocalDate();boolean status = resultSet.getBoolean("status");
                 String result = resultSet.getString("result");
 
                 diagnosisRecords.add(new DiagnosisRecord(prescription, date, status, result));
@@ -174,14 +183,12 @@ public class Model {
     }
 
     public ObservableList<TemperatureSheetRecord> getTemperatureSheetRecords(int patientID ) {
-        ObservableList<TemperatureSheetRecord> temperatureSheetRecords = null;
+        ObservableList<TemperatureSheetRecord> temperatureSheetRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getTemperatureSheerRecords(patientID);
         try {
             while(resultSet.next()) {
 
-                String[] dateParts = resultSet.getString("check_date").split("-");
-                LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
-
+                LocalDate date = resultSet.getDate("check_date").toLocalDate();
                 String prescription = resultSet.getString("part_of_day");
                 int pulse = resultSet.getInt("pulse");
                 int systolicPressure = resultSet.getInt("systolic_pressure");
