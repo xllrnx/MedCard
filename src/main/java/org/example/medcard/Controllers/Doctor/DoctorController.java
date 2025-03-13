@@ -16,14 +16,45 @@ public class DoctorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().addListener((observableValue, oldVal, newVal) -> {
             switch (newVal) {
-                case SelectPatient -> doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorSelectPatientView());
-                case Information -> doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorInformationView());
-                case Treatment -> doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorTreatmentView());
-                case Diagnosis -> doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorDiagnosisView());
-                case TemperatureSheet -> doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorTemperatureSheetView());
+                case SelectPatient :
+                    doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorSelectPatientView());
+                    break;
 
+                case Information :
+                    if (Model.getInstance().getSelectedPatient().PatientID() != -1) {
+                        doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorInformationView());
+                    } else {
+                        doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorWithoutPatientView());
+                    }
+                    break;
 
-                default -> doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorDashboardView());
+                case Treatment :
+                    if (Model.getInstance().getSelectedPatient().PatientID() != -1) {
+                        doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorTreatmentView());
+                    } else {
+                        doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorWithoutPatientView());
+                    }
+                    break;
+
+                case Diagnosis :
+                    if (Model.getInstance().getSelectedPatient().PatientID() != -1) {
+                        doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorDiagnosisView());
+                    } else {
+                        doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorWithoutPatientView());
+                    }
+                    break;
+
+                case TemperatureSheet :
+                    if (Model.getInstance().getSelectedPatient().PatientID() != -1) {
+                        doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorTemperatureSheetView());
+                    } else {
+                        doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorWithoutPatientView());
+                    }
+                    break;
+
+                default :
+                    doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorDashboardView());
+                    break;
             }
         });
     }

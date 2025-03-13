@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="850.0"
-            styleClass="diagnosis_container" stylesheets="@../../Styles/Doctor/DoctorDiagnosis.css"
+            styleClass="diagnosis_container" stylesheets="@../../Styles/Doctor/DashboardStyles/DoctorDiagnosis.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.medcard.Controllers.Doctor.DashboardsControllers.DoctorDiagnosisController">
    <HBox alignment="CENTER" layoutX="29.0" layoutY="40.0"

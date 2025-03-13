@@ -3,9 +3,7 @@ package org.example.medcard.Controllers.Doctor.DashboardsControllers;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import org.example.medcard.Models.Model;
 import org.example.medcard.Models.TreatmentRecord;
-import org.example.medcard.Views.CellFactories.TreatmentCellFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,7 +26,6 @@ public class DoctorTreatmentController implements Initializable {
 
         /*
         if(Model.getInstance().getSelectedPatient()) {
-            initData();
             treatment_listview.setItems(Model.getInstance().getTreatmentRecords(Model.getInstance().getSelectedPatient().PatientID()));
             treatment_listview.setCellFactory(e -> new TreatmentCellFactory());
         } else {
@@ -41,11 +38,4 @@ public class DoctorTreatmentController implements Initializable {
         */
 
     }
-
-    public void initData() {
-       if (Model.getInstance().getSelectedPatient().getTreatmentRecords().isEmpty()) {
-          Model.getInstance().getSelectedPatient().setTreatmentRecords();
-       }
-    }
-
 }

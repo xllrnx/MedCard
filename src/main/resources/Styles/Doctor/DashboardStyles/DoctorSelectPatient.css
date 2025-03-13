@@ -56,11 +56,10 @@
 }
 
 .select_patient_container .list-cell {
-    -fx-background-color: #e5e1da;
+    -fx-background-color: #D1CFCB;
     -fx-background-radius: 15px;
 
-    -fx-padding: 10px; /* Внутрішні відступи всередині елемента */
-    -fx-background-insets: 5px 10px 5px 5px; /* Відступи для фону */
+    -fx-background-insets: 5px 5px 5px 5px; /* Відступи для фону */
 }
 
 /* Стиль для вертикального повзунка */

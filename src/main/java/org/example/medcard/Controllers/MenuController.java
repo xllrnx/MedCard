@@ -2,19 +2,19 @@ package org.example.medcard.Controllers;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.medcard.Models.Model;
-import org.example.medcard.Views.DoctorMenuOptions;
+import org.example.medcard.Views.MenuOptions;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
     public ImageView user_icon;
-    public Label user_surname;
-    public Label user_name;
+    public Text user_surname;
+    public Text user_name;
     public Button select_patient_button;
     public Button information_button;
     public Button treatment_button;
@@ -52,7 +52,7 @@ public class MenuController implements Initializable {
      */
     private void onSelectPatient() {
         updateButtonStyle(select_patient_button);
-        Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().set(DoctorMenuOptions.SelectPatient);
+        Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().set(MenuOptions.SelectPatient);
     }
 
     /**
@@ -60,7 +60,7 @@ public class MenuController implements Initializable {
      */
     private void onInformation() {
         updateButtonStyle(information_button);
-        Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().set(DoctorMenuOptions.Information);
+        Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().set(MenuOptions.Information);
     }
 
     /**
@@ -68,7 +68,7 @@ public class MenuController implements Initializable {
      */
     private void onTreatment() {
         updateButtonStyle(treatment_button);
-        Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().set(DoctorMenuOptions.Treatment);
+        Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().set(MenuOptions.Treatment);
     }
 
     /**
@@ -76,7 +76,7 @@ public class MenuController implements Initializable {
      */
     private void onDiagnosis() {
         updateButtonStyle(diagnosis_button);
-        Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().set(DoctorMenuOptions.Diagnosis);
+        Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().set(MenuOptions.Diagnosis);
     }
 
     /**
@@ -84,7 +84,7 @@ public class MenuController implements Initializable {
      */
     private void onTemperatureSheet() {
         updateButtonStyle(temperature_sheet_button);
-        Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().set(DoctorMenuOptions.TemperatureSheet);
+        Model.getInstance().getViewFactory().getDoctorSelectedMenuItem().set(MenuOptions.TemperatureSheet);
     }
 
     /**
@@ -95,7 +95,7 @@ public class MenuController implements Initializable {
         Model.getInstance().getViewFactory().closeStage(stage);
         Model.getInstance().getViewFactory().showLoginWindow();
 
-        Model.getInstance().setUserLoginSuccessFlag(false);
+        Model.resetModel();
     }
 
     /**
@@ -124,7 +124,7 @@ public class MenuController implements Initializable {
 
         // Add the "selected_button" style class to the selected button if it doesn't already contain it
         if (!selectedButton.getStyleClass().contains("selected_button")) {
-            System.out.println("Adding selected_button to: " + selectedButton.getText());
+            System.out.println("Adding selected_button to: " + selectedButton.getText() + "\n");
             selectedButton.getStyleClass().add("selected_button");
         }
     }

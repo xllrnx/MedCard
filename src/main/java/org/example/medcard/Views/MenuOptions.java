@@ -1,6 +1,6 @@
 package org.example.medcard.Views;
 
-public enum DoctorMenuOptions {
+public enum MenuOptions {
     Dashboard,
     SelectPatient,
     Information,

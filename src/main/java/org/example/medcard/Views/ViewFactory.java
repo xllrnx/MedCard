@@ -12,10 +12,13 @@ import org.example.medcard.Controllers.Nurse.NurseController;
 
 public class ViewFactory {
     //Doctor Views
-    private final ObjectProperty<DoctorMenuOptions> doctorSelectedMenuItem;
+    private final ObjectProperty<MenuOptions> doctorSelectedMenuItem;
     private AnchorPane doctorDashboardView;
+    private AnchorPane doctorWithoutPatientView;
+
     private AnchorPane doctorSelectPatientView;
     private AnchorPane doctorInformationView;
+
     private AnchorPane doctorTreatmentView;
     private AnchorPane doctorDiagnosisView;
     private AnchorPane doctorTemperatureSheetView;
@@ -23,8 +26,10 @@ public class ViewFactory {
     //Nurse Views
     private final ObjectProperty<NurseMenuOptions> nurseSelectedMenuItem;
     private AnchorPane nurseDashboardView;
+
     private AnchorPane nurseSelectPatientView;
     private AnchorPane nurseInformationView;
+
     private AnchorPane nurseTreatmentView;
     private AnchorPane nurseDiagnosisView;
     private AnchorPane nurseTemperatureSheetView;
@@ -42,7 +47,7 @@ public class ViewFactory {
      * Returns the selected menu item for the doctor.
      * @return ObjectProperty representing the selected doctor menu item.
      */
-    public ObjectProperty<DoctorMenuOptions> getDoctorSelectedMenuItem() {
+    public ObjectProperty<MenuOptions> getDoctorSelectedMenuItem() {
         return doctorSelectedMenuItem;
     }
 
@@ -59,6 +64,21 @@ public class ViewFactory {
             }
         }
         return doctorDashboardView;
+    }
+
+    /**
+     * Loads and returns the doctor's Without Patient view.
+     * @return AnchorPane containing the doctor's Without Patient view.
+     */
+    public AnchorPane getDoctorWithoutPatientView() {
+        if (doctorWithoutPatientView == null) {
+            try {
+                doctorWithoutPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DoctorWithoutPatient.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return doctorWithoutPatientView;
     }
 
     /**
