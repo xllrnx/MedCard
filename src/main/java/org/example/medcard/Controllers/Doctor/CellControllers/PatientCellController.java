@@ -47,8 +47,8 @@ public class PatientCellController implements Initializable {
         System.out.println("Model selected patient: " + Model.getInstance().getSelectedPatient().SurnameProperty().get()
                 + " " + Model.getInstance().getSelectedPatient().NameProperty().get() + " " + Model.getInstance().getSelectedPatient().FathernameProperty().get() + "\n");
 
-        DoctorSelectPatientController controller = DoctorControllerManager.getDoctorSelectPatientController();
-        controller.updateSelectedPatient(patient);
+        DoctorSelectPatientController selectPatientController = DoctorControllerManager.getDoctorSelectPatientController();
+        selectPatientController.updateSelectedPatient(patient);
 
     }
 

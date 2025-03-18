@@ -1,14 +1,24 @@
 package org.example.medcard.Controllers.Doctor;
 
+import org.example.medcard.Controllers.Doctor.AddRecordsControllers.*;
 import org.example.medcard.Controllers.Doctor.DashboardsControllers.*;
 
 public class DoctorControllerManager {
     private static DoctorDashboardController doctorDashboardController;
+
     private static DoctorSelectPatientController doctorSelectPatientController;
+    private static DoctorAddPatientController doctorAddPatientController;
+
     private static DoctorInformationController doctorInformationController;
+
     private static DoctorTreatmentController doctorTreatmentController;
+    private static DoctorAddTreatmentRecordController doctorAddTreatmentRecordController;
+
     private static DoctorDiagnosisController doctorDiagnosisController;
+    private static DoctorAddDiagnosisRecordController doctorAddDiagnosisRecordController;
+
     private static DoctorTemperatureSheetController doctorTemperatureSheetController;
+    private static DoctorAddTemperatureSheetRecordController doctorAddTemperatureSheetRecordController;
 
     public static DoctorDashboardController getDoctorDashboardController() {
         return doctorDashboardController;
@@ -24,6 +34,14 @@ public class DoctorControllerManager {
 
     public static void setDoctorSelectPatientController(DoctorSelectPatientController doctorSelectPatientController) {
         DoctorControllerManager.doctorSelectPatientController = doctorSelectPatientController;
+    }
+
+    public static DoctorAddPatientController getDoctorAddPatientController() {
+        return doctorAddPatientController;
+    }
+
+    public static void setDoctorAddPatientController(DoctorAddPatientController doctorAddPatientController) {
+        DoctorControllerManager.doctorAddPatientController = doctorAddPatientController;
     }
 
     public static DoctorInformationController getDoctorInformationController() {
@@ -42,6 +60,14 @@ public class DoctorControllerManager {
         DoctorControllerManager.doctorTreatmentController = doctorTreatmentController;
     }
 
+    public static DoctorAddTreatmentRecordController getDoctorAddTreatmentRecordController() {
+        return doctorAddTreatmentRecordController;
+    }
+
+    public static void setDoctorAddTreatmentRecordController(DoctorAddTreatmentRecordController doctorAddTreatmentRecordController) {
+        DoctorControllerManager.doctorAddTreatmentRecordController = doctorAddTreatmentRecordController;
+    }
+
     public static DoctorDiagnosisController getDoctorDiagnosisController() {
         return doctorDiagnosisController;
     }
@@ -50,11 +76,27 @@ public class DoctorControllerManager {
         DoctorControllerManager.doctorDiagnosisController = doctorDiagnosisController;
     }
 
+    public static DoctorAddDiagnosisRecordController getDoctorAddDiagnosisRecordController() {
+        return doctorAddDiagnosisRecordController;
+    }
+
+    public static void setDoctorAddDiagnosisRecordController(DoctorAddDiagnosisRecordController doctorAddDiagnosisRecordController) {
+        DoctorControllerManager.doctorAddDiagnosisRecordController = doctorAddDiagnosisRecordController;
+    }
+
     public static DoctorTemperatureSheetController getDoctorTemperatureSheetController() {
         return doctorTemperatureSheetController;
     }
 
     public static void setDoctorTemperatureSheetController(DoctorTemperatureSheetController doctorTemperatureSheetController) {
         DoctorControllerManager.doctorTemperatureSheetController = doctorTemperatureSheetController;
+    }
+
+    public static DoctorAddTemperatureSheetRecordController getDoctorAddTemperatureSheetRecordController() {
+        return doctorAddTemperatureSheetRecordController;
+    }
+
+    public static void setDoctorAddTemperatureSheetRecordController(DoctorAddTemperatureSheetRecordController doctorAddTemperatureSheetRecordController) {
+        DoctorControllerManager.doctorAddTemperatureSheetRecordController = doctorAddTemperatureSheetRecordController;
     }
 }

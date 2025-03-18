@@ -32,6 +32,7 @@ public class DoctorSelectPatientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         clear_searchfield_button.setOnAction(event -> onClear());
+        add_button.setOnAction(event -> onAdd());
 
         DoctorControllerManager.setDoctorSelectPatientController(this);
 
@@ -48,26 +49,15 @@ public class DoctorSelectPatientController implements Initializable {
         selected_patient_fathername.setText(Model.getInstance().getSelectedPatient().FathernameProperty().get());
         System.out.printf("selected_patient_fathername = " + selected_patient_fathername.getText() + "\n");
 
-        initData();
-
-        filteredPatients = new FilteredList<>(Model.getInstance().getPatients(), p -> true);
-
-        patients_listview.setItems(filteredPatients);
-        patients_listview.setCellFactory(e -> new PatientCellFactory());
-
-        search_field.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterPatientList(newValue);
-        });
-    }
-
-    public void initData() {
-        if (Model.getInstance().getPatients().isEmpty()) {
-            Model.getInstance().setPatients();
-        }
+        updatePatientsList();
     }
 
     private void onClear() {
         search_field.setText("");
+    }
+
+    private void onAdd() {
+        Model.getInstance().getViewFactory().showDoctorAddPatientWindow();
     }
 
     public void updateSelectedPatient(Patient patient) {
@@ -77,6 +67,19 @@ public class DoctorSelectPatientController implements Initializable {
         selected_patient_surname.setText(patient.SurnameProperty().get());
         selected_patient_name.setText(patient.NameProperty().get());
         selected_patient_fathername.setText(patient.FathernameProperty().get());
+    }
+
+    public void updatePatientsList() {
+        Model.getInstance().setPatients();
+
+        filteredPatients = new FilteredList<>(Model.getInstance().getPatients(), p -> true);
+
+        patients_listview.setItems(filteredPatients);
+        patients_listview.setCellFactory(e -> new PatientCellFactory());
+
+        search_field.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterPatientList(newValue);
+        });
     }
 
     private void filterPatientList(String searchText) {

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.medcard.Controllers.Doctor.AddRecordsControllers.DoctorAddPatientController;
 import org.example.medcard.Controllers.Doctor.DoctorController;
 import org.example.medcard.Controllers.Nurse.NurseController;
 
@@ -274,6 +275,13 @@ public class ViewFactory {
         createStage(loader);
     }
 
+    public void showDoctorAddPatientWindow() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DoctorAddPatient.fxml"));
+        DoctorAddPatientController doctorAddPatientControllerController = new DoctorAddPatientController();
+        loader.setController(doctorAddPatientControllerController);
+        createStage(loader);
+    }
+
     /**
      * Displays the nurse interface.
      */
@@ -310,4 +318,5 @@ public class ViewFactory {
     public void closeStage(Stage stage) {
         stage.close();
     }
+
 }

@@ -103,8 +103,6 @@ public class Model {
         this.selectedPatient = patient;
     }
 
-
-
     public ObservableList<Patient> getPatients() {
         return patients;
     }
@@ -137,13 +135,31 @@ public class Model {
                 diagnosisRecords = getDiagnosisRecords(patientID);
                 temperatureSheetRecords = getTemperatureSheetRecords(patientID);
 
-                patients.add(new Patient(patientID, surname, name, fathername, date, address, phone, sex, complaints, medicalHistory, status, treatmentRecords, diagnosisRecords, temperatureSheetRecords));
+                boolean isInPatients = false;
+                for (Patient patient : patients) {
+                    if (patient.PatientID() == patientID) {
+                        isInPatients = true;
+                    }
+                }
+                if (!isInPatients) {
+                    patients.add(new Patient(patientID, surname, name, fathername, date, address, phone, sex, complaints, medicalHistory, status, treatmentRecords, diagnosisRecords, temperatureSheetRecords));
+                }
 
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public void addPatient(String surname, String name, String fathername, LocalDate date_of_birth) {
+        int personID = databaseDriver.getLastPersonId();
+        int patientID = databaseDriver.getLastPatientId();
+
+        databaseDriver.createPerson(personID+1, surname, name, fathername);
+        databaseDriver.createPatient(patientID+1, personID+1, date_of_birth);
+    }
+
+
 
     /*
      * Utility Method Section
