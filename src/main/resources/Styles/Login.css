@@ -3,51 +3,15 @@
     -fx-background-color: #fbf9f1;
 }
 
-
 /* Стилізація бічної панелі */
 .side_panel {
     -fx-background-color: #aad7d9;
-    -fx-alignment: center;
-}
-
-
-/* Стилізація форми авторизації */
-.login_form_container {
-    -fx-spacing: 15px;
-    -fx-alignment: top_left;
 }
 
 /* Текст */
-.login_form_container .label {
+.text {
     -fx-font-size: 16;
     -fx-font-weight: bold;
-}
-
-/* Combo-box з вибором типу аккаунту */
-.account_type_selector {
-    -fx-background-color: #aad7d9;
-    -fx-pref-height: 30;
-    -fx-cursor: hand; /* Стиль курсора при наведенні */
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-}
-/* Стрілочка у combo-box */
-.account_type_selector .arrow {
-    -fx-background-color: #000000;
-}
-/* Випадаючий список */
-.account_type_selector .list-view {
-    -fx-background-color: #aad7d9; /* Колір фону випадаючого меню */
-    -fx-cursor: hand; /* Стиль курсора при наведенні */
-}
-/* Елементи списку */
-.combo-box-popup .list-view .list-cell {
-    -fx-font-size: 12px; /* Розмір шрифту для елементів */
-    -fx-font-weight: bold; /* Жирний шрифт */
-}
-/* Ефекти при наведенні на елемент */
-.combo-box-popup .list-view .list-cell:hover {
-    -fx-background-color: #87c2c9; /* Темніший відтінок фону при наведенні */
 }
 
 /* Поля для введення */
@@ -78,8 +42,8 @@
 }
 
 /* Текст помилки */
-.error_label {
+.error_text {
     -fx-color: #ff6961;
-    -fx-font-size: 16;
+    -fx-font-size: 14;
     -fx-font-weight: bold;
 }

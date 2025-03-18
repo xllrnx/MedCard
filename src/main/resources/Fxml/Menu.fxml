@@ -9,17 +9,18 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="600.0" prefWidth="222.0" styleClass="menu_container" stylesheets="@../Styles/Menu.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.medcard.Controllers.MenuController">
+<AnchorPane prefHeight="600.0" prefWidth="222.0"
+            styleClass="menu_container" stylesheets="@../Styles/Menu.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.medcard.Controllers.MenuController">
    <VBox alignment="CENTER" layoutY="14.0" prefHeight="162.0" prefWidth="222.0" styleClass="user_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
       <ImageView fx:id="user_icon" fitHeight="132.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../Images/UserIcon.png" />
       </ImageView>
       <TextFlow prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
-         <children>
-            <Text fx:id="user_surname" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Прізвище" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" " />
-            <Text fx:id="user_name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Ім'я" />
-         </children>
+         <Text fx:id="user_surname" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Прізвище"/>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" "/>
+         <Text fx:id="user_name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Ім'я"/>
       </TextFlow>
    </VBox>
    <VBox alignment="TOP_CENTER" layoutY="182.4" prefHeight="324.0" prefWidth="222.0" styleClass="buttons_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">

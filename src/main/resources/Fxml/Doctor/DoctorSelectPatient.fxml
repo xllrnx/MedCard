@@ -11,7 +11,10 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="select_patient_container" stylesheets="@../../Styles/Doctor/DashboardStyles/DoctorSelectPatient.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.medcard.Controllers.Doctor.DashboardsControllers.DoctorSelectPatientController">
+<AnchorPane prefHeight="600.0" prefWidth="850.0"
+            styleClass="select_patient_container" stylesheets="@../../Styles/Doctor/DashboardStyles/DoctorSelectPatient.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.medcard.Controllers.Doctor.DashboardsControllers.DoctorSelectPatientController">
    <VBox spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
       <HBox alignment="CENTER" prefHeight="27.0" prefWidth="810.0" spacing="5.0" styleClass="selected_patient">
          <padding>

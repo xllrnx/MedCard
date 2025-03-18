@@ -2,6 +2,7 @@ package org.example.medcard.Controllers.Doctor.DashboardsControllers;
 
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import org.example.medcard.Controllers.Doctor.DoctorControllerManager;
 import org.example.medcard.Models.Model;
 
 import java.net.URL;
@@ -15,6 +16,8 @@ public class DoctorDashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        DoctorControllerManager.setDoctorDashboardController(this);
+
         user_surname.setText(Model.getInstance().getUser().getSurname());
         user_name.setText(Model.getInstance().getUser().getName());
         user_fathername.setText(Model.getInstance().getUser().getFathername());

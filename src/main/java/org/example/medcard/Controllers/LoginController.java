@@ -2,6 +2,7 @@ package org.example.medcard.Controllers;
 
 import javafx.scene.control.*;
 import javafx.fxml.Initializable;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.medcard.Utils.LoginErrors;
 import org.example.medcard.Models.Model;
@@ -14,7 +15,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
     public TextField login_field;
     public PasswordField password_field;
-    public Label error_label;
+    public Text error_text;
     public Button login_button;
 
     /**
@@ -35,7 +36,7 @@ public class LoginController implements Initializable {
         String upassword = password_field.getText();
 
         if (ulogin.isEmpty() || upassword.isEmpty()) {
-            error_label.setText(LoginErrors.EMPTY_FIELDS.getError());
+            error_text.setText(LoginErrors.EMPTY_FIELDS.getError());
         } else {
             Model.getInstance().evaluateUserCredentials(ulogin, upassword);
             Stage stage = (Stage) login_button.getScene().getWindow();
@@ -48,10 +49,10 @@ public class LoginController implements Initializable {
                     Model.getInstance().getViewFactory().closeStage(stage);
                     Model.getInstance().getViewFactory().showNurseWindow();
                 } else {
-                    error_label.setText(LoginErrors.INCORRECT_TYPE.getError());
+                    error_text.setText(LoginErrors.INCORRECT_TYPE.getError());
                 }
             } else {
-                error_label.setText(LoginErrors.INCORRECT_LOGIN_PASSWORD.getError());
+                error_text.setText(LoginErrors.INCORRECT_LOGIN_PASSWORD.getError());
             }
         }
     }
