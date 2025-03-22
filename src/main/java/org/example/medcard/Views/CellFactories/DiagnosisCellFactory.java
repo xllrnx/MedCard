@@ -1,9 +1,12 @@
 package org.example.medcard.Views.CellFactories;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import org.example.medcard.Controllers.Doctor.CellControllers.DiagnosisCellController;
-import org.example.medcard.Models.DiagnosisRecord;
+import org.example.medcard.Controllers.Doctor.CellControllers.TreatmentCellController;
+import org.example.medcard.Models.Records.DiagnosisRecord;
 
 public class DiagnosisCellFactory extends ListCell<DiagnosisRecord> {
     @Override
@@ -13,7 +16,10 @@ public class DiagnosisCellFactory extends ListCell<DiagnosisRecord> {
             setText(null);
             setGraphic(null);
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/TreatmentCell.fxml"));
+            //CellController controller = getController(record);
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource(getLoader(record)));
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Cells/DiagnosisCell.fxml"));
             DiagnosisCellController controller = new DiagnosisCellController(diagnosisRecord);
             loader.setController(controller);
             setText(null);
@@ -24,4 +30,20 @@ public class DiagnosisCellFactory extends ListCell<DiagnosisRecord> {
             }
         }
     }
+
+    /*private Object getController(Record record) {
+        return switch (record) {
+            case DiagnosisRecord -> new DiagnosisCellController(record);
+            case TreatmentRecord -> new TreatmentCellController(record);
+            default -> null;
+        };
+    }
+
+    private String getLoader(Record record) {
+        return switch (record) {
+            case DiagnosisRecord -> "/Fxml/Doctor/Cells/DiagnosisCell.fxml";
+            case TreatmentRecord -> "/Fxml/Doctor/Cells/TreatmentCell.fxml";
+            default -> null;
+        };
+    }*/
 }

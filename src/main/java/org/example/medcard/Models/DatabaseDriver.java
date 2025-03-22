@@ -93,6 +93,22 @@ public class DatabaseDriver {
         }
     }
 
+    public void deletePatient(int patientID) {
+        Statement statement;
+        try {
+            statement = this.connection.createStatement();
+
+            PreparedStatement prepStatement = connection.prepareStatement(SQLStatements.DELETE_PATIENT.getStatement());
+            prepStatement.setInt(1, patientID);
+
+            System.out.println(prepStatement);
+
+            statement.executeUpdate(prepStatement.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     /*
      * Utility Methods
      * */

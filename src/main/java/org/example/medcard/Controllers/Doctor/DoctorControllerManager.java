@@ -1,10 +1,10 @@
 package org.example.medcard.Controllers.Doctor;
 
-import org.example.medcard.Controllers.Doctor.AddRecordsControllers.*;
+import org.example.medcard.Controllers.Doctor.RecordsControllers.*;
 import org.example.medcard.Controllers.Doctor.DashboardsControllers.*;
 
 public class DoctorControllerManager {
-    private static DoctorDashboardController doctorDashboardController;
+    private static DoctorHelloDashboardController doctorDashboardController;
 
     private static DoctorSelectPatientController doctorSelectPatientController;
     private static DoctorAddPatientController doctorAddPatientController;
@@ -20,11 +20,11 @@ public class DoctorControllerManager {
     private static DoctorTemperatureSheetController doctorTemperatureSheetController;
     private static DoctorAddTemperatureSheetRecordController doctorAddTemperatureSheetRecordController;
 
-    public static DoctorDashboardController getDoctorDashboardController() {
+    public static DoctorHelloDashboardController getDoctorDashboardController() {
         return doctorDashboardController;
     }
 
-    public static void setDoctorDashboardController(DoctorDashboardController doctorDashboardController) {
+    public static void setDoctorDashboardController(DoctorHelloDashboardController doctorDashboardController) {
         DoctorControllerManager.doctorDashboardController = doctorDashboardController;
     }
 

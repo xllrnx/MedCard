@@ -1,0 +1,32 @@
+/* Стилізація основного фону */
+.diagnosis_cell_container {
+    -fx-background-color: #e5e1da;
+    -fx-background-radius: 15px;
+}
+
+.text {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+/**/
+.info_button {
+    -fx-background-color: #aad7d9; /* Колір фону */
+    -fx-background-radius: 10px; /* Округлені кути фону */
+}
+/* Ефекти при наведенні на кнопку */
+.info_button:hover {
+    -fx-background-color: #87c2c9; /* Темніший відтінок фону при наведенні */
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
+}
+
+/**/
+.edit_button {
+    -fx-background-color: #aad7d9; /* Колір фону */
+    -fx-background-radius: 10px; /* Округлені кути фону */
+}
+/* Ефекти при наведенні на кнопку */
+.edit_button:hover {
+    -fx-background-color: #87c2c9; /* Темніший відтінок фону при наведенні */
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
+}

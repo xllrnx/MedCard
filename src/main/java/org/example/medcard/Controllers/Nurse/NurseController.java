@@ -23,7 +23,7 @@ public class NurseController implements Initializable {
                 case TemperatureSheet -> nurse_parent.setCenter(Model.getInstance().getViewFactory().getNurseTemperatureSheetView());
 
 
-                default -> nurse_parent.setCenter(Model.getInstance().getViewFactory().getNurseDashboardView());
+                default -> nurse_parent.setCenter(Model.getInstance().getViewFactory().getNurseHelloDashboardView());
             }
         });
     }

@@ -2,8 +2,11 @@ package org.example.medcard.Controllers.Doctor.CellControllers;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import org.example.medcard.Controllers.Doctor.DashboardsControllers.DoctorSelectPatientController;
+import org.example.medcard.Controllers.Doctor.DashboardsControllers.*;
+import org.example.medcard.Controllers.Doctor.DoctorController;
 import org.example.medcard.Controllers.Doctor.DoctorControllerManager;
 import org.example.medcard.Models.Model;
 import org.example.medcard.Models.Patient;
@@ -13,8 +16,7 @@ import java.util.ResourceBundle;
 
 public class PatientCellController implements Initializable {
 
-    //private DoctorSelectPatientController parentController;
-
+    public Circle status_circle;
     public Text patient_surname;
     public Text patient_name;
     public Text patient_fathername;
@@ -27,31 +29,50 @@ public class PatientCellController implements Initializable {
     public PatientCellController(Patient patient) {
         this.patient = patient;
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        patient_surname.textProperty().bind(patient.SurnameProperty());
-        patient_name.textProperty().bind(patient.NameProperty());
-        patient_fathername.textProperty().bind(patient.FathernameProperty());
-        patient_date_of_birth.textProperty().bind(patient.DateOfBirthProperty().asString());
+
+        if (patient.getStatus()) {
+            status_circle.setFill(Color.GREEN);
+        } else {
+            status_circle.setFill(Color.RED);
+        }
+
+        patient_surname.textProperty().bind(patient.getSurnameProperty());
+        patient_name.textProperty().bind(patient.getNameProperty());
+        patient_fathername.textProperty().bind(patient.getFathernameProperty());
+        patient_date_of_birth.textProperty().bind(patient.getDateOfBirthStringProperty());
 
         select_button.setOnAction(event -> onSelect());
         delete_button.setOnAction(event -> onDelete());
-
     }
 
     private void onSelect() {
         Model.getInstance().setSelectedPatient(this.patient);
 
-        System.out.printf("Patient selected: " + this.patient.SurnameProperty().get()
-                + " " + this.patient.NameProperty().get() + " " + this.patient.FathernameProperty().get() + "\n");
-        System.out.println("Model selected patient: " + Model.getInstance().getSelectedPatient().SurnameProperty().get()
-                + " " + Model.getInstance().getSelectedPatient().NameProperty().get() + " " + Model.getInstance().getSelectedPatient().FathernameProperty().get() + "\n");
+        System.out.printf("Patient selected: " + this.patient.getSurnameProperty().get()
+                + " " + this.patient.getNameProperty().get() + " " + this.patient.getFathernameProperty().get() + "\n");
+        System.out.println("Model selected patient: " + Model.getInstance().getSelectedPatient().getSurnameProperty().get()
+                + " " + Model.getInstance().getSelectedPatient().getNameProperty().get() + " " + Model.getInstance().getSelectedPatient().getFathernameProperty().get() + "\n");
 
-        DoctorSelectPatientController selectPatientController = DoctorControllerManager.getDoctorSelectPatientController();
-        selectPatientController.updateSelectedPatient(patient);
-
+        updateController(DoctorControllerManager.getDoctorSelectPatientController());
+        updateController(DoctorControllerManager.getDoctorInformationController());
+        updateController(DoctorControllerManager.getDoctorTreatmentController());
+        updateController(DoctorControllerManager.getDoctorDiagnosisController());
+        updateController(DoctorControllerManager.getDoctorTemperatureSheetController());
     }
 
+    private void updateController(DoctorDashboardController controller) {
+        if (controller != null) {
+            controller.updateSelectedPatient(patient);
+            controller.updateList();
+        }
+    }
+
+
     private void onDelete() {
+        Model.getInstance().setPatientToDelete(this.patient);
+        Model.getInstance().getViewFactory().showDoctorDeletePatientWindow();
     }
 }

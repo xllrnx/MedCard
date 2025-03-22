@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="765.0" styleClass="patient_cell_container" stylesheets="@../../../Styles/Doctor/CellsStyles/PatientCell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <Circle fx:id="status_circle" fill="#1fff85" layoutX="24.2" layoutY="28.4" radius="9.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="17.6" AnchorPane.leftAnchor="15.2" AnchorPane.topAnchor="19.4" />
+    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.4" layoutY="2.2" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.5" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="2.5">
+        <Image url="@../../../Images/UserIcon.png" />
+    </ImageView>
+    <HBox alignment="CENTER" layoutX="104.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="416.0" spacing="5.0" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="15.0">
+        <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="306.0">
+            <Text fx:id="patient_surname" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Прізвище" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" " />
+            <Text fx:id="patient_name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Ім'я" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" " />
+            <Text fx:id="patient_fathername" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="По-Батькові" />
+        </TextFlow>
+        <Text fx:id="patient_date_of_birth" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="00-00-0000" wrappingWidth="90.79995727539062" />
+    </HBox>
+    <Button fx:id="delete_button" layoutX="651.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="delete_button" text="Видалити" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0" />
+   <Button fx:id="select_button" layoutX="547.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="select_button" text="Обрати" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="118.0" AnchorPane.topAnchor="10.0" />
+
+</AnchorPane>

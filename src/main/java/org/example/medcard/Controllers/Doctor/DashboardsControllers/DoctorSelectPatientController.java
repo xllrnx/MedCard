@@ -14,12 +14,7 @@ import org.example.medcard.Views.CellFactories.PatientCellFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DoctorSelectPatientController implements Initializable {
-
-    public Text selected_patient_info;
-    public Text selected_patient_surname;
-    public Text selected_patient_name;
-    public Text selected_patient_fathername;
+public class DoctorSelectPatientController extends DoctorDashboardController implements Initializable {
 
     public TextField search_field;
     public Button clear_searchfield_button;
@@ -36,20 +31,8 @@ public class DoctorSelectPatientController implements Initializable {
 
         DoctorControllerManager.setDoctorSelectPatientController(this);
 
-        if (Model.getInstance().getSelectedPatient().PatientID() == -1) {
-            selected_patient_info.setText("Пацієнт для роботи не обраний.");
-        } else {
-            selected_patient_info.setText("Обраний пацієнт:");
-        }
-
-        selected_patient_surname.setText(Model.getInstance().getSelectedPatient().SurnameProperty().get());
-        System.out.printf("selected_patient_surname = " + selected_patient_surname.getText() + "\n");
-        selected_patient_name.setText(Model.getInstance().getSelectedPatient().NameProperty().get());
-        System.out.printf("selected_patient_name = " + selected_patient_name.getText() + "\n");
-        selected_patient_fathername.setText(Model.getInstance().getSelectedPatient().FathernameProperty().get());
-        System.out.printf("selected_patient_fathername = " + selected_patient_fathername.getText() + "\n");
-
-        updatePatientsList();
+        updateSelectedPatient(Model.getInstance().getSelectedPatient());
+        updateList();
     }
 
     private void onClear() {
@@ -60,16 +43,8 @@ public class DoctorSelectPatientController implements Initializable {
         Model.getInstance().getViewFactory().showDoctorAddPatientWindow();
     }
 
-    public void updateSelectedPatient(Patient patient) {
-        System.out.printf("(update window)Patient selected: " + patient.SurnameProperty().get()
-                + " " + patient.NameProperty().get() + " " + patient.FathernameProperty().get() + "\n");
-        selected_patient_info.setText("Обраний пацієнт:");
-        selected_patient_surname.setText(patient.SurnameProperty().get());
-        selected_patient_name.setText(patient.NameProperty().get());
-        selected_patient_fathername.setText(patient.FathernameProperty().get());
-    }
-
-    public void updatePatientsList() {
+    @Override
+    public void updateList() {
         Model.getInstance().setPatients();
 
         filteredPatients = new FilteredList<>(Model.getInstance().getPatients(), p -> true);
@@ -90,9 +65,9 @@ public class DoctorSelectPatientController implements Initializable {
 
             String lowerCaseFilter = search_field.getText().trim().toLowerCase();
 
-            String patientName = patient.SurnameProperty().get().toLowerCase() + " " +
-                    patient.NameProperty().get().toLowerCase() + " " +
-                    patient.FathernameProperty().get().toLowerCase();
+            String patientName = patient.getSurnameProperty().get().toLowerCase() + " " +
+                    patient.getNameProperty().get().toLowerCase() + " " +
+                    patient.getFathernameProperty().get().toLowerCase();
             return patientName.contains(lowerCaseFilter);
         });
     }

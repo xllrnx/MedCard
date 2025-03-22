@@ -1,0 +1,57 @@
+/**/
+.temperature_sheet_container {
+    -fx-background-color: #fbf9f1;
+}
+
+/* Стилі  для основного тексту на сторінці */
+.text {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+/* Стилі для поля з інформацією про обраного пацієнта */
+.selected_patient {
+    -fx-background-color: #D1CFCB;
+    -fx-background-radius: 12px;
+}
+
+/* Стилі для кнопки "Додати" */
+.add_button {
+    -fx-background-color: #aad7d9; /* Колір фону */
+    -fx-background-radius: 10px; /* Округлені кути фону */
+
+    -fx-font-size: 16; /* Розмір шрифту */
+    -fx-font-weight: bold; /* Стиль шрифту */
+
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
+}
+
+.add_button:hover {
+    -fx-background-color: #87c2c9; /* Трохи темніший відтінок фону при наведенні */
+}
+
+/* Стилі для списку пацієнтів */
+.temperature_sheet_container .list-view {
+    -fx-background-color: #D1CFCB;
+    -fx-background-radius: 12px;
+}
+
+/* Стилі для клітинок списку пацієнтів */
+.temperature_sheet_container .list-cell {
+    -fx-background-color: #d1cfcb;
+    -fx-background-radius: 15px;
+
+    -fx-background-insets: 5px 5px 5px 5px; /* Відступи для фону */
+}
+
+/* Стилі для вертикального повзунка */
+.list-view .scroll-bar:vertical {
+    -fx-background-color: #e5e1da; /* Фон повзунка */
+    -fx-background-radius: 10px; /* Закруглені кути */
+}
+
+/* Стилі для "бігунка" (ручки) повзунка */
+.list-view .scroll-bar .thumb {
+    -fx-background-color: #aad7d9; /* Синій колір */
+    -fx-background-radius: 10px; /* Закруглені кути */
+}

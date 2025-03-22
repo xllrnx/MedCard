@@ -13,7 +13,7 @@ public class PatientCellFactory extends ListCell<Patient> {
             setText(null);
             setGraphic(null);
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/PatientCell.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Cells/PatientCell.fxml"));
             PatientCellController controller = new PatientCellController(patient);
             loader.setController(controller);
             setText(null);

@@ -3,7 +3,7 @@ package org.example.medcard.Views.CellFactories;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import org.example.medcard.Controllers.Doctor.CellControllers.TemperatureSheetCellController;
-import org.example.medcard.Models.TemperatureSheetRecord;
+import org.example.medcard.Models.Records.TemperatureSheetRecord;
 
 public class TemperatureSheetCellFactory extends ListCell<TemperatureSheetRecord> {
     @Override

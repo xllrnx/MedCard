@@ -2,10 +2,14 @@ package org.example.medcard.Models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.example.medcard.Models.Records.DiagnosisRecord;
+import org.example.medcard.Models.Records.TemperatureSheetRecord;
+import org.example.medcard.Models.Records.TreatmentRecord;
 import org.example.medcard.Views.ViewFactory;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.Comparator;
 
 public class Model {
     private static Model model;
@@ -19,6 +23,7 @@ public class Model {
     // Patient Data Section
     private final ObservableList<Patient> patients;
     private Patient selectedPatient;
+    private Patient patientToDelete;
 
 
 
@@ -30,9 +35,8 @@ public class Model {
         this.user = new User("", "", "", "");
 
         this.patients = FXCollections.observableArrayList();
-        this.selectedPatient = new Patient(-1, "", "", "",
-                LocalDate.of(2000, 1, 1), "", "", "", "", "",
-                true, null, null, null);
+        this.selectedPatient = null;
+        this.patientToDelete = null;
     }
 
     public static synchronized Model getInstance() {
@@ -45,7 +49,6 @@ public class Model {
     public static void resetModel() {
         model = null;
     }
-
 
     public ViewFactory getViewFactory() {
         return viewFactory;
@@ -82,6 +85,7 @@ public class Model {
 
                 System.out.println(this.user.toString() + "\n");
 
+
                 this.userLoginSuccessFlag = true;
             }
         } catch (Exception e) {
@@ -89,12 +93,9 @@ public class Model {
         }
     }
 
-
-
     /*
     * Patient Method Section
     * */
-
     public Patient getSelectedPatient() {
         return selectedPatient;
     }
@@ -102,6 +103,16 @@ public class Model {
     public void setSelectedPatient(Patient patient) {
         this.selectedPatient = patient;
     }
+
+    public Patient getPatientToDelete() {
+        return patientToDelete;
+    }
+
+    public void setPatientToDelete(Patient patient) {
+        this.patientToDelete = patient;
+    }
+
+
 
     public ObservableList<Patient> getPatients() {
         return patients;
@@ -137,7 +148,7 @@ public class Model {
 
                 boolean isInPatients = false;
                 for (Patient patient : patients) {
-                    if (patient.PatientID() == patientID) {
+                    if (patient.getPatientID() == patientID) {
                         isInPatients = true;
                     }
                 }
@@ -149,6 +160,8 @@ public class Model {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        patients.sort(Comparator.comparing(Patient::getStatus).reversed());
     }
 
     public void addPatient(String surname, String name, String fathername, LocalDate date_of_birth) {
@@ -159,7 +172,9 @@ public class Model {
         databaseDriver.createPatient(patientID+1, personID+1, date_of_birth);
     }
 
-
+    public void deletePatient(Patient patient) {
+        databaseDriver.deletePatient(patient.getPatientID());
+    }
 
     /*
      * Utility Method Section
@@ -171,7 +186,7 @@ public class Model {
             while(resultSet.next()) {
                 String prescription = resultSet.getString("prescription");
                 LocalDate date = resultSet.getDate("prescribed_date").toLocalDate();
-                boolean status = resultSet.getBoolean("status");
+                String status = resultSet.getString("status");
 
                 treatmentRecords.add(new TreatmentRecord(prescription, date, status));
             }
@@ -187,7 +202,8 @@ public class Model {
         try {
             while(resultSet.next()) {
                 String prescription = resultSet.getString("prescription");
-                LocalDate date = resultSet.getDate("prescribed_date").toLocalDate();boolean status = resultSet.getBoolean("status");
+                LocalDate date = resultSet.getDate("prescribed_date").toLocalDate();
+                String status = resultSet.getString("status");
                 String result = resultSet.getString("result");
 
                 diagnosisRecords.add(new DiagnosisRecord(prescription, date, status, result));
@@ -218,5 +234,4 @@ public class Model {
         }
         return temperatureSheetRecords;
     }
-
 }
