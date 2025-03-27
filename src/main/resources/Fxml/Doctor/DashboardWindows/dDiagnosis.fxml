@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="doctor_listview_dashboard_container" stylesheets="@../../../Styles/Doctor/DashboardWindowsStyles/DoctorListviewDashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.medcard.Controllers.Doctor.WindowControllers.dDiagnosisController">
+   <VBox spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="810.0" spacing="5.0" styleClass="selected_patient">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <TextFlow prefHeight="26.0" prefWidth="629.0" textAlignment="CENTER">
+            <Text fx:id="selected_patient_info" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Обраний пацієнт:" wrappingWidth="166.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" " wrappingWidth="100" />
+            <Text fx:id="selected_patient_surname" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Прізвище" wrappingWidth="85" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" " wrappingWidth="100" />
+            <Text fx:id="selected_patient_name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Ім'я" wrappingWidth="40" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" " wrappingWidth="100" />
+            <Text fx:id="selected_patient_fathername" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="По-батькові" wrappingWidth="100" />
+         </TextFlow>
+      </HBox>
+      <HBox prefHeight="39.0" prefWidth="790.0" spacing="10.0">
+         <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="650.0" spacing="5.0" styleClass="searchfield">
+               <TextField fx:id="searchfield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="565.0" promptText="Пошук" styleClass="searchfield" />
+               <Button fx:id="searchfield_clear_button" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="searchfield_button">
+                  <padding>
+                     <Insets top="2.0" />
+                  </padding>
+                  <graphic>
+                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../../../Images/TrashIcon.png" />
+                     </ImageView>
+                  </graphic></Button>
+               <Button fx:id="searchfield_filter_button" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="searchfield_button" textFill="#00000078">
+                  <graphic>
+                     <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../../../Images/FilterIcon.png" />
+                     </ImageView>
+                  </graphic>
+                  <padding>
+                     <Insets top="3.0" />
+                  </padding>
+               </Button>
+            </HBox>
+         </AnchorPane>
+         <Button fx:id="add_button" mnemonicParsing="false" prefHeight="45.0" prefWidth="182.0" styleClass="add_button" text="Додати">
+            <font>
+               <Font name="Arial" size="16.0" />
+            </font>
+         </Button>
+      </HBox>
+      <ListView fx:id="diagnosis_listview" prefHeight="450.0" prefWidth="750.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+         </padding>
+      </ListView>
+   </VBox>
+   <VBox fx:id="filters_container" layoutX="627.0" layoutY="77.0" prefHeight="190.0" prefWidth="206.0" spacing="5.0" styleClass="filters_container" visible="false">
+      <padding>
+         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+      <Button fx:id="searchfield_filter_button2" mnemonicParsing="false" prefHeight="35.0" prefWidth="195.0" styleClass="searchfield_button" text="Фільтрувати" textFill="#000000b2">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../../../Images/FilterIcon.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <VBox prefHeight="142.0" prefWidth="197.0" spacing="5.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <RadioButton fx:id="radio_from_newest" mnemonicParsing="false" prefHeight="20.0" prefWidth="185.0" text="Від найновішого" wrapText="true" />
+         <RadioButton fx:id="radio_from_oldest" mnemonicParsing="false" prefHeight="20.0" prefWidth="185.0" text="Від найстарішого" wrapText="true" />
+         <CheckBox fx:id="check_status_done" mnemonicParsing="false" prefHeight="20.0" prefWidth="185.0" text="Виконано" wrapText="true" />
+         <CheckBox fx:id="check_status_planned" mnemonicParsing="false" prefHeight="20.0" prefWidth="185.0" text="Заплановано" wrapText="true" />
+         <CheckBox fx:id="check_status_canceled" mnemonicParsing="false" prefHeight="20.0" prefWidth="185.0" text="Скасовано" wrapText="true" />
+      </VBox>
+   </VBox>
+</AnchorPane>

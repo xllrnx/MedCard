@@ -5,16 +5,16 @@ public class User {
     String type;
     String surname;
     String name;
-    String fathername;
+    String fatherName;
 
     public User() {
     }
 
-    public User(String username, String surname, String name, String fathername) {
+    public User(String username, String surname, String name, String fatherName) {
         this.login = username;
         this.surname = surname;
         this.name = name;
-        this.fathername = fathername;
+        this.fatherName = fatherName;
     }
 
     public String getLogin() {
@@ -49,12 +49,12 @@ public class User {
         this.name = name;
     }
 
-    public String getFathername() {
-        return fathername;
+    public String getFatherName() {
+        return fatherName;
     }
 
-    public void setFathername(String fathername) {
-        this.fathername = fathername;
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class User {
                 ", type='" + type + '\'' +
                 ", surname='" + surname + '\'' +
                 ", name='" + name + '\'' +
-                ", fathername='" + fathername + '\'' +
+                ", fatherName='" + fatherName + '\'' +
                 '}';
     }
 }

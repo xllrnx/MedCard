@@ -5,8 +5,12 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
+import org.example.medcard.Models.Records.DiagnosisRecord;
+import org.example.medcard.Models.Records.TemperatureSheetRecord;
+import org.example.medcard.Models.Records.TreatmentRecord;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Patient {
 
@@ -14,7 +18,10 @@ public class Patient {
     private final StringProperty surname;
     private final StringProperty name;
     private final StringProperty fathername;
+
     private final ObjectProperty<LocalDate> dateOfBirth;
+    private final StringProperty dateOfBirthString;
+
     private final StringProperty address;
     private final StringProperty phone;
     private final StringProperty sex;
@@ -31,7 +38,12 @@ public class Patient {
         this.surname = new SimpleStringProperty(this, "surname", surname);
         this.name = new SimpleStringProperty(this, "name", name);
         this.fathername = new SimpleStringProperty(this, "fathername", fathername);
+
         this.dateOfBirth = new SimpleObjectProperty<>(this, "dateOfBirth", dateOfBirth);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        this.dateOfBirthString = new SimpleStringProperty(this, "dateOfBirthString", dateOfBirth.format(formatter));
+
         this.address = new SimpleStringProperty(this, "address", address);
         this.phone = new SimpleStringProperty(this, "phone", phone);
         this.sex = new SimpleStringProperty(this, "sex", sex);
@@ -44,17 +56,20 @@ public class Patient {
         this.temperatureSheetRecords = temperatureSheetRecords;
     }
 
-    public int PatientID() {return patientID;}
-    public StringProperty SurnameProperty() {return surname;}
-    public StringProperty NameProperty() {return name;}
-    public StringProperty FathernameProperty() {return fathername;}
-    public ObjectProperty<LocalDate> DateOfBirthProperty() {return dateOfBirth;}
-    public StringProperty AddressProperty() {return address;}
-    public StringProperty PhoneProperty() {return phone;}
-    public StringProperty Sex() {return sex;}
-    public StringProperty ComplaintsProperty() {return complaints;}
-    public StringProperty MedicalHistoryProperty() {return medicalHistory;}
-    public boolean Status() {return status;}
+    public int getPatientID() {return patientID;}
+    public StringProperty getSurnameProperty() {return surname;}
+    public StringProperty getNameProperty() {return name;}
+    public StringProperty getFathernameProperty() {return fathername;}
+
+    public ObjectProperty<LocalDate> getDateOfBirthProperty() {return dateOfBirth;}
+    public StringProperty getDateOfBirthStringProperty() {return dateOfBirthString;}
+
+    public StringProperty getAddressProperty() {return address;}
+    public StringProperty getPhoneProperty() {return phone;}
+    public StringProperty getSex() {return sex;}
+    public StringProperty getComplaintsProperty() {return complaints;}
+    public StringProperty getMedicalHistoryProperty() {return medicalHistory;}
+    public boolean getStatus() {return status;}
 
     public ObservableList<TreatmentRecord> getTreatmentRecords() {
         return treatmentRecords;

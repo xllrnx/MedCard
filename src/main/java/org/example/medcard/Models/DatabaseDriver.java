@@ -25,9 +25,7 @@ public class DatabaseDriver {
         }
     }
 
-    /*
-    * User Section
-    * */
+    // User Section
     public ResultSet getUserData(String login, String password) {
         Statement statement;
         ResultSet resultSet = null;
@@ -46,9 +44,7 @@ public class DatabaseDriver {
         return resultSet;
     }
 
-    /*
-     * Doctor Section
-     */
+    // Doctor Section
     public void createPerson(int personID, String surname, String name, String fathername) {
         Statement statement;
         try {
@@ -93,9 +89,56 @@ public class DatabaseDriver {
         }
     }
 
-    /*
-     * Utility Methods
-     * */
+    public void deletePatient(int patientID) {
+        Statement statement;
+        try {
+            statement = this.connection.createStatement();
+
+            PreparedStatement prepStatement = connection.prepareStatement(SQLStatements.DELETE_PATIENT.getStatement());
+            prepStatement.setInt(1, patientID);
+
+            System.out.println(prepStatement);
+
+            statement.executeUpdate(prepStatement.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editPatient(int patientID) {
+        Statement statement;
+        try {
+            statement = this.connection.createStatement();
+
+            PreparedStatement prepStatement = connection.prepareStatement(SQLStatements.EDIT_PATIENT.getStatement());
+            prepStatement.setInt(1, patientID);
+
+            System.out.println(prepStatement);
+
+            statement.executeUpdate(prepStatement.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Patient Methods
+    public ResultSet getAllPatientsData() {
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            statement = this.connection.createStatement();
+
+            PreparedStatement prepStatement = connection.prepareStatement(SQLStatements.GET_PATIENTS.getStatement());
+            System.out.println(prepStatement);
+
+            resultSet = statement.executeQuery(prepStatement.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
+    // Utility Methods
     public int getLastPersonId() {
         Statement statement;
         ResultSet resultSet = null;
@@ -109,7 +152,7 @@ public class DatabaseDriver {
 
             resultSet = statement.executeQuery(prepStatement.toString());
             resultSet.next();
-            id = resultSet.getInt("last_id");
+            id = resultSet.getInt("lastID");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -129,27 +172,11 @@ public class DatabaseDriver {
 
             resultSet = statement.executeQuery(prepStatement.toString());
             resultSet.next();
-            id = resultSet.getInt("last_id");
+            id = resultSet.getInt("lastID");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return id;
-    }
-
-    public ResultSet getAllPatientsData() {
-        Statement statement;
-        ResultSet resultSet = null;
-        try {
-            statement = this.connection.createStatement();
-
-            PreparedStatement prepStatement = connection.prepareStatement(SQLStatements.GET_PATIENTS.getStatement());
-            System.out.println(prepStatement);
-
-            resultSet = statement.executeQuery(prepStatement.toString());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return resultSet;
     }
 
     public ResultSet getTreatmentRecords(int patientID) {

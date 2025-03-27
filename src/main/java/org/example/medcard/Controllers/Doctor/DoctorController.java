@@ -1,6 +1,5 @@
 package org.example.medcard.Controllers.Doctor;
 
-
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 import org.example.medcard.Models.Model;
@@ -21,7 +20,7 @@ public class DoctorController implements Initializable {
                     break;
 
                 case Information :
-                    if (Model.getInstance().getSelectedPatient().PatientID() != -1) {
+                    if (Model.getInstance().getSelectedPatient() != null) {
                         doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorInformationView());
                     } else {
                         doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorWithoutPatientView());
@@ -29,7 +28,7 @@ public class DoctorController implements Initializable {
                     break;
 
                 case Treatment :
-                    if (Model.getInstance().getSelectedPatient().PatientID() != -1) {
+                    if (Model.getInstance().getSelectedPatient() != null) {
                         doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorTreatmentView());
                     } else {
                         doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorWithoutPatientView());
@@ -37,7 +36,7 @@ public class DoctorController implements Initializable {
                     break;
 
                 case Diagnosis :
-                    if (Model.getInstance().getSelectedPatient().PatientID() != -1) {
+                    if (Model.getInstance().getSelectedPatient() != null) {
                         doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorDiagnosisView());
                     } else {
                         doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorWithoutPatientView());
@@ -45,7 +44,7 @@ public class DoctorController implements Initializable {
                     break;
 
                 case TemperatureSheet :
-                    if (Model.getInstance().getSelectedPatient().PatientID() != -1) {
+                    if (Model.getInstance().getSelectedPatient() != null) {
                         doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorTemperatureSheetView());
                     } else {
                         doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorWithoutPatientView());
@@ -53,7 +52,7 @@ public class DoctorController implements Initializable {
                     break;
 
                 default :
-                    doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorDashboardView());
+                    doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorHelloDashboardView());
                     break;
             }
         });

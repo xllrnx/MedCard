@@ -2,10 +2,15 @@ package org.example.medcard.Models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.example.medcard.Models.Records.DiagnosisRecord;
+import org.example.medcard.Models.Records.TemperatureSheetRecord;
+import org.example.medcard.Models.Records.TreatmentRecord;
 import org.example.medcard.Views.ViewFactory;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 
 public class Model {
     private static Model model;
@@ -16,23 +21,30 @@ public class Model {
     private final User user;
     private boolean userLoginSuccessFlag;
 
-    // Patient Data Section
+    // Patients Data Section
     private final ObservableList<Patient> patients;
     private Patient selectedPatient;
+    private Patient patientToDelete;
 
-
+    //Selected Records Data Section
+    private TreatmentRecord selectedTreatmentRecord;
+    private DiagnosisRecord selectedDiagnosisRecord;
+    private TemperatureSheetRecord selectedTemperatureSheetRecord;
 
     private Model() {
         this.viewFactory = new ViewFactory();
         this.databaseDriver = new DatabaseDriver();
-        // User Data section
+
         this.userLoginSuccessFlag = false;
-        this.user = new User("", "", "", "");
+        this.user = new User();
 
         this.patients = FXCollections.observableArrayList();
-        this.selectedPatient = new Patient(-1, "", "", "",
-                LocalDate.of(2000, 1, 1), "", "", "", "", "",
-                true, null, null, null);
+        this.selectedPatient = null;
+        this.patientToDelete = null;
+
+        this.selectedTreatmentRecord = null;
+        this.selectedDiagnosisRecord = null;
+        this.selectedTemperatureSheetRecord = null;
     }
 
     public static synchronized Model getInstance() {
@@ -46,7 +58,6 @@ public class Model {
         model = null;
     }
 
-
     public ViewFactory getViewFactory() {
         return viewFactory;
     }
@@ -54,9 +65,7 @@ public class Model {
         return databaseDriver;
     }
 
-    /*
-    * User Method Section
-    * */
+    // User Method Section
     public boolean getUserLoginSuccessFlag() {
         return userLoginSuccessFlag;
     }
@@ -73,12 +82,13 @@ public class Model {
         ResultSet resultSet = databaseDriver.getUserData(login, password);
         try {
             if(resultSet.next()) {
+                new User();
                 this.user.setLogin(resultSet.getString("login"));
+                this.user.setType(resultSet.getString("type"));
 
                 this.user.setSurname(resultSet.getString("surname"));
                 this.user.setName(resultSet.getString("name"));
-                this.user.setFathername(resultSet.getString("fathername"));
-                this.user.setType(resultSet.getString("type"));
+                this.user.setFatherName(resultSet.getString("fatherName"));
 
                 System.out.println(this.user.toString() + "\n");
 
@@ -89,12 +99,7 @@ public class Model {
         }
     }
 
-
-
-    /*
-    * Patient Method Section
-    * */
-
+    // Patients Method Section
     public Patient getSelectedPatient() {
         return selectedPatient;
     }
@@ -103,120 +108,158 @@ public class Model {
         this.selectedPatient = patient;
     }
 
+    public Patient getPatientToDelete() {
+        return patientToDelete;
+    }
+
+    public void setPatientToDelete(Patient patient) {
+        this.patientToDelete = patient;
+    }
+
     public ObservableList<Patient> getPatients() {
         return patients;
     }
 
     public void setPatients() {
-        ObservableList<TreatmentRecord> treatmentRecords;
-        ObservableList<DiagnosisRecord> diagnosisRecords;
-        ObservableList<TemperatureSheetRecord> temperatureSheetRecords;
-
         ResultSet resultSet = databaseDriver.getAllPatientsData();
         try {
             while(resultSet.next()) {
 
-                int patientID = resultSet.getInt("patient_id");
+                int patientID = resultSet.getInt("patientID");
 
                 String surname = resultSet.getString("surname");
                 String name = resultSet.getString("name");
-                String fathername = resultSet.getString("fathername");
+                String fathername = resultSet.getString("fatherName");
 
-                LocalDate date = resultSet.getDate("date_of_birth").toLocalDate();
+                LocalDate date = resultSet.getDate("dateOfBirth").toLocalDate();
 
                 String address = resultSet.getString("address");
                 String phone = resultSet.getString("phone");
                 String sex = resultSet.getString("sex");
-
                 String complaints = resultSet.getString("complaints");
-                String medicalHistory = resultSet.getString("medical_history");
+                String medicalHistory = resultSet.getString("medicalHistory");
                 boolean status = resultSet.getBoolean("status");
-                treatmentRecords = getTreatmentRecords(patientID);
-                diagnosisRecords = getDiagnosisRecords(patientID);
-                temperatureSheetRecords = getTemperatureSheetRecords(patientID);
 
-                boolean isInPatients = false;
-                for (Patient patient : patients) {
-                    if (patient.PatientID() == patientID) {
-                        isInPatients = true;
-                    }
-                }
-                if (!isInPatients) {
-                    patients.add(new Patient(patientID, surname, name, fathername, date, address, phone, sex, complaints, medicalHistory, status, treatmentRecords, diagnosisRecords, temperatureSheetRecords));
-                }
+                ObservableList<TreatmentRecord> treatmentRecords = getTreatmentRecords(patientID);
+                ObservableList<DiagnosisRecord> diagnosisRecords = getDiagnosisRecords(patientID);
+                ObservableList<TemperatureSheetRecord> temperatureSheetRecords = getTemperatureSheetRecords(patientID);
 
+                patients.add(new Patient(patientID, surname, name, fathername, date, address, phone, sex, complaints, medicalHistory, status, treatmentRecords, diagnosisRecords, temperatureSheetRecords));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void addPatient(String surname, String name, String fathername, LocalDate date_of_birth) {
+    public void addPatient(String surname, String name, String fathername, LocalDate dateOfBirth) {
         int personID = databaseDriver.getLastPersonId();
         int patientID = databaseDriver.getLastPatientId();
 
         databaseDriver.createPerson(personID+1, surname, name, fathername);
-        databaseDriver.createPatient(patientID+1, personID+1, date_of_birth);
+        databaseDriver.createPatient(patientID+1, personID+1, dateOfBirth);
+
+        ObservableList<TreatmentRecord> treatmentRecords = getTreatmentRecords(patientID+1);
+        ObservableList<DiagnosisRecord> diagnosisRecords = getDiagnosisRecords(patientID+1);
+        ObservableList<TemperatureSheetRecord> temperatureSheetRecords = getTemperatureSheetRecords(patientID+1);
+        patients.add(new Patient(patientID+1, surname, name, fathername, dateOfBirth, "", "", "", "", "", true, treatmentRecords, diagnosisRecords, temperatureSheetRecords));
     }
 
+    public void editPatient(Patient patient) {
+        databaseDriver.editPatient(patient.getPatientID());
+    }
 
+    public void deletePatient(Patient patient) {
+        databaseDriver.deletePatient(patient.getPatientID());
+        patients.remove(patient);
+    }
 
-    /*
-     * Utility Method Section
-     * */
-    public ObservableList<TreatmentRecord> getTreatmentRecords(int patientID ) {
+    // Utility Method Section
+    public ObservableList<TreatmentRecord> getTreatmentRecords(int patientID) {
         ObservableList<TreatmentRecord> treatmentRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getTreatmentRecords(patientID);
         try {
             while(resultSet.next()) {
                 String prescription = resultSet.getString("prescription");
-                LocalDate date = resultSet.getDate("prescribed_date").toLocalDate();
-                boolean status = resultSet.getBoolean("status");
+                LocalDateTime prescriptionTime = resultSet.getTimestamp("prescriptionTime").toLocalDateTime();
+                String status = resultSet.getString("status");
+                String additionalInfo = resultSet.getString("additionalInfo");
 
-                treatmentRecords.add(new TreatmentRecord(prescription, date, status));
+                treatmentRecords.add(new TreatmentRecord(prescription, prescriptionTime, status, additionalInfo));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        treatmentRecords.sort(Comparator.comparing((TreatmentRecord record) -> record.getPrescriptionTimeProperty().get()).reversed());
         return treatmentRecords;
     }
 
-    public ObservableList<DiagnosisRecord> getDiagnosisRecords(int patientID ) {
+    public ObservableList<DiagnosisRecord> getDiagnosisRecords(int patientID) {
         ObservableList<DiagnosisRecord> diagnosisRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getDiagnosisRecords(patientID);
         try {
             while(resultSet.next()) {
                 String prescription = resultSet.getString("prescription");
-                LocalDate date = resultSet.getDate("prescribed_date").toLocalDate();boolean status = resultSet.getBoolean("status");
+                LocalDateTime prescriptionTime = resultSet.getTimestamp("prescriptionTime").toLocalDateTime();
+                String status = resultSet.getString("status");
                 String result = resultSet.getString("result");
+                String additionalInfo = resultSet.getString("additionalInfo");
 
-                diagnosisRecords.add(new DiagnosisRecord(prescription, date, status, result));
+                diagnosisRecords.add(new DiagnosisRecord(prescription, prescriptionTime, status, result, additionalInfo));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        diagnosisRecords.sort(Comparator.comparing((DiagnosisRecord record) -> record.getPrescriptionTimeProperty().get()).reversed());
         return diagnosisRecords;
     }
 
-    public ObservableList<TemperatureSheetRecord> getTemperatureSheetRecords(int patientID ) {
+    public ObservableList<TemperatureSheetRecord> getTemperatureSheetRecords(int patientID) {
         ObservableList<TemperatureSheetRecord> temperatureSheetRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getTemperatureSheerRecords(patientID);
         try {
             while(resultSet.next()) {
+                LocalDate checkDate = resultSet.getDate("checkDate").toLocalDate();
 
-                LocalDate date = resultSet.getDate("check_date").toLocalDate();
-                String prescription = resultSet.getString("part_of_day");
-                int pulse = resultSet.getInt("pulse");
-                int systolicPressure = resultSet.getInt("systolic_pressure");
-                int diastolicPressure = resultSet.getInt("diastolic_pressure");
-                double temperature = resultSet.getDouble("temperature");
+                int morningPulse = resultSet.getInt("morningPulse");
+                int morningSystolic = resultSet.getInt("morningSystolic");
+                int morningDiastolic = resultSet.getInt("morningDiastolic");
+                double morningTemperature = resultSet.getDouble("morningTemperature");
 
-                temperatureSheetRecords.add(new TemperatureSheetRecord(date, prescription, pulse, systolicPressure, diastolicPressure, temperature));
+                int eveningPulse = resultSet.getInt("eveningPulse");
+                int eveningSystolic = resultSet.getInt("eveningSystolic");
+                int eveningDiastolic = resultSet.getInt("eveningDiastolic");
+                double eveningTemperature = resultSet.getDouble("eveningTemperature");
+
+                String additionalInfo = resultSet.getString("additionalInfo");
+
+                temperatureSheetRecords.add(new TemperatureSheetRecord(checkDate, morningPulse, morningSystolic, morningDiastolic, morningTemperature, eveningPulse, eveningSystolic, eveningDiastolic, eveningTemperature, additionalInfo));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        temperatureSheetRecords.sort(Comparator.comparing((TemperatureSheetRecord record) -> record.getCheckDateProperty().get()).reversed());
         return temperatureSheetRecords;
     }
 
+    // Selected Records Data Section
+    public TreatmentRecord getSelectedTreatmentRecord() {
+        return selectedTreatmentRecord;
+    }
+    public void setSelectedTreatmentRecord(TreatmentRecord treatmentRecord) {
+        this.selectedTreatmentRecord = treatmentRecord;
+    }
+
+    public DiagnosisRecord getSelectedDiagnosisRecord() {
+        return selectedDiagnosisRecord;
+    }
+    public void setSelectedDiagnosisRecord(DiagnosisRecord diagnosisRecord) {
+        this.selectedDiagnosisRecord = diagnosisRecord;
+    }
+
+    public TemperatureSheetRecord getSelectedTemperatureSheetRecord() {
+        return selectedTemperatureSheetRecord;
+    }
+    public void setSelectedTemperatureSheetRecord(TemperatureSheetRecord temperatureSheetRecord) {
+        this.selectedTemperatureSheetRecord = temperatureSheetRecord;
+    }
 }

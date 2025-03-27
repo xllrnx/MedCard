@@ -1,6 +1,5 @@
 package org.example.medcard.Controllers.Nurse;
 
-
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 import org.example.medcard.Models.Model;
@@ -23,7 +22,7 @@ public class NurseController implements Initializable {
                 case TemperatureSheet -> nurse_parent.setCenter(Model.getInstance().getViewFactory().getNurseTemperatureSheetView());
 
 
-                default -> nurse_parent.setCenter(Model.getInstance().getViewFactory().getNurseDashboardView());
+                default -> nurse_parent.setCenter(Model.getInstance().getViewFactory().getNurseHelloDashboardView());
             }
         });
     }

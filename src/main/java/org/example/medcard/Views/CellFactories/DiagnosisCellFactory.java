@@ -2,8 +2,8 @@ package org.example.medcard.Views.CellFactories;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
-import org.example.medcard.Controllers.Doctor.CellControllers.DiagnosisCellController;
-import org.example.medcard.Models.DiagnosisRecord;
+import org.example.medcard.Controllers.Doctor.CellControllers.dDiagnosisCellController;
+import org.example.medcard.Models.Records.DiagnosisRecord;
 
 public class DiagnosisCellFactory extends ListCell<DiagnosisRecord> {
     @Override
@@ -13,8 +13,8 @@ public class DiagnosisCellFactory extends ListCell<DiagnosisRecord> {
             setText(null);
             setGraphic(null);
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/TreatmentCell.fxml"));
-            DiagnosisCellController controller = new DiagnosisCellController(diagnosisRecord);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Cells/DiagnosisCell.fxml"));
+            dDiagnosisCellController controller = new dDiagnosisCellController(diagnosisRecord);
             loader.setController(controller);
             setText(null);
             try {

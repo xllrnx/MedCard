@@ -20,8 +20,9 @@ module org.example.medcard {
     opens org.example.medcard.Views.CellFactories;
     exports org.example.medcard.Controllers.Doctor.CellControllers;
     opens org.example.medcard.Controllers.Doctor.CellControllers to javafx.fxml;
-    exports org.example.medcard.Controllers.Doctor.DashboardsControllers;
-    opens org.example.medcard.Controllers.Doctor.DashboardsControllers to javafx.fxml;
-    exports org.example.medcard.Controllers.Doctor.AddRecordsControllers;
-    opens org.example.medcard.Controllers.Doctor.AddRecordsControllers to javafx.fxml;
+    exports org.example.medcard.Controllers.Doctor.WindowControllers;
+    opens org.example.medcard.Controllers.Doctor.WindowControllers to javafx.fxml;
+    exports org.example.medcard.Controllers.Doctor.RecordControllers;
+    opens org.example.medcard.Controllers.Doctor.RecordControllers to javafx.fxml;
+    opens org.example.medcard.Models.Records;
 }
