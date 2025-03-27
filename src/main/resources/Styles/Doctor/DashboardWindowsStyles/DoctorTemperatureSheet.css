@@ -14,11 +14,18 @@
     -fx-background-color: #D1CFCB;
     -fx-background-radius: 12px;
 }
+/* Стилі поля пошуку пацієнта */
+.searchfield {
+    -fx-background-color: #D1CFCB;
+    -fx-background-radius: 12px;
 
-/* Стилі для кнопки "Додати" */
-.add_button {
-    -fx-background-color: #aad7d9; /* Колір фону */
-    -fx-background-radius: 10px; /* Округлені кути фону */
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+/* Стилі для кнопки очистки поля пошуку */
+.clear_searchfield_button {
+    -fx-background-color: #D1CFCB; /* Колір фону */
+    -fx-background-radius: 50px; /* Округлені кути фону */
 
     -fx-font-size: 16; /* Розмір шрифту */
     -fx-font-weight: bold; /* Стиль шрифту */
@@ -26,10 +33,15 @@
     -fx-cursor: hand; /* Стиль курсора при наведенні */
 }
 
+/* Стилі для кнопки "Додати" */
+.add_button {
+    -fx-background-color: #aad7d9; /* Колір фону */
+    -fx-background-radius: 10px; /* Округлені кути фону */
+}
 .add_button:hover {
     -fx-background-color: #87c2c9; /* Трохи темніший відтінок фону при наведенні */
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
 }
-
 /* Стилі для списку пацієнтів */
 .temperature_sheet_container .list-view {
     -fx-background-color: #D1CFCB;

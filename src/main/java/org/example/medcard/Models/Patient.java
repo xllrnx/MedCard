@@ -18,8 +18,10 @@ public class Patient {
     private final StringProperty surname;
     private final StringProperty name;
     private final StringProperty fathername;
+
     private final ObjectProperty<LocalDate> dateOfBirth;
     private final StringProperty dateOfBirthString;
+
     private final StringProperty address;
     private final StringProperty phone;
     private final StringProperty sex;
@@ -58,8 +60,10 @@ public class Patient {
     public StringProperty getSurnameProperty() {return surname;}
     public StringProperty getNameProperty() {return name;}
     public StringProperty getFathernameProperty() {return fathername;}
+
     public ObjectProperty<LocalDate> getDateOfBirthProperty() {return dateOfBirth;}
     public StringProperty getDateOfBirthStringProperty() {return dateOfBirthString;}
+
     public StringProperty getAddressProperty() {return address;}
     public StringProperty getPhoneProperty() {return phone;}
     public StringProperty getSex() {return sex;}

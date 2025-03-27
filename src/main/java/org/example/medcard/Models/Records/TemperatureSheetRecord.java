@@ -6,48 +6,74 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class TemperatureSheetRecord {
 
-    private final ObjectProperty<LocalDate> check_date;
-    private final StringProperty part_of_day;
-    private final int pulse;
-    private final int systolic_pressure;
-    private final int diastolic_pressure;
-    private final double temperature;
+    private final ObjectProperty<LocalDate> checkDate;
+    private final StringProperty checkDateString;
 
+    private final int morningPulse;
+    private final int morningSystolic;
+    private final int morningDiastolic;
+    private final double morningTemperature;
 
-    public TemperatureSheetRecord(LocalDate checkDate, String partOfDay, int pulse, int systolicPressure, int diastolicPressure, double temperature) {
+    private final int eveningPulse;
+    private final int eveningSystolic;
+    private final int eveningDiastolic;
+    private final double eveningTemperature;
 
-        check_date = new SimpleObjectProperty<>(this, "checkDate", checkDate);
-        part_of_day = new SimpleStringProperty(this, "partOfDay", partOfDay);
-        this.pulse = pulse;
-        systolic_pressure = systolicPressure;
-        diastolic_pressure = diastolicPressure;
-        this.temperature = temperature;
+    private final StringProperty additionalInfo;
+
+    public TemperatureSheetRecord(LocalDate checkDate, int morningPulse, int morningSystolic, int morningDiastolic, double morningTemperature, int eveningPulse, int eveningSystolic, int eveningDiastolic, double eveningTemperature, String additionalInfo) {
+        this.checkDate = new SimpleObjectProperty<>(this, "checkDate", checkDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        this.checkDateString = new SimpleStringProperty(this, "checkDateString", checkDate.format(formatter));
+
+        this.morningPulse = morningPulse;
+        this.morningSystolic = morningSystolic;
+        this.morningDiastolic = morningDiastolic;
+        this.morningTemperature = morningTemperature;
+
+        this.eveningPulse = eveningPulse;
+        this.eveningSystolic = eveningSystolic;
+        this.eveningDiastolic = eveningDiastolic;
+        this.eveningTemperature = eveningTemperature;
+
+        this.additionalInfo = new SimpleStringProperty(this, "additionalInfo", additionalInfo);
+
     }
 
-    public ObjectProperty<LocalDate> check_dateProperty() {
-        return check_date;
+    public ObjectProperty<LocalDate> getCheckDateProperty() {
+        return checkDate;
+    }
+    public StringProperty getCheckDateStringProperty() {return checkDateString;}
+
+    public int getMorningPulse() {
+        return morningPulse;
+    }
+    public int getMorningSystolic() {
+        return morningSystolic;
+    }
+    public int getMorningDiastolic() {
+        return morningDiastolic;
+    }
+    public double getMorningTemperature() {
+        return morningTemperature;
     }
 
-    public StringProperty part_of_dayProperty() {
-        return part_of_day;
+    public int getEveningPulse() {
+        return eveningPulse;
+    }
+    public int getEveningSystolic() {
+        return eveningSystolic;
+    }
+    public int getEveningDiastolic() {
+        return eveningDiastolic;
+    }
+    public double getEveningTemperature() {
+        return eveningTemperature;
     }
 
-    public int getPulse() {
-        return pulse;
-    }
-
-    public int getSystolic_pressure() {
-        return systolic_pressure;
-    }
-
-    public int getDiastolic_pressure() {
-        return diastolic_pressure;
-    }
-
-    public double getTemperature() {
-        return temperature;
-    }
+    public StringProperty getAdditionalInfoProperty() {return additionalInfo;}
 }

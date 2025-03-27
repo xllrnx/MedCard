@@ -6,7 +6,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.medcard.Utils.LoginErrors;
 import org.example.medcard.Models.Model;
-import org.example.medcard.Views.AccountType;
+import org.example.medcard.Views.AccountTypes;
 
 import java.net.URL;
 import java.util.Objects;
@@ -42,10 +42,10 @@ public class LoginController implements Initializable {
             Stage stage = (Stage) login_button.getScene().getWindow();
 
             if (Model.getInstance().getUserLoginSuccessFlag()) {
-                if (Objects.equals(Model.getInstance().getUser().getType(), AccountType.DOCTOR.getType())) {
+                if (Objects.equals(Model.getInstance().getUser().getType(), AccountTypes.DOCTOR.getType())) {
                     Model.getInstance().getViewFactory().closeStage(stage);
                     Model.getInstance().getViewFactory().showDoctorWindow();
-                } else if (Objects.equals(Model.getInstance().getUser().getType(), AccountType.NURSE.getType())) {
+                } else if (Objects.equals(Model.getInstance().getUser().getType(), AccountTypes.NURSE.getType())) {
                     Model.getInstance().getViewFactory().closeStage(stage);
                     Model.getInstance().getViewFactory().showNurseWindow();
                 } else {

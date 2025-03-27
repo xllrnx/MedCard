@@ -2,7 +2,7 @@ package org.example.medcard.Views.CellFactories;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
-import org.example.medcard.Controllers.Doctor.CellControllers.TreatmentCellController;
+import org.example.medcard.Controllers.Doctor.CellControllers.dTreatmentCellController;
 import org.example.medcard.Models.Records.TreatmentRecord;
 
 public class TreatmentCellFactory extends ListCell<TreatmentRecord> {
@@ -14,7 +14,7 @@ public class TreatmentCellFactory extends ListCell<TreatmentRecord> {
             setGraphic(null);
         } else {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Cells/TreatmentCell.fxml"));
-            TreatmentCellController controller = new TreatmentCellController(treatmentRecord);
+            dTreatmentCellController controller = new dTreatmentCellController(treatmentRecord);
             loader.setController(controller);
             setText(null);
             try {

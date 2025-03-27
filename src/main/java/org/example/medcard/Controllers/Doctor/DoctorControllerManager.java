@@ -1,102 +1,65 @@
 package org.example.medcard.Controllers.Doctor;
 
-import org.example.medcard.Controllers.Doctor.RecordsControllers.*;
-import org.example.medcard.Controllers.Doctor.DashboardsControllers.*;
+import org.example.medcard.Controllers.Doctor.WindowControllers.*;
 
 public class DoctorControllerManager {
-    private static DoctorHelloDashboardController doctorDashboardController;
+    private static dHelloController dHelloController;
 
-    private static DoctorSelectPatientController doctorSelectPatientController;
-    private static DoctorAddPatientController doctorAddPatientController;
+    private static dSelectPatientController dSelectPatientController;
 
-    private static DoctorInformationController doctorInformationController;
+    private static dInformationController dInformationController;
 
-    private static DoctorTreatmentController doctorTreatmentController;
-    private static DoctorAddTreatmentRecordController doctorAddTreatmentRecordController;
+    private static dTreatmentController treatmentController;
 
-    private static DoctorDiagnosisController doctorDiagnosisController;
-    private static DoctorAddDiagnosisRecordController doctorAddDiagnosisRecordController;
+    private static dDiagnosisController doctorDDiagnosisController;
 
-    private static DoctorTemperatureSheetController doctorTemperatureSheetController;
-    private static DoctorAddTemperatureSheetRecordController doctorAddTemperatureSheetRecordController;
+    private static dTemperatureSheetController temperatureSheetController;
 
-    public static DoctorHelloDashboardController getDoctorDashboardController() {
-        return doctorDashboardController;
+    public static dHelloController getDHelloController() {
+        return dHelloController;
     }
 
-    public static void setDoctorDashboardController(DoctorHelloDashboardController doctorDashboardController) {
-        DoctorControllerManager.doctorDashboardController = doctorDashboardController;
+    public static void setDHelloController(dHelloController dHelloController) {
+        DoctorControllerManager.dHelloController = dHelloController;
     }
 
-    public static DoctorSelectPatientController getDoctorSelectPatientController() {
-        return doctorSelectPatientController;
+    public static dSelectPatientController getDSelectPatientController() {
+        return dSelectPatientController;
     }
 
-    public static void setDoctorSelectPatientController(DoctorSelectPatientController doctorSelectPatientController) {
-        DoctorControllerManager.doctorSelectPatientController = doctorSelectPatientController;
+    public static void setDSelectPatientController(dSelectPatientController dSelectPatientController) {
+        DoctorControllerManager.dSelectPatientController = dSelectPatientController;
     }
 
-    public static DoctorAddPatientController getDoctorAddPatientController() {
-        return doctorAddPatientController;
+    public static dInformationController getDInformationController() {
+        return dInformationController;
     }
 
-    public static void setDoctorAddPatientController(DoctorAddPatientController doctorAddPatientController) {
-        DoctorControllerManager.doctorAddPatientController = doctorAddPatientController;
+    public static void setDInformationController(dInformationController dInformationController) {
+        DoctorControllerManager.dInformationController = dInformationController;
     }
 
-    public static DoctorInformationController getDoctorInformationController() {
-        return doctorInformationController;
+    public static dTreatmentController getDTreatmentController() {
+        return treatmentController;
     }
 
-    public static void setDoctorInformationController(DoctorInformationController doctorInformationController) {
-        DoctorControllerManager.doctorInformationController = doctorInformationController;
+    public static void setDTreatmentController(dTreatmentController treatmentController) {
+        DoctorControllerManager.treatmentController = treatmentController;
     }
 
-    public static DoctorTreatmentController getDoctorTreatmentController() {
-        return doctorTreatmentController;
+    public static dDiagnosisController getDDiagnosisController() {
+        return doctorDDiagnosisController;
     }
 
-    public static void setDoctorTreatmentController(DoctorTreatmentController doctorTreatmentController) {
-        DoctorControllerManager.doctorTreatmentController = doctorTreatmentController;
+    public static void setDDiagnosisController(dDiagnosisController doctorDDiagnosisController) {
+        DoctorControllerManager.doctorDDiagnosisController = doctorDDiagnosisController;
     }
 
-    public static DoctorAddTreatmentRecordController getDoctorAddTreatmentRecordController() {
-        return doctorAddTreatmentRecordController;
+    public static dTemperatureSheetController getDTemperatureSheetController() {
+        return temperatureSheetController;
     }
 
-    public static void setDoctorAddTreatmentRecordController(DoctorAddTreatmentRecordController doctorAddTreatmentRecordController) {
-        DoctorControllerManager.doctorAddTreatmentRecordController = doctorAddTreatmentRecordController;
-    }
-
-    public static DoctorDiagnosisController getDoctorDiagnosisController() {
-        return doctorDiagnosisController;
-    }
-
-    public static void setDoctorDiagnosisController(DoctorDiagnosisController doctorDiagnosisController) {
-        DoctorControllerManager.doctorDiagnosisController = doctorDiagnosisController;
-    }
-
-    public static DoctorAddDiagnosisRecordController getDoctorAddDiagnosisRecordController() {
-        return doctorAddDiagnosisRecordController;
-    }
-
-    public static void setDoctorAddDiagnosisRecordController(DoctorAddDiagnosisRecordController doctorAddDiagnosisRecordController) {
-        DoctorControllerManager.doctorAddDiagnosisRecordController = doctorAddDiagnosisRecordController;
-    }
-
-    public static DoctorTemperatureSheetController getDoctorTemperatureSheetController() {
-        return doctorTemperatureSheetController;
-    }
-
-    public static void setDoctorTemperatureSheetController(DoctorTemperatureSheetController doctorTemperatureSheetController) {
-        DoctorControllerManager.doctorTemperatureSheetController = doctorTemperatureSheetController;
-    }
-
-    public static DoctorAddTemperatureSheetRecordController getDoctorAddTemperatureSheetRecordController() {
-        return doctorAddTemperatureSheetRecordController;
-    }
-
-    public static void setDoctorAddTemperatureSheetRecordController(DoctorAddTemperatureSheetRecordController doctorAddTemperatureSheetRecordController) {
-        DoctorControllerManager.doctorAddTemperatureSheetRecordController = doctorAddTemperatureSheetRecordController;
+    public static void setDTemperatureSheetController(dTemperatureSheetController temperatureSheetController) {
+        DoctorControllerManager.temperatureSheetController = temperatureSheetController;
     }
 }

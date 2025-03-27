@@ -1,8 +1,28 @@
 /* Стилізація основного фону */
-.patient_cell_container {
+.temperature_sheet_cell_container {
+    -fx-background-color: #e5e1da;
+    -fx-background-radius: 15px;
+}
+.check_date_container {
     -fx-background-color: #aad7d9;
+    -fx-background-radius: 0 0 15 15;
+}
+.morning_container {
+    -fx-background-color: #aad7d980;
     -fx-background-radius: 15px;
 
+    -fx-border-color: #aad7d9; /* Колір межі */
+    -fx-border-width: 3px; /* Ширина межі */
+    -fx-border-radius: 15px; /* Округлені кути межі */
+
+}
+.evening_container {
+    -fx-background-color: #aad7d980;
+    -fx-background-radius: 15px;
+
+    -fx-border-color: #aad7d9; /* Колір межі */
+    -fx-border-width: 3px; /* Ширина межі */
+    -fx-border-radius: 15px; /* Округлені кути межі */
 }
 
 .text {
@@ -10,38 +30,42 @@
     -fx-font-weight: bold;
 }
 
-.select_button {
-    -fx-background-color: #9AD89A   ; /* Колір фону */
+.morning_info_button {
+    -fx-background-color: #aad7d9; /* Колір фону */
     -fx-background-radius: 10px; /* Округлені кути фону */
-
-    /*-fx-border-color: #4D6C4D; !* Колір межі *!*/
-    /*-fx-border-width: 3px; !* Ширина межі *!*/
-    /*-fx-border-radius: 10px; !* Округлені кути межі *!*/
-
-    -fx-font-size: 16; /* Розмір шрифту */
-    -fx-font-weight: bold; /* Стиль шрифту */
-
+}
+/* Ефекти при наведенні на кнопку */
+.morning_info_button:hover {
+    -fx-background-color: #87c2c9; /* Темніший відтінок фону при наведенні */
     -fx-cursor: hand; /* Стиль курсора при наведенні */
 }
 
-.delete_button {
-    -fx-background-color: #ff6961; /* Колір фону */
+.morning_edit_button {
+    -fx-background-color: #aad7d9; /* Колір фону */
     -fx-background-radius: 10px; /* Округлені кути фону */
-
-    /*-fx-border-color: #7F3531; !* Колір межі *!*/
-    /*-fx-border-width: 3px; !* Ширина межі *!*/
-    /*-fx-border-radius: 10px; !* Округлені кути межі *!*/
-
-    -fx-font-size: 16; /* Розмір шрифту */
-    -fx-font-weight: bold; /* Стиль шрифту */
-
+}
+/* Ефекти при наведенні на кнопку */
+.morning_edit_button:hover {
+    -fx-background-color: #87c2c9; /* Темніший відтінок фону при наведенні */
     -fx-cursor: hand; /* Стиль курсора при наведенні */
 }
 
-.select_button:hover {
-    -fx-background-color: #90C890; /* Трохи темніший відтінок фону при наведенні */
+.evening_info_button {
+    -fx-background-color: #aad7d9; /* Колір фону */
+    -fx-background-radius: 10px; /* Округлені кути фону */
 }
-/* Ефект при наведенні */
-.delete_button:hover {
-    -fx-background-color: #DB5851; /* Трохи темніший відтінок фону при наведенні */
+/* Ефекти при наведенні на кнопку */
+.evening_info_button:hover {
+    -fx-background-color: #87c2c9; /* Темніший відтінок фону при наведенні */
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
+}
+
+.evening_edit_button {
+    -fx-background-color: #aad7d9; /* Колір фону */
+    -fx-background-radius: 10px; /* Округлені кути фону */
+}
+/* Ефекти при наведенні на кнопку */
+.evening_edit_button:hover {
+    -fx-background-color: #87c2c9; /* Темніший відтінок фону при наведенні */
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
 }

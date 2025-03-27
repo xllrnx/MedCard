@@ -1,18 +1,19 @@
 package org.example.medcard.Utils;
 
 public enum SQLStatements {
-    SEARCH_USER("select * from users join persons on users.person_id = persons.person_id where login = ? and password = ?"),
-    GET_LAST_ID("select * from lastid where table_name = ?"),
+    SEARCH_USER("select * from Users join Persons on Users.personID = Persons.personID where login = ? and password = ?"),
+    GET_LAST_ID("select * from LastID where tableName = ?"),
 
-    CREATE_PERSON("insert into persons values (?, ?, ?, ?)"),
-    CREATE_PATIENT("insert into patients values (?, ?, ?, ?, ?, ?, ?, ?, ?)"),
+    CREATE_PERSON("insert into Persons values (?, ?, ?, ?)"),
+    CREATE_PATIENT("insert into Patients values (?, ?, ?, ?, ?, ?, ?, ?, ?)"),
 
-    GET_PATIENTS("select * from patients join persons on patients.person_id = persons.person_id"),
-    GET_TREATMENT_RECORDS("select * from treatment where patient_id = ?"),
-    GET_DIAGNOSIS_RECORDS("select * from diagnosis where patient_id = ?"),
-    GET_TEMPERATURE_SHEET_RECORDS("select * from temperaturesheet where patient_id = ?"),
+    GET_PATIENTS("select * from Patients join Persons on Patients.personID = Persons.personID"),
+    GET_TREATMENT_RECORDS("select * from Treatment where patientID = ?"),
+    GET_DIAGNOSIS_RECORDS("select * from Diagnosis where patientID = ?"),
+    GET_TEMPERATURE_SHEET_RECORDS("select * from TemperatureSheet where patientID = ?"),
 
-    DELETE_PATIENT("delete from patients where patient_id = ?");
+    DELETE_PATIENT("delete from Patients where patientID = ?"),
+    EDIT_PATIENT("update Patients set patientID = ? where patientID = ?"); //edit
 
     private final String statement;
     SQLStatements(String statement){
