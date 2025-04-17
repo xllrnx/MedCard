@@ -7,9 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.example.medcard.Controllers.Doctor.RecordControllers.AddPatientController;
+import org.example.medcard.Controllers.Doctor.RecordsControllers.Patient.AddPatientController;
 import org.example.medcard.Controllers.Doctor.DoctorController;
-import org.example.medcard.Controllers.Doctor.RecordControllers.DeletePatientController;
+import org.example.medcard.Controllers.Doctor.RecordsControllers.Patient.DeletePatientController;
 import org.example.medcard.Controllers.Nurse.NurseController;
 
 public class ViewFactory {
@@ -60,7 +60,7 @@ public class ViewFactory {
     public AnchorPane getDoctorHelloDashboardView() {
         if (doctorHelloDashboardView == null) {
             try {
-                doctorHelloDashboardView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dHello.fxml")).load();
+                doctorHelloDashboardView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/dHello.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -75,7 +75,7 @@ public class ViewFactory {
     public AnchorPane getDoctorWithoutPatientView() {
         if (doctorWithoutPatientView == null) {
             try {
-                doctorWithoutPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dWithoutPatient.fxml")).load();
+                doctorWithoutPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/dWithoutPatient.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -90,7 +90,7 @@ public class ViewFactory {
     public AnchorPane getDoctorSelectPatientView() {
         if (doctorSelectPatientView == null) {
             try {
-                doctorSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dSelectPatient.fxml")).load();
+                doctorSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dSelectPatient.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -105,7 +105,7 @@ public class ViewFactory {
     public AnchorPane getDoctorInformationView() {
         if (doctorInformationView == null) {
             try {
-                doctorInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dformation.fxml")).load();
+                doctorInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/dInformation.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -120,7 +120,7 @@ public class ViewFactory {
     public AnchorPane getDoctorTreatmentView() {
         if (doctorTreatmentView == null) {
             try {
-                doctorTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dTreatment.fxml")).load();
+                doctorTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTreatment.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -135,7 +135,7 @@ public class ViewFactory {
     public AnchorPane getDoctorDiagnosisView() {
         if (doctorDiagnosisView == null) {
             try {
-                doctorDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dDiagnosis.fxml")).load();
+                doctorDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dDiagnosis.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -150,7 +150,7 @@ public class ViewFactory {
     public AnchorPane getDoctorTemperatureSheetView() {
         if (doctorTemperatureSheetView == null) {
             try {
-                doctorTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dTemperatureSheet.fxml")).load();
+                doctorTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTemperatureSheet.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -189,7 +189,7 @@ public class ViewFactory {
     public AnchorPane getNurseSelectPatientView() {
         if (nurseSelectPatientView == null) {
             try {
-                nurseSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dSelectPatient.fxml")).load();
+                nurseSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dSelectPatient.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -204,7 +204,7 @@ public class ViewFactory {
     public AnchorPane getNurseInformationView() {
         if (nurseInformationView == null) {
             try {
-                nurseInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dformation.fxml")).load();
+                nurseInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/dInformation.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -219,7 +219,7 @@ public class ViewFactory {
     public AnchorPane getNurseTreatmentView() {
         if (nurseTreatmentView == null) {
             try {
-                nurseTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dTreatment.fxml")).load();
+                nurseTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTreatment.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -234,7 +234,7 @@ public class ViewFactory {
     public AnchorPane getNurseDiagnosisView() {
         if (nurseDiagnosisView == null) {
             try {
-                nurseDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dDiagnosis.fxml")).load();
+                nurseDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dDiagnosis.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -249,7 +249,7 @@ public class ViewFactory {
     public AnchorPane getNurseTemperatureSheetView() {
         if (nurseTemperatureSheetView == null) {
             try {
-                nurseTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/DashboardWindows/dTemperatureSheet.fxml")).load();
+                nurseTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTemperatureSheet.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -276,15 +276,15 @@ public class ViewFactory {
         createStage(loader);
     }
 
-    public void showDoctorAddPatientWindow() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/AddPatient.fxml"));
+    public void showDoctorAddPatientWindow(Stage owner) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/AddPatient.fxml"));
         AddPatientController addPatientControllerController = new AddPatientController();
         loader.setController(addPatientControllerController);
         createStage(loader);
     }
 
     public void showDoctorDeletePatientWindow() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/DeletePatient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/DeletePatient.fxml"));
         DeletePatientController deletePatientControllerController = new DeletePatientController();
         loader.setController(deletePatientControllerController);
         createStage(loader);

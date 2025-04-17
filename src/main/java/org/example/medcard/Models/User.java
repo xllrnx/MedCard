@@ -1,28 +1,12 @@
 package org.example.medcard.Models;
 
 public class User {
-    String login;
     String type;
     String surname;
     String name;
     String fatherName;
 
     public User() {
-    }
-
-    public User(String username, String surname, String name, String fatherName) {
-        this.login = username;
-        this.surname = surname;
-        this.name = name;
-        this.fatherName = fatherName;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String username) {
-        this.login = username;
     }
 
     public String getType() {
@@ -60,7 +44,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "login='" + login + '\'' +
                 ", type='" + type + '\'' +
                 ", surname='" + surname + '\'' +
                 ", name='" + name + '\'' +

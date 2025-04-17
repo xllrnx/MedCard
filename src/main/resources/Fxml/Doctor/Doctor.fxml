@@ -9,6 +9,6 @@
         <fx:include source="../Menu.fxml" />
     </left>
     <center>
-        <fx:include source="DashboardWindows/dHello.fxml"/>
+        <fx:include source="Windows/MessageWindows/dHello.fxml"/>
     </center>
 </BorderPane>

@@ -1,6 +1,10 @@
 package org.example.medcard.Controllers.Doctor;
 
-import org.example.medcard.Controllers.Doctor.WindowControllers.*;
+import org.example.medcard.Controllers.Doctor.WindowsControllers.*;
+import org.example.medcard.Controllers.Doctor.WindowsControllers.ListviewWindows.dDiagnosisController;
+import org.example.medcard.Controllers.Doctor.WindowsControllers.ListviewWindows.dSelectPatientController;
+import org.example.medcard.Controllers.Doctor.WindowsControllers.ListviewWindows.dTemperatureSheetController;
+import org.example.medcard.Controllers.Doctor.WindowsControllers.ListviewWindows.dTreatmentController;
 
 public class DoctorControllerManager {
     private static dHelloController dHelloController;

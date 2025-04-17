@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="full_window" stylesheets="@../../../Styles/Doctor/WindowsStyles/dInformation.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.medcard.Controllers.Doctor.WindowsControllers.dInformationController">
+   <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="810.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <TextFlow prefHeight="40.0" prefWidth="810.0" styleClass="selected_patient_container" textAlignment="CENTER">
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Обраний пацієнт: " wrappingWidth="166.0" />
+         <Text fx:id="selected_patient_surname" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Прізвище" wrappingWidth="85" />
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text=" " wrappingWidth="100" />
+         <Text fx:id="selected_patient_name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Ім'я" wrappingWidth="40" />
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text=" " wrappingWidth="100" />
+         <Text fx:id="selected_patient_fathername" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="По-батькові" wrappingWidth="100" />
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </TextFlow>
+      <VBox alignment="CENTER_LEFT" prefHeight="116.0" prefWidth="810.0" spacing="10.0"
+            styleClass="patient_info_container">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+         </padding>
+         <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="560.0">
+            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                      prefHeight="24.0" prefWidth="200.0">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Прізвище: "/>
+               <Text fx:id="patient_surname" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                     text="Прізвище"/>
+            </TextFlow>
+            <Button fx:id="edit_patient_info_button" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                    minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0"
+                    styleClass="edit_button">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../../../Images/BlackEditIcon.png"/>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </HBox>
+         <TextFlow prefHeight="200.0" prefWidth="200.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Ім'я: "/>
+            <Text fx:id="patient_name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                  text="Прізвище"/>
+         </TextFlow>
+         <TextFlow prefHeight="200.0" prefWidth="200.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="По-батькові: "/>
+            <Text fx:id="patient_fathername" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                  text="Прізвище"/>
+         </TextFlow>
+         <TextFlow prefHeight="200.0" prefWidth="200.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Дата народження: "/>
+            <Text fx:id="patient_date_of_birth" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                  text="Прізвище"/>
+         </TextFlow>
+      </VBox>
+      <VBox prefHeight="130.0" prefWidth="811.0" spacing="5.0" styleClass="patient_info_container">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+         </padding>
+         <HBox alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="790.0" spacing="675.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Скарги:"
+                  wrappingWidth="85.0"/>
+            <Button fx:id="edit_complaints_button" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                    minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0"
+                    styleClass="edit_button">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../../../Images/BlackEditIcon.png"/>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </HBox>
+         <TextFlow prefHeight="110.0" prefWidth="790.0" styleClass="default_text">
+            <Text fx:id="patient_complaints" strokeType="OUTSIDE" strokeWidth="0.0" text="Скарги"/>
+         </TextFlow>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" prefHeight="225.0" prefWidth="811.0" spacing="5.0"
+            styleClass="patient_info_container">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+         </padding>
+         <HBox alignment="BOTTOM_LEFT" prefHeight="23.0" prefWidth="791.0" spacing="675.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Анамнез:"
+                  wrappingWidth="85.0"/>
+            <Button fx:id="edit_medical_history_button" maxHeight="-Infinity" maxWidth="-Infinity"
+                    minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0"
+                    prefWidth="30.0" styleClass="edit_button">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../../../Images/BlackEditIcon.png"/>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </HBox>
+         <TextFlow prefHeight="200.0" prefWidth="200.0" styleClass="default_text">
+            <Text fx:id="patient_medical_history" strokeType="OUTSIDE" strokeWidth="0.0" text="Анамнез"/>
+         </TextFlow>
+      </VBox>
+   </VBox>
+</AnchorPane>
