@@ -83,7 +83,6 @@ public class Model {
         try {
             if(resultSet.next()) {
                 new User();
-                this.user.setLogin(resultSet.getString("login"));
                 this.user.setType(resultSet.getString("type"));
 
                 this.user.setSurname(resultSet.getString("surname"));

@@ -1,6 +1,9 @@
 /**/
 .delete_patient_container {
     -fx-background-color: #fbf9f1;
+
+    -fx-border-width: 5px;
+    -fx-border-color: #aad7d9;
 }
 
 .patient_container {
@@ -29,6 +32,9 @@
 
     -fx-cursor: hand; /* Стиль курсора при наведенні */
 }
+.confirm_button:hover {
+    -fx-background-color: #db5851; /* Трохи темніший відтінок фону при наведенні */
+}
 
 /* Кнопка "Скасувати" */
 .cancel_button {
@@ -40,11 +46,6 @@
 
     -fx-cursor: hand; /* Стиль курсора при наведенні */
 }
-
-.confirm_button:hover {
-    -fx-background-color: #db5851; /* Трохи темніший відтінок фону при наведенні */
-}
-
 .cancel_button:hover {
     -fx-background-color: #87c2c9; /* Трохи темніший відтінок фону при наведенні */
 }

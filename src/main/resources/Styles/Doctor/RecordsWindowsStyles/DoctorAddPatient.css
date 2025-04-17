@@ -1,6 +1,9 @@
 /**/
 .add_patient_container {
     -fx-background-color: #fbf9f1;
+
+    -fx-border-width: 5px;
+    -fx-border-color: #aad7d9;
 }
 
 /**/
@@ -41,6 +44,16 @@
 
 .confirm_button:hover {
     -fx-background-color: #87c2c9; /* Трохи темніший відтінок фону при наведенні */
+    -fx-cursor: hand; /* Стиль курсора при наведенні */
+}
+/* Кнопка "Додати" */
+.cancel_button {
+    -fx-background-color: #ff6961; /* Колір фону */
+    -fx-background-radius: 10px; /* Округлені кути фону */
+}
+
+.cancel_button:hover {
+    -fx-background-color: #db5851; /* Трохи темніший відтінок фону при наведенні */
     -fx-cursor: hand; /* Стиль курсора при наведенні */
 }
 

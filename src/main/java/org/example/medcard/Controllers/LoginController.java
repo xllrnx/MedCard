@@ -6,10 +6,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.medcard.Utils.LoginErrors;
 import org.example.medcard.Models.Model;
-import org.example.medcard.Views.AccountTypes;
 
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -42,6 +40,9 @@ public class LoginController implements Initializable {
             Stage stage = (Stage) login_button.getScene().getWindow();
 
             if (Model.getInstance().getUserLoginSuccessFlag()) {
+                Model.getInstance().getViewFactory().closeStage(stage);
+                Model.getInstance().getViewFactory().showDoctorWindow();
+                /*
                 if (Objects.equals(Model.getInstance().getUser().getType(), AccountTypes.DOCTOR.getType())) {
                     Model.getInstance().getViewFactory().closeStage(stage);
                     Model.getInstance().getViewFactory().showDoctorWindow();
@@ -51,6 +52,7 @@ public class LoginController implements Initializable {
                 } else {
                     error_text.setText(LoginErrors.INCORRECT_TYPE.getError());
                 }
+                */
             } else {
                 error_text.setText(LoginErrors.INCORRECT_LOGIN_PASSWORD.getError());
             }

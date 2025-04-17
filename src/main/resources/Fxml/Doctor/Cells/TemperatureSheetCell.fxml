@@ -22,7 +22,7 @@
             </ImageView>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Ранкові показники" />
          </HBox>
-         <Button fx:id="morning_edit_button" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="morning_edit_button">
+         <Button fx:id="morning_edit_button" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="morning_edit_button">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../../../Images/EditIcon.png" />
@@ -41,8 +41,8 @@
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../../../Images/PulseIcon.png" />
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Пульс:" />
-            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0">
+            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="265.0">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="ЧСС (Пульс): " />
                <Text fx:id="morning_pulse" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Пульс" wrappingWidth="190.56250762939453" />
             </TextFlow>
          </HBox>
@@ -50,8 +50,8 @@
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../../../Images/TemperatureIcon.png" />
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Температура:" />
-            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0">
+            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="265.0">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Температура: " />
                <Text fx:id="morning_temperature" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Темп" />
             </TextFlow>
          </HBox>
@@ -59,8 +59,8 @@
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../../../Images/PressureIcon.png" />
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Тиск:" />
-            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0">
+            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="265.0">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Тиск: " />
                <Text fx:id="morning_systolic" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Сист" wrappingWidth="101.4156723022461" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="/" wrappingWidth="101.4156723022461" />
                <Text fx:id="morning_diastolic" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Діаст" wrappingWidth="101.4156723022461" />
@@ -80,7 +80,7 @@
             </ImageView>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Вечірні показники" />
          </HBox>
-         <Button fx:id="evening_edit_button" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="evening_edit_button">
+         <Button fx:id="evening_edit_button" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="evening_edit_button">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../../../Images/EditIcon.png" />
@@ -96,8 +96,8 @@
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../../../Images/PulseIcon.png" />
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Пульс:" />
-            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0">
+            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="265.0">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="ЧСС (Пульс): " />
                <Text fx:id="evening_pulse" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Пульс" wrappingWidth="190.56250762939453" />
             </TextFlow>
          </HBox>
@@ -105,8 +105,8 @@
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../../../Images/TemperatureIcon.png" />
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Температура:" />
-            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0">
+            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="265.0">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Температура: " />
                <Text fx:id="evening_temperature" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Темп" />
             </TextFlow>
          </HBox>
@@ -114,8 +114,8 @@
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../../../Images/PressureIcon.png" />
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Тиск:" />
-            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0">
+            <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="265.0">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Тиск: " />
                <Text fx:id="evening_systolic" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Сист" wrappingWidth="105" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="/" wrappingWidth="105" />
                <Text fx:id="evening_diastolic" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Діаст" wrappingWidth="105" />
