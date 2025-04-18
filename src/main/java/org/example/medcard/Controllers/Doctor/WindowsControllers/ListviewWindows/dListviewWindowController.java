@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public abstract class dListviewWindowController {
     private static final Logger logger = LoggerService.getLogger(dListviewWindowController.class);
@@ -84,9 +85,12 @@ public abstract class dListviewWindowController {
     public void showDialogWindow(FXMLLoader loader, Stage owner) {
         Scene scene = null;
         try {
+            logger.info("Спроба створення діалогового вікна.");
             scene = new Scene(loader.load());
+            logger.info("Створення діалогового вікна успішне.");
         } catch (Exception e) {
-            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка створення діалогового вікна [ErrorID={}]", errorId);
         }
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.APPLICATION_MODAL);
