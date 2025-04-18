@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.UUID;
 
 public class Model {
     private static Model model;
@@ -85,6 +86,7 @@ public class Model {
     public void evaluateUserCredentials(String login, String password) {
         ResultSet resultSet = databaseDriver.getUserData(login, password);
         try {
+            logger.info("Перевірка даних користувача для входу.");
             if (resultSet.next()) {
                 new User();
                 this.user.setType(resultSet.getString("type"));
@@ -97,8 +99,10 @@ public class Model {
 
                 this.userLoginSuccessFlag = true;
             }
+            logger.info("Перевірка даних користувача для входу успішне.");
         } catch (Exception e) {
-            logger.error("Помилка перевірки даних користувача: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка перевірки даних користувача для входу [ErrorID={}]", errorId);
         }
     }
 
@@ -126,6 +130,7 @@ public class Model {
     public void setPatients() {
         ResultSet resultSet = databaseDriver.getAllPatientsData();
         try {
+            logger.info("Спроба додавання пацієнта з БД.");
             while (resultSet.next()) {
 
                 int patientID = resultSet.getInt("patientID");
@@ -149,8 +154,10 @@ public class Model {
 
                 patients.add(new Patient(patientID, surname, name, fathername, date, address, phone, sex, complaints, medicalHistory, status, treatmentRecords, diagnosisRecords, temperatureSheetRecords));
             }
+            logger.info("Додавання пацієнта з БД успішне.");
         } catch (Exception e) {
-            logger.error("Помилка додавання пацієнта з БД: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка додавання пацієнта з БД [ErrorID={}]", errorId);
         }
     }
 
@@ -181,6 +188,7 @@ public class Model {
         ObservableList<TreatmentRecord> treatmentRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getTreatmentRecords(patientID);
         try {
+            logger.info("Спроба додавання записів про лікування з БД.");
             while (resultSet.next()) {
                 String prescription = resultSet.getString("prescription");
                 LocalDateTime prescriptionTime = resultSet.getTimestamp("prescriptionTime").toLocalDateTime();
@@ -189,8 +197,10 @@ public class Model {
 
                 treatmentRecords.add(new TreatmentRecord(prescription, prescriptionTime, status, additionalInfo));
             }
+            logger.info("Додавання записів про лікування з БД успішне.");
         } catch (Exception e) {
-            logger.error("Помилка додавання записів про лікування з БД: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка додавання записів про лікування з БД [ErrorID={}]", errorId);
         }
         treatmentRecords.sort(Comparator.comparing((TreatmentRecord record) -> record.getPrescriptionTimeProperty().get()).reversed());
         return treatmentRecords;
@@ -200,6 +210,7 @@ public class Model {
         ObservableList<DiagnosisRecord> diagnosisRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getDiagnosisRecords(patientID);
         try {
+            logger.info("Спроба додавання записів про діагностику з БД.");
             while (resultSet.next()) {
                 String prescription = resultSet.getString("prescription");
                 LocalDateTime prescriptionTime = resultSet.getTimestamp("prescriptionTime").toLocalDateTime();
@@ -209,8 +220,10 @@ public class Model {
 
                 diagnosisRecords.add(new DiagnosisRecord(prescription, prescriptionTime, status, result, additionalInfo));
             }
+            logger.info("Додавання записів про діагностику з БД успішне.");
         } catch (Exception e) {
-            logger.error("Помилка додавання записів про діагностику з БД: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка додавання записів про діагностику з БД [ErrorID={}]", errorId);
         }
         diagnosisRecords.sort(Comparator.comparing((DiagnosisRecord record) -> record.getPrescriptionTimeProperty().get()).reversed());
         return diagnosisRecords;
@@ -220,6 +233,7 @@ public class Model {
         ObservableList<TemperatureSheetRecord> temperatureSheetRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getTemperatureSheerRecords(patientID);
         try {
+            logger.info("Спроба додавання записів температурного листа з БД.");
             while (resultSet.next()) {
                 LocalDate checkDate = resultSet.getDate("checkDate").toLocalDate();
 
@@ -237,8 +251,10 @@ public class Model {
 
                 temperatureSheetRecords.add(new TemperatureSheetRecord(checkDate, morningPulse, morningSystolic, morningDiastolic, morningTemperature, eveningPulse, eveningSystolic, eveningDiastolic, eveningTemperature, additionalInfo));
             }
+            logger.info("Додавання записів температурного листа з БД успішне.");
         } catch (Exception e) {
-            logger.error("Помилка додавання записів з температурного листа з БД: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка додавання записів температурного листа з БД [ErrorID={}]", errorId);
         }
         temperatureSheetRecords.sort(Comparator.comparing((TemperatureSheetRecord record) -> record.getCheckDateProperty().get()).reversed());
         return temperatureSheetRecords;

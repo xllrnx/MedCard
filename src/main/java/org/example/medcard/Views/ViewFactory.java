@@ -12,11 +12,13 @@ import org.example.medcard.Controllers.Nurse.NurseController;
 import org.example.medcard.LoggerService;
 import org.slf4j.Logger;
 
+import java.util.UUID;
+
 public class ViewFactory {
     private static final Logger logger = LoggerService.getLogger(ViewFactory.class);
     //Doctor Views
     private final ObjectProperty<MenuOptions> doctorSelectedMenuItem;
-    private AnchorPane doctorHelloDashboardView;
+    private AnchorPane doctorHelloView;
     private AnchorPane doctorWithoutPatientView;
 
     private AnchorPane doctorSelectPatientView;
@@ -28,7 +30,7 @@ public class ViewFactory {
 
     //Nurse Views
     private final ObjectProperty<MenuOptions> nurseSelectedMenuItem;
-    private AnchorPane nurseHelloDashboardView;
+    private AnchorPane nurseHelloView;
 
     private AnchorPane nurseSelectPatientView;
     private AnchorPane nurseInformationView;
@@ -61,15 +63,18 @@ public class ViewFactory {
      *
      * @return AnchorPane containing the doctor's Dashboard view.
      */
-    public AnchorPane getDoctorHelloDashboardView() {
-        if (doctorHelloDashboardView == null) {
+    public AnchorPane getDoctorHelloView() {
+        if (doctorHelloView == null) {
             try {
-                doctorHelloDashboardView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/dHello.fxml")).load();
+                logger.info("Спроба завантаження вікна DoctorHello.");
+                doctorHelloView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/dHello.fxml")).load();
+                logger.info("Завантаження вікна DoctorHello успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна DoctorHello [ErrorID={}]", errorId);
             }
         }
-        return doctorHelloDashboardView;
+        return doctorHelloView;
     }
 
     /**
@@ -80,9 +85,12 @@ public class ViewFactory {
     public AnchorPane getDoctorWithoutPatientView() {
         if (doctorWithoutPatientView == null) {
             try {
+                logger.info("Спроба завантаження вікна DoctorWithoutPatient.");
                 doctorWithoutPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/dWithoutPatient.fxml")).load();
+                logger.info("Завантаження вікна DoctorWithoutPatient успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна DoctorWithoutPatient [ErrorID={}]", errorId);
             }
         }
         return doctorWithoutPatientView;
@@ -96,9 +104,12 @@ public class ViewFactory {
     public AnchorPane getDoctorSelectPatientView() {
         if (doctorSelectPatientView == null) {
             try {
+                logger.info("Спроба завантаження вікна DoctorSelectPatient.");
                 doctorSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dSelectPatient.fxml")).load();
+                logger.info("Завантаження вікна DoctorSelectPatient успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна DoctorSelectPatient [ErrorID={}]", errorId);
             }
         }
         return doctorSelectPatientView;
@@ -112,9 +123,12 @@ public class ViewFactory {
     public AnchorPane getDoctorInformationView() {
         if (doctorInformationView == null) {
             try {
+                logger.info("Спроба завантаження вікна DoctorInformation.");
                 doctorInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/dInformation.fxml")).load();
+                logger.info("Завантаження вікна DoctorInformation успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна DoctorInformation [ErrorID={}]", errorId);
             }
         }
         return doctorInformationView;
@@ -128,9 +142,12 @@ public class ViewFactory {
     public AnchorPane getDoctorTreatmentView() {
         if (doctorTreatmentView == null) {
             try {
+                logger.info("Спроба завантаження вікна DoctorTreatment.");
                 doctorTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTreatment.fxml")).load();
+                logger.info("Завантаження вікна DoctorTreatment успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна DoctorTreatment [ErrorID={}]", errorId);
             }
         }
         return doctorTreatmentView;
@@ -144,9 +161,12 @@ public class ViewFactory {
     public AnchorPane getDoctorDiagnosisView() {
         if (doctorDiagnosisView == null) {
             try {
+                logger.info("Спроба завантаження вікна DoctorDiagnosis.");
                 doctorDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dDiagnosis.fxml")).load();
+                logger.info("Завантаження вікна DoctorDiagnosis успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна DoctorDiagnosis [ErrorID={}]", errorId);
             }
         }
         return doctorDiagnosisView;
@@ -160,9 +180,12 @@ public class ViewFactory {
     public AnchorPane getDoctorTemperatureSheetView() {
         if (doctorTemperatureSheetView == null) {
             try {
+                logger.info("Спроба завантаження вікна DoctorTemperatureSheet.");
                 doctorTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTemperatureSheet.fxml")).load();
+                logger.info("Завантаження вікна DoctorTemperatureSheet успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна DoctorTemperatureSheet [ErrorID={}]", errorId);
             }
         }
         return doctorTemperatureSheetView;
@@ -184,15 +207,18 @@ public class ViewFactory {
      *
      * @return AnchorPane containing the nurse's Dashboard view.
      */
-    public AnchorPane getNurseHelloDashboardView() {
-        if (nurseHelloDashboardView == null) {
+    public AnchorPane getNurseHelloView() {
+        if (nurseHelloView == null) {
             try {
-                nurseHelloDashboardView = new FXMLLoader(getClass().getResource("/Fxml/Nurse/NurseDashboard.fxml")).load();
+                logger.info("Спроба завантаження вікна NurseHello.");
+                nurseHelloView = new FXMLLoader(getClass().getResource("/Fxml/Nurse/nHello.fxml")).load();
+                logger.info("Завантаження вікна NurseHello успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна NurseHello [ErrorID={}]", errorId);
             }
         }
-        return nurseHelloDashboardView;
+        return nurseHelloView;
     }
 
     /**
@@ -203,9 +229,12 @@ public class ViewFactory {
     public AnchorPane getNurseSelectPatientView() {
         if (nurseSelectPatientView == null) {
             try {
+                logger.info("Спроба завантаження вікна NurseSelectPatient.");
                 nurseSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dSelectPatient.fxml")).load();
+                logger.info("Завантаження вікна NurseSelectPatient успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна NurseSelectPatient [ErrorID={}]", errorId);
             }
         }
         return nurseSelectPatientView;
@@ -219,9 +248,12 @@ public class ViewFactory {
     public AnchorPane getNurseInformationView() {
         if (nurseInformationView == null) {
             try {
+                logger.info("Спроба завантаження вікна NurseInformation.");
                 nurseInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/dInformation.fxml")).load();
+                logger.info("Завантаження вікна NurseInformation успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна NurseInformation [ErrorID={}]", errorId);
             }
         }
         return nurseInformationView;
@@ -235,9 +267,12 @@ public class ViewFactory {
     public AnchorPane getNurseTreatmentView() {
         if (nurseTreatmentView == null) {
             try {
+                logger.info("Спроба завантаження вікна NurseTreatment.");
                 nurseTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTreatment.fxml")).load();
+                logger.info("Завантаження вікна NurseTreatment успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна NurseTreatment [ErrorID={}]", errorId);
             }
         }
         return nurseTreatmentView;
@@ -251,9 +286,12 @@ public class ViewFactory {
     public AnchorPane getNurseDiagnosisView() {
         if (nurseDiagnosisView == null) {
             try {
+                logger.info("Спроба завантаження вікна NurseDiagnosis.");
                 nurseDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dDiagnosis.fxml")).load();
+                logger.info("Завантаження вікна NurseDiagnosis успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна NurseDiagnosis [ErrorID={}]", errorId);
             }
         }
         return nurseDiagnosisView;
@@ -267,9 +305,12 @@ public class ViewFactory {
     public AnchorPane getNurseTemperatureSheetView() {
         if (nurseTemperatureSheetView == null) {
             try {
+                logger.info("Спроба завантаження вікна NurseTemperatureSheet.");
                 nurseTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTemperatureSheet.fxml")).load();
+                logger.info("Завантаження вікна NurseTemperatureSheet успішне.");
             } catch (Exception e) {
-                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+                String errorId = UUID.randomUUID().toString();
+                logger.error("Помилка завантаження вікна NurseTemperatureSheet [ErrorID={}]", errorId);
             }
         }
         return nurseTemperatureSheetView;
@@ -282,10 +323,13 @@ public class ViewFactory {
      */
     public void showLoginWindow() {
         try {
+            logger.info("Спроба завантаження вікна LoginWindow.");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
             createStage(loader);
+            logger.info("Завантаження вікна LoginWindow успішне.");
         } catch (Exception e) {
-            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка завантаження вікна LoginWindow [ErrorID={}]", errorId);
         }
     }
 
@@ -295,30 +339,38 @@ public class ViewFactory {
          */
     public void showDoctorWindow() {
         try {
+            logger.info("Спроба завантаження вікна DoctorWindow.");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Doctor.fxml"));
             DoctorController doctorController = new DoctorController();
             loader.setController(doctorController);
             createStage(loader);
+            logger.info("Завантаження вікна DoctorWindow успішне.");
         } catch (Exception e) {
-            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+            logger.error("Помилка завантаження вікна DoctorWindow: {}", e.getMessage(), e);
         }
     }
 
     public void showDoctorAddPatientWindow(Stage owner) {
         try {
+            logger.info("Спроба завантаження вікна DoctorAddPatient.");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/AddPatient.fxml"));
             createStage(loader);
+            logger.info("Завантаження вікна DoctorAddPatient успішне.");
         } catch (Exception e) {
-            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка завантаження вікна DoctorAddPatient [ErrorID={}]", errorId);
         }
     }
 
     public void showDoctorDeletePatientWindow() {
         try {
+            logger.info("Спроба завантаження вікна DoctorDeletePatient.");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/DeletePatient.fxml"));
             createStage(loader);
+            logger.info("Завантаження вікна DoctorDeletePatient успішне.");
         } catch (Exception e) {
-            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка завантаження вікна DoctorDeletePatient [ErrorID={}]", errorId);
         }
     }
 
@@ -327,12 +379,15 @@ public class ViewFactory {
      */
     public void showNurseWindow() {
         try {
+            logger.info("Спроба завантаження вікна NurseWindow.");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Nurse/Nurse.fxml"));
             NurseController nurseController = new NurseController();
             loader.setController(nurseController);
             createStage(loader);
+            logger.info("Завантаження вікна NurseWindow успішне.");
         } catch (Exception e) {
-            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка завантаження вікна NurseWindow [ErrorID={}]", errorId);
         }
     }
 
@@ -344,9 +399,12 @@ public class ViewFactory {
     public void createStage(FXMLLoader loader) {
         Scene scene = null;
         try {
+            logger.info("Спроба створення сцени.");
             scene = new Scene(loader.load());
+            logger.info("Створення сцени успішне.");
         } catch (Exception e) {
-            logger.error("Помилка створення вікна: {}", e.getMessage(), e);
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка створення сцени [ErrorID={}]", errorId);
         }
         Stage stage = new Stage();
         stage.setScene(scene);

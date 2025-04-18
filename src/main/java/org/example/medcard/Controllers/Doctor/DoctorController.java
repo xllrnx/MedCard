@@ -52,7 +52,7 @@ public class DoctorController implements Initializable {
                     break;
 
                 default :
-                    doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorHelloDashboardView());
+                    doctor_parent.setCenter(Model.getInstance().getViewFactory().getDoctorHelloView());
                     break;
             }
         });
