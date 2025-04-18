@@ -3,6 +3,7 @@ module org.example.medcard {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires org.slf4j;
 
 
     opens org.example.medcard to javafx.fxml;

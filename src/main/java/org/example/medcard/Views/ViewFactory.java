@@ -7,12 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.example.medcard.Controllers.Doctor.RecordsControllers.Patient.AddPatientController;
 import org.example.medcard.Controllers.Doctor.DoctorController;
-import org.example.medcard.Controllers.Doctor.RecordsControllers.Patient.DeletePatientController;
 import org.example.medcard.Controllers.Nurse.NurseController;
+import org.example.medcard.LoggerService;
+import org.slf4j.Logger;
 
 public class ViewFactory {
+    private static final Logger logger = LoggerService.getLogger(ViewFactory.class);
     //Doctor Views
     private final ObjectProperty<MenuOptions> doctorSelectedMenuItem;
     private AnchorPane doctorHelloDashboardView;
@@ -45,8 +46,10 @@ public class ViewFactory {
     }
 
     // Doctor getView Methods
+
     /**
      * Returns the selected menu item for the doctor.
+     *
      * @return ObjectProperty representing the selected doctor menu item.
      */
     public ObjectProperty<MenuOptions> getDoctorSelectedMenuItem() {
@@ -55,6 +58,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the doctor's Dashboard view.
+     *
      * @return AnchorPane containing the doctor's Dashboard view.
      */
     public AnchorPane getDoctorHelloDashboardView() {
@@ -62,7 +66,7 @@ public class ViewFactory {
             try {
                 doctorHelloDashboardView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/dHello.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return doctorHelloDashboardView;
@@ -70,6 +74,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the doctor's Without Patient view.
+     *
      * @return AnchorPane containing the doctor's Without Patient view.
      */
     public AnchorPane getDoctorWithoutPatientView() {
@@ -77,7 +82,7 @@ public class ViewFactory {
             try {
                 doctorWithoutPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/dWithoutPatient.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return doctorWithoutPatientView;
@@ -85,6 +90,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the doctor's Select Patient view.
+     *
      * @return AnchorPane containing the doctor's Select Patient view.
      */
     public AnchorPane getDoctorSelectPatientView() {
@@ -92,7 +98,7 @@ public class ViewFactory {
             try {
                 doctorSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dSelectPatient.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return doctorSelectPatientView;
@@ -100,6 +106,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the doctor's Information view.
+     *
      * @return AnchorPane containing the doctor's Information view.
      */
     public AnchorPane getDoctorInformationView() {
@@ -107,7 +114,7 @@ public class ViewFactory {
             try {
                 doctorInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/dInformation.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return doctorInformationView;
@@ -115,6 +122,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the doctor's Treatment view.
+     *
      * @return AnchorPane containing the doctor's Treatment view.
      */
     public AnchorPane getDoctorTreatmentView() {
@@ -122,7 +130,7 @@ public class ViewFactory {
             try {
                 doctorTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTreatment.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return doctorTreatmentView;
@@ -130,6 +138,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the doctor's Diagnosis view.
+     *
      * @return AnchorPane containing the doctor's Diagnosis view.
      */
     public AnchorPane getDoctorDiagnosisView() {
@@ -137,7 +146,7 @@ public class ViewFactory {
             try {
                 doctorDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dDiagnosis.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return doctorDiagnosisView;
@@ -145,6 +154,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the doctor's Temperature Sheet view.
+     *
      * @return AnchorPane containing the doctor's Temperature Sheet view.
      */
     public AnchorPane getDoctorTemperatureSheetView() {
@@ -152,15 +162,17 @@ public class ViewFactory {
             try {
                 doctorTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTemperatureSheet.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return doctorTemperatureSheetView;
     }
 
     // Nurse getView Methods
+
     /**
      * Returns the selected menu item for the nurse.
+     *
      * @return ObjectProperty representing the selected nurse menu item.
      */
     public ObjectProperty<MenuOptions> getNurseSelectedMenuItem() {
@@ -169,6 +181,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the nurse's Dashboard view.
+     *
      * @return AnchorPane containing the nurse's Dashboard view.
      */
     public AnchorPane getNurseHelloDashboardView() {
@@ -176,7 +189,7 @@ public class ViewFactory {
             try {
                 nurseHelloDashboardView = new FXMLLoader(getClass().getResource("/Fxml/Nurse/NurseDashboard.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return nurseHelloDashboardView;
@@ -184,6 +197,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the nurse's Select Patient view.
+     *
      * @return AnchorPane containing the nurse's Select Patient view.
      */
     public AnchorPane getNurseSelectPatientView() {
@@ -191,7 +205,7 @@ public class ViewFactory {
             try {
                 nurseSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dSelectPatient.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return nurseSelectPatientView;
@@ -199,6 +213,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the nurse's Information view.
+     *
      * @return AnchorPane containing the nurse's Information view.
      */
     public AnchorPane getNurseInformationView() {
@@ -206,7 +221,7 @@ public class ViewFactory {
             try {
                 nurseInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/dInformation.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return nurseInformationView;
@@ -214,6 +229,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the nurse's Treatment view.
+     *
      * @return AnchorPane containing the nurse's Treatment view.
      */
     public AnchorPane getNurseTreatmentView() {
@@ -221,7 +237,7 @@ public class ViewFactory {
             try {
                 nurseTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTreatment.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return nurseTreatmentView;
@@ -229,6 +245,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the nurse's Diagnosis view.
+     *
      * @return AnchorPane containing the nurse's Diagnosis view.
      */
     public AnchorPane getNurseDiagnosisView() {
@@ -236,7 +253,7 @@ public class ViewFactory {
             try {
                 nurseDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dDiagnosis.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return nurseDiagnosisView;
@@ -244,6 +261,7 @@ public class ViewFactory {
 
     /**
      * Loads and returns the nurse's Temperature Sheet view.
+     *
      * @return AnchorPane containing the nurse's Temperature Sheet view.
      */
     public AnchorPane getNurseTemperatureSheetView() {
@@ -251,57 +269,76 @@ public class ViewFactory {
             try {
                 nurseTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTemperatureSheet.fxml")).load();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
             }
         }
         return nurseTemperatureSheetView;
     }
 
     // Show window methods
+
     /**
      * Displays the login window.
      */
     public void showLoginWindow() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
-        createStage(loader);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
+            createStage(loader);
+        } catch (Exception e) {
+            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+        }
     }
-/*
-    /**
-     * Displays the doctor interface.
-     */
+
+    /*
+        /**
+         * Displays the doctor interface.
+         */
     public void showDoctorWindow() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Doctor.fxml"));
-        DoctorController doctorController = new DoctorController();
-        loader.setController(doctorController);
-        createStage(loader);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Doctor.fxml"));
+            DoctorController doctorController = new DoctorController();
+            loader.setController(doctorController);
+            createStage(loader);
+        } catch (Exception e) {
+            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+        }
     }
 
     public void showDoctorAddPatientWindow(Stage owner) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/AddPatient.fxml"));
-        AddPatientController addPatientControllerController = new AddPatientController();
-        loader.setController(addPatientControllerController);
-        createStage(loader);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/AddPatient.fxml"));
+            createStage(loader);
+        } catch (Exception e) {
+            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+        }
     }
 
     public void showDoctorDeletePatientWindow() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/DeletePatient.fxml"));
-        DeletePatientController deletePatientControllerController = new DeletePatientController();
-        loader.setController(deletePatientControllerController);
-        createStage(loader);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/DeletePatient.fxml"));
+            createStage(loader);
+        } catch (Exception e) {
+            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+        }
     }
 
     /**
      * Displays the nurse interface.
      */
     public void showNurseWindow() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Nurse/Nurse.fxml"));
-        NurseController nurseController = new NurseController();
-        loader.setController(nurseController);
-        createStage(loader);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Nurse/Nurse.fxml"));
+            NurseController nurseController = new NurseController();
+            loader.setController(nurseController);
+            createStage(loader);
+        } catch (Exception e) {
+            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
+        }
     }
 
     /**
      * Creates and displays a new stage from an FXML loader.
+     *
      * @param loader FXMLLoader to load the scene.
      */
     public void createStage(FXMLLoader loader) {
@@ -309,7 +346,7 @@ public class ViewFactory {
         try {
             scene = new Scene(loader.load());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Помилка створення вікна: {}", e.getMessage(), e);
         }
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -321,10 +358,10 @@ public class ViewFactory {
 
     /**
      * Closes the given stage.
+     *
      * @param stage The stage to close.
      */
     public void closeStage(Stage stage) {
         stage.close();
     }
-
 }

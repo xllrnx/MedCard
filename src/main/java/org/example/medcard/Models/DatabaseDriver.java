@@ -1,6 +1,8 @@
 package org.example.medcard.Models;
 
+import org.example.medcard.LoggerService;
 import org.example.medcard.Utils.SQLStatements;
+import org.slf4j.Logger;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -8,6 +10,7 @@ import java.util.Properties;
 
 public class DatabaseDriver {
     private Connection connection;
+    private static final Logger logger = LoggerService.getLogger(DatabaseDriver.class);
 
     public DatabaseDriver() {
         try {
@@ -21,7 +24,7 @@ public class DatabaseDriver {
             System.out.println(connection);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка підключення до БД: {}", e.getMessage(), e);
         }
     }
 
@@ -39,7 +42,7 @@ public class DatabaseDriver {
 
             resultSet = statement.executeQuery(prepStatement.toString());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
         return resultSet;
     }
@@ -59,7 +62,7 @@ public class DatabaseDriver {
 
             statement.executeUpdate(prepStatement.toString());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
     }
 
@@ -85,7 +88,7 @@ public class DatabaseDriver {
 
             statement.executeUpdate(prepStatement.toString());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
     }
 
@@ -101,7 +104,7 @@ public class DatabaseDriver {
 
             statement.executeUpdate(prepStatement.toString());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
     }
 
@@ -117,7 +120,7 @@ public class DatabaseDriver {
 
             statement.executeUpdate(prepStatement.toString());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
     }
 
@@ -133,7 +136,7 @@ public class DatabaseDriver {
 
             resultSet = statement.executeQuery(prepStatement.toString());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
         return resultSet;
     }
@@ -154,7 +157,7 @@ public class DatabaseDriver {
             resultSet.next();
             id = resultSet.getInt("lastID");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
         return id;
     }
@@ -174,7 +177,7 @@ public class DatabaseDriver {
             resultSet.next();
             id = resultSet.getInt("lastID");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
         return id;
     }
@@ -191,7 +194,7 @@ public class DatabaseDriver {
 
             resultSet = statement.executeQuery(prepStatement.toString());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
         return resultSet;
     }
@@ -208,7 +211,7 @@ public class DatabaseDriver {
 
             resultSet = statement.executeQuery(prepStatement.toString());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
         return resultSet;
     }
@@ -225,9 +228,8 @@ public class DatabaseDriver {
 
             resultSet = statement.executeQuery(prepStatement.toString());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Помилка виконання запиту до БД: {}", e.getMessage(), e);
         }
         return resultSet;
     }
-
 }

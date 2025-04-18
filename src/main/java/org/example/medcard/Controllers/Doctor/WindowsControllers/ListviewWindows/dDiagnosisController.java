@@ -95,46 +95,46 @@ public class dDiagnosisController extends dListviewWindowController implements I
 
             List<String> suitableStatuses = new ArrayList<>();
             switch (selectedBoxes) {
-                case "tff" :
+                case "tff":
                     suitableStatuses.add("Виконано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                case "ftf" :
+                case "ftf":
                     suitableStatuses.add("Заплановано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                case "fft" :
+                case "fft":
                     suitableStatuses.add("Скасовано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                case "ttf" :
+                case "ttf":
                     suitableStatuses.add("Виконано");
                     suitableStatuses.add("Заплановано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                case "tft" :
+                case "tft":
                     suitableStatuses.add("Виконано");
                     suitableStatuses.add("Скасовано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                case "ftt" :
+                case "ftt":
                     suitableStatuses.add("Заплановано");
                     suitableStatuses.add("Скасовано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                default :
+                default:
                     if (lowerCaseFilter.isEmpty()) {
                         return true;
                     }
