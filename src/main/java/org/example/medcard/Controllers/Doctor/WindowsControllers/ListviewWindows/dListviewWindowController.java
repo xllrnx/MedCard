@@ -12,13 +12,17 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.example.medcard.LoggerService;
 import org.example.medcard.Models.Model;
 import org.example.medcard.Models.Patient;
+import org.example.medcard.Views.ViewFactory;
+import org.slf4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public abstract class dListviewWindowController {
+    private static final Logger logger = LoggerService.getLogger(dListviewWindowController.class);
     public Text selected_patient_info;
     public Text selected_patient_surname;
     public Text selected_patient_name;
@@ -82,7 +86,7 @@ public abstract class dListviewWindowController {
         try {
             scene = new Scene(loader.load());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Помилка завантаження вікна: {}", e.getMessage(), e);
         }
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.APPLICATION_MODAL);

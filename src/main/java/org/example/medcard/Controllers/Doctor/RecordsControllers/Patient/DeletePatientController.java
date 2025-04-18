@@ -10,7 +10,7 @@ import org.example.medcard.Models.Model;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DeletePatientController implements Initializable  {
+public class DeletePatientController implements Initializable {
     public Text patient_surname;
     public Text patient_name;
     public Text patient_fathername;

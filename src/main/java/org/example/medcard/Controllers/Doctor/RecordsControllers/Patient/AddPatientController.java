@@ -6,8 +6,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.example.medcard.Controllers.Doctor.WindowsControllers.ListviewWindows.dSelectPatientController;
 import org.example.medcard.Controllers.Doctor.DoctorControllerManager;
+import org.example.medcard.Controllers.Doctor.WindowsControllers.ListviewWindows.dSelectPatientController;
 import org.example.medcard.Models.Model;
 import org.example.medcard.Utils.AddPatientErrors;
 
@@ -32,7 +32,7 @@ public class AddPatientController implements Initializable {
         cancel_button.setOnAction(event -> onCancel());
     }
 
-    private void onConfirm(){
+    private void onConfirm() {
         String surname = surname_field.getText();
         String name = name_field.getText();
         String fathername = fathername_field.getText();

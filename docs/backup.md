@@ -34,4 +34,4 @@ pg_dump -U %PGUSER% -F c medcard > %BACKUP_DIR%\%BACKUP_FILE%
 - Ручна перевірка коректності записів
 
 ## Відновлення з резервної копії
-pg_restore -U meduser -d medcard medcard_20250417.bak
+pg_restore -U postgres -d medcard medcard_20250417.bak

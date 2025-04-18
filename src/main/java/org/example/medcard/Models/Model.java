@@ -2,10 +2,12 @@ package org.example.medcard.Models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.example.medcard.LoggerService;
 import org.example.medcard.Models.Records.DiagnosisRecord;
 import org.example.medcard.Models.Records.TemperatureSheetRecord;
 import org.example.medcard.Models.Records.TreatmentRecord;
 import org.example.medcard.Views.ViewFactory;
+import org.slf4j.Logger;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -16,6 +18,7 @@ public class Model {
     private static Model model;
     private final ViewFactory viewFactory;
     private final DatabaseDriver databaseDriver;
+    private static final Logger logger = LoggerService.getLogger(Model.class);
 
     // User Data Section
     private final User user;
@@ -61,6 +64,7 @@ public class Model {
     public ViewFactory getViewFactory() {
         return viewFactory;
     }
+
     public DatabaseDriver getDatabaseDriver() {
         return databaseDriver;
     }
@@ -81,7 +85,7 @@ public class Model {
     public void evaluateUserCredentials(String login, String password) {
         ResultSet resultSet = databaseDriver.getUserData(login, password);
         try {
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 new User();
                 this.user.setType(resultSet.getString("type"));
 
@@ -94,7 +98,7 @@ public class Model {
                 this.userLoginSuccessFlag = true;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Помилка перевірки даних користувача: {}", e.getMessage(), e);
         }
     }
 
@@ -122,7 +126,7 @@ public class Model {
     public void setPatients() {
         ResultSet resultSet = databaseDriver.getAllPatientsData();
         try {
-            while(resultSet.next()) {
+            while (resultSet.next()) {
 
                 int patientID = resultSet.getInt("patientID");
 
@@ -146,7 +150,7 @@ public class Model {
                 patients.add(new Patient(patientID, surname, name, fathername, date, address, phone, sex, complaints, medicalHistory, status, treatmentRecords, diagnosisRecords, temperatureSheetRecords));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Помилка додавання пацієнта з БД: {}", e.getMessage(), e);
         }
     }
 
@@ -154,13 +158,13 @@ public class Model {
         int personID = databaseDriver.getLastPersonId();
         int patientID = databaseDriver.getLastPatientId();
 
-        databaseDriver.createPerson(personID+1, surname, name, fathername);
-        databaseDriver.createPatient(patientID+1, personID+1, dateOfBirth);
+        databaseDriver.createPerson(personID + 1, surname, name, fathername);
+        databaseDriver.createPatient(patientID + 1, personID + 1, dateOfBirth);
 
-        ObservableList<TreatmentRecord> treatmentRecords = getTreatmentRecords(patientID+1);
-        ObservableList<DiagnosisRecord> diagnosisRecords = getDiagnosisRecords(patientID+1);
-        ObservableList<TemperatureSheetRecord> temperatureSheetRecords = getTemperatureSheetRecords(patientID+1);
-        patients.add(new Patient(patientID+1, surname, name, fathername, dateOfBirth, "", "", "", "", "", true, treatmentRecords, diagnosisRecords, temperatureSheetRecords));
+        ObservableList<TreatmentRecord> treatmentRecords = getTreatmentRecords(patientID + 1);
+        ObservableList<DiagnosisRecord> diagnosisRecords = getDiagnosisRecords(patientID + 1);
+        ObservableList<TemperatureSheetRecord> temperatureSheetRecords = getTemperatureSheetRecords(patientID + 1);
+        patients.add(new Patient(patientID + 1, surname, name, fathername, dateOfBirth, "", "", "", "", "", true, treatmentRecords, diagnosisRecords, temperatureSheetRecords));
     }
 
     public void editPatient(Patient patient) {
@@ -177,7 +181,7 @@ public class Model {
         ObservableList<TreatmentRecord> treatmentRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getTreatmentRecords(patientID);
         try {
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 String prescription = resultSet.getString("prescription");
                 LocalDateTime prescriptionTime = resultSet.getTimestamp("prescriptionTime").toLocalDateTime();
                 String status = resultSet.getString("status");
@@ -186,7 +190,7 @@ public class Model {
                 treatmentRecords.add(new TreatmentRecord(prescription, prescriptionTime, status, additionalInfo));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Помилка додавання записів про лікування з БД: {}", e.getMessage(), e);
         }
         treatmentRecords.sort(Comparator.comparing((TreatmentRecord record) -> record.getPrescriptionTimeProperty().get()).reversed());
         return treatmentRecords;
@@ -196,7 +200,7 @@ public class Model {
         ObservableList<DiagnosisRecord> diagnosisRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getDiagnosisRecords(patientID);
         try {
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 String prescription = resultSet.getString("prescription");
                 LocalDateTime prescriptionTime = resultSet.getTimestamp("prescriptionTime").toLocalDateTime();
                 String status = resultSet.getString("status");
@@ -206,7 +210,7 @@ public class Model {
                 diagnosisRecords.add(new DiagnosisRecord(prescription, prescriptionTime, status, result, additionalInfo));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Помилка додавання записів про діагностику з БД: {}", e.getMessage(), e);
         }
         diagnosisRecords.sort(Comparator.comparing((DiagnosisRecord record) -> record.getPrescriptionTimeProperty().get()).reversed());
         return diagnosisRecords;
@@ -216,7 +220,7 @@ public class Model {
         ObservableList<TemperatureSheetRecord> temperatureSheetRecords = FXCollections.observableArrayList();
         ResultSet resultSet = databaseDriver.getTemperatureSheerRecords(patientID);
         try {
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 LocalDate checkDate = resultSet.getDate("checkDate").toLocalDate();
 
                 int morningPulse = resultSet.getInt("morningPulse");
@@ -234,7 +238,7 @@ public class Model {
                 temperatureSheetRecords.add(new TemperatureSheetRecord(checkDate, morningPulse, morningSystolic, morningDiastolic, morningTemperature, eveningPulse, eveningSystolic, eveningDiastolic, eveningTemperature, additionalInfo));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Помилка додавання записів з температурного листа з БД: {}", e.getMessage(), e);
         }
         temperatureSheetRecords.sort(Comparator.comparing((TemperatureSheetRecord record) -> record.getCheckDateProperty().get()).reversed());
         return temperatureSheetRecords;
@@ -244,6 +248,7 @@ public class Model {
     public TreatmentRecord getSelectedTreatmentRecord() {
         return selectedTreatmentRecord;
     }
+
     public void setSelectedTreatmentRecord(TreatmentRecord treatmentRecord) {
         this.selectedTreatmentRecord = treatmentRecord;
     }
@@ -251,6 +256,7 @@ public class Model {
     public DiagnosisRecord getSelectedDiagnosisRecord() {
         return selectedDiagnosisRecord;
     }
+
     public void setSelectedDiagnosisRecord(DiagnosisRecord diagnosisRecord) {
         this.selectedDiagnosisRecord = diagnosisRecord;
     }
@@ -258,6 +264,7 @@ public class Model {
     public TemperatureSheetRecord getSelectedTemperatureSheetRecord() {
         return selectedTemperatureSheetRecord;
     }
+
     public void setSelectedTemperatureSheetRecord(TemperatureSheetRecord temperatureSheetRecord) {
         this.selectedTemperatureSheetRecord = temperatureSheetRecord;
     }
