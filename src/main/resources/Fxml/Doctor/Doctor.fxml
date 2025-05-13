@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.layout.BorderPane?>
 <BorderPane fx:id="doctor_parent" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml">
+            xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.medcard.Controllers.Doctor.DoctorController">
     <left>
-        <fx:include source="../Menu.fxml" />
+        <fx:include source="../Menu.fxml"/>
     </left>
     <center>
-        <fx:include source="Windows/MessageWindows/dHello.fxml"/>
+        <fx:include source="Windows/MessageWindows/DHello.fxml"/>
     </center>
 </BorderPane>

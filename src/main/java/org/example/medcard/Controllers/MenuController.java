@@ -25,20 +25,15 @@ public class MenuController implements Initializable {
     /**
      * Initializes the doctor's main menu, setting the doctor's name and surname,
      * and adding event handlers for the buttons.
-     * @param url URL of the FXML resource.
+     *
+     * @param url            URL of the FXML resource.
      * @param resourceBundle resource bundle containing localized strings.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         user_surname.setText(Model.getInstance().getUser().getSurname());
         user_name.setText(Model.getInstance().getUser().getName());
-        addListeners();
-    }
 
-    /**
-     * Adds event listeners to the menu buttons.
-     */
-    private void addListeners() {
         select_patient_button.setOnAction(event -> onSelectPatient());
         information_button.setOnAction(event -> onInformation());
         treatment_button.setOnAction(event -> onTreatment());
@@ -114,19 +109,14 @@ public class MenuController implements Initializable {
                 temperature_sheet_button,
         };
 
-        // Iterate over all buttons and remove the "selected_button" style class from all buttons except the selected one
+        // Iterate over all buttons and remove the "selected_button" style class from all buttons
         for (Button button : buttons) {
-            if (button != selectedButton) {
-                System.out.println("Removing selected_button from: " + button.getText());
-                button.getStyleClass().remove("selected_button");
-            }
+            System.out.println("Removing selected_button from: " + button.getText());
+            button.getStyleClass().remove("selected_button");
         }
 
-        // Add the "selected_button" style class to the selected button if it doesn't already contain it
-        if (!selectedButton.getStyleClass().contains("selected_button")) {
-            System.out.println("Adding selected_button to: " + selectedButton.getText() + "\n");
-            selectedButton.getStyleClass().add("selected_button");
-        }
+        // Add the "selected_button" style class to the selected button
+        System.out.println("Adding selected_button to: " + selectedButton.getText() + "\n");
+        selectedButton.getStyleClass().add("selected_button");
     }
-    
 }

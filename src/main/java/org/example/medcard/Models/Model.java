@@ -95,7 +95,7 @@ public class Model {
                 this.user.setName(resultSet.getString("name"));
                 this.user.setFatherName(resultSet.getString("fatherName"));
 
-                System.out.println(this.user.toString() + "\n");
+                System.out.println(this.user + "\n");
 
                 this.userLoginSuccessFlag = true;
             }

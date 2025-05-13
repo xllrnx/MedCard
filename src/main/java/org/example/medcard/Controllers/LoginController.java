@@ -1,11 +1,13 @@
 package org.example.medcard.Controllers;
 
-import javafx.scene.control.*;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.example.medcard.Utils.LoginErrors;
 import org.example.medcard.Models.Model;
+import org.example.medcard.Utils.LoginErrors;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +20,8 @@ public class LoginController implements Initializable {
 
     /**
      * Initializes the login window and sets up the login button action.
-     * @param url URL of the FXML resource.
+     *
+     * @param url            URL of the FXML resource.
      * @param resourceBundle resource bundle containing localized strings.
      */
     @Override

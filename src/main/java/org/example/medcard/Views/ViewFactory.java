@@ -67,7 +67,7 @@ public class ViewFactory {
         if (doctorHelloView == null) {
             try {
                 logger.info("Спроба завантаження вікна DoctorHello.");
-                doctorHelloView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/dHello.fxml")).load();
+                doctorHelloView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/DHello.fxml")).load();
                 logger.info("Завантаження вікна DoctorHello успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -86,7 +86,7 @@ public class ViewFactory {
         if (doctorWithoutPatientView == null) {
             try {
                 logger.info("Спроба завантаження вікна DoctorWithoutPatient.");
-                doctorWithoutPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/dWithoutPatient.fxml")).load();
+                doctorWithoutPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/MessageWindows/DWithoutPatient.fxml")).load();
                 logger.info("Завантаження вікна DoctorWithoutPatient успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -105,7 +105,7 @@ public class ViewFactory {
         if (doctorSelectPatientView == null) {
             try {
                 logger.info("Спроба завантаження вікна DoctorSelectPatient.");
-                doctorSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dSelectPatient.fxml")).load();
+                doctorSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/DSelectPatient.fxml")).load();
                 logger.info("Завантаження вікна DoctorSelectPatient успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -124,7 +124,7 @@ public class ViewFactory {
         if (doctorInformationView == null) {
             try {
                 logger.info("Спроба завантаження вікна DoctorInformation.");
-                doctorInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/dInformation.fxml")).load();
+                doctorInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/DInformation.fxml")).load();
                 logger.info("Завантаження вікна DoctorInformation успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -143,7 +143,7 @@ public class ViewFactory {
         if (doctorTreatmentView == null) {
             try {
                 logger.info("Спроба завантаження вікна DoctorTreatment.");
-                doctorTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTreatment.fxml")).load();
+                doctorTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/DTreatment.fxml")).load();
                 logger.info("Завантаження вікна DoctorTreatment успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -162,7 +162,7 @@ public class ViewFactory {
         if (doctorDiagnosisView == null) {
             try {
                 logger.info("Спроба завантаження вікна DoctorDiagnosis.");
-                doctorDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dDiagnosis.fxml")).load();
+                doctorDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/DDiagnosis.fxml")).load();
                 logger.info("Завантаження вікна DoctorDiagnosis успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -181,7 +181,7 @@ public class ViewFactory {
         if (doctorTemperatureSheetView == null) {
             try {
                 logger.info("Спроба завантаження вікна DoctorTemperatureSheet.");
-                doctorTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTemperatureSheet.fxml")).load();
+                doctorTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/DTemperatureSheet.fxml")).load();
                 logger.info("Завантаження вікна DoctorTemperatureSheet успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -230,7 +230,7 @@ public class ViewFactory {
         if (nurseSelectPatientView == null) {
             try {
                 logger.info("Спроба завантаження вікна NurseSelectPatient.");
-                nurseSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dSelectPatient.fxml")).load();
+                nurseSelectPatientView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/DSelectPatient.fxml")).load();
                 logger.info("Завантаження вікна NurseSelectPatient успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -249,7 +249,7 @@ public class ViewFactory {
         if (nurseInformationView == null) {
             try {
                 logger.info("Спроба завантаження вікна NurseInformation.");
-                nurseInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/dInformation.fxml")).load();
+                nurseInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/DInformation.fxml")).load();
                 logger.info("Завантаження вікна NurseInformation успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -268,7 +268,7 @@ public class ViewFactory {
         if (nurseTreatmentView == null) {
             try {
                 logger.info("Спроба завантаження вікна NurseTreatment.");
-                nurseTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTreatment.fxml")).load();
+                nurseTreatmentView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/DTreatment.fxml")).load();
                 logger.info("Завантаження вікна NurseTreatment успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -287,7 +287,7 @@ public class ViewFactory {
         if (nurseDiagnosisView == null) {
             try {
                 logger.info("Спроба завантаження вікна NurseDiagnosis.");
-                nurseDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dDiagnosis.fxml")).load();
+                nurseDiagnosisView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/DDiagnosis.fxml")).load();
                 logger.info("Завантаження вікна NurseDiagnosis успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -306,7 +306,7 @@ public class ViewFactory {
         if (nurseTemperatureSheetView == null) {
             try {
                 logger.info("Спроба завантаження вікна NurseTemperatureSheet.");
-                nurseTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/dTemperatureSheet.fxml")).load();
+                nurseTemperatureSheetView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/ListviewWindows/DTemperatureSheet.fxml")).load();
                 logger.info("Завантаження вікна NurseTemperatureSheet успішне.");
             } catch (Exception e) {
                 String errorId = UUID.randomUUID().toString();
@@ -341,8 +341,6 @@ public class ViewFactory {
         try {
             logger.info("Спроба завантаження вікна DoctorWindow.");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Doctor.fxml"));
-            DoctorController doctorController = new DoctorController();
-            loader.setController(doctorController);
             createStage(loader);
             logger.info("Завантаження вікна DoctorWindow успішне.");
         } catch (Exception e) {
