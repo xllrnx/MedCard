@@ -1,47 +1,103 @@
 package org.example.medcard.Models.Records;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class DiagnosisRecord {
-    private final StringProperty prescription;
+    private String analysis;
+    private String cabinet;
 
-    private final ObjectProperty<LocalDateTime> prescriptionTime;
-    private final StringProperty prescriptionTimeString;
+    private LocalDate prescriptionDate;
+    private LocalTime prescriptionTime;
 
-    private final StringProperty status;
-    private final StringProperty result;
-    private final StringProperty additionalInfo;
+    private String status;
+    private String results;
+    private String additionalInfo;
 
-    public DiagnosisRecord(String prescription, LocalDateTime prescriptionTime, String status, String result, String additionalInfo) {
-        this.prescription = new SimpleStringProperty(this, "prescription", prescription);
+    private String author;
+    private String executor;
 
-        this.prescriptionTime = new SimpleObjectProperty<>(this, "prescriptionTime", prescriptionTime);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        this.prescriptionTimeString = new SimpleStringProperty(this, "prescriptionTimeString", prescriptionTime.format(formatter));
-
-        this.status = new SimpleStringProperty(this, "status", status);
-        this.result = new SimpleStringProperty(this, "result", result);
-        this.additionalInfo = new SimpleStringProperty(this, "additionalInfo", additionalInfo);
+    public DiagnosisRecord(String analysis, String cabinet, LocalDate prescriptionDate, LocalTime prescriptionTime, String author, String executor, String status, String results, String additionalInfo) {
+        this.analysis = analysis;
+        this.cabinet = cabinet;
+        this.prescriptionDate = prescriptionDate;
+        this.prescriptionTime = prescriptionTime;
+        this.author = author;
+        this.executor = executor;
+        this.status = status;
+        this.results = results;
+        this.additionalInfo = additionalInfo;
     }
 
-    public StringProperty getPrescriptionProperty() {
-        return prescription;
+    public String getAnalysis() {
+        return analysis;
     }
-    public ObjectProperty<LocalDateTime> getPrescriptionTimeProperty() {
+
+    public void setAnalysis(String analysis) {
+        this.analysis = analysis;
+    }
+
+    public String getCabinet() {
+        return cabinet;
+    }
+
+    public void setCabinet(String cabinet) {
+        this.cabinet = cabinet;
+    }
+
+    public LocalDate getPrescriptionDate() {
+        return prescriptionDate;
+    }
+
+    public void setPrescriptionDate(LocalDate prescriptionDate) {
+        this.prescriptionDate = prescriptionDate;
+    }
+
+    public LocalTime getPrescriptionTime() {
         return prescriptionTime;
     }
-    public StringProperty getPrescriptionTimeStringProperty() {
-        return prescriptionTimeString;
+
+    public void setPrescriptionTime(LocalTime prescriptionTime) {
+        this.prescriptionTime = prescriptionTime;
     }
-    public StringProperty getStatusProperty() {
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getExecutor() {
+        return executor;
+    }
+
+    public void setExecutor(String executor) {
+        this.executor = executor;
+    }
+
+    public String getStatus() {
         return status;
     }
-    public StringProperty getResultProperty() {return result;}
-    public StringProperty getAdditionalInfoProperty() {return additionalInfo;}
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getResults() {
+        return results;
+    }
+
+    public void setResults(String results) {
+        this.results = results;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
 }

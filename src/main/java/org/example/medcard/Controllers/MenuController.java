@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.medcard.Models.Model;
-import org.example.medcard.Views.MenuOptions;
+import org.example.medcard.Utils.Enums.MenuOptions;
 
 import java.net.URL;
 import java.util.ResourceBundle;

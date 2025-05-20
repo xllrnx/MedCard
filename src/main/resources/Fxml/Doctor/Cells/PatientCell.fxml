@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.*?>
 <AnchorPane prefHeight="55.0" prefWidth="780.0" styleClass="cell_container"
-            stylesheets="@../../../Styles/Doctor/ListviewCell.css" xmlns="http://javafx.com/javafx/23.0.1"
+            stylesheets="@../../../Stylesheets/Doctor/ListviewCell.css" xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1">
     <HBox alignment="CENTER" prefHeight="55.0" prefWidth="780.0" spacing="15.0" AnchorPane.bottomAnchor="0.0"
           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

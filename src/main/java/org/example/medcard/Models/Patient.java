@@ -1,54 +1,44 @@
 package org.example.medcard.Models;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import org.example.medcard.Models.Records.DiagnosisRecord;
 import org.example.medcard.Models.Records.TemperatureSheetRecord;
 import org.example.medcard.Models.Records.TreatmentRecord;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Patient {
 
     private final int patientID;
-    private final StringProperty surname;
-    private final StringProperty name;
-    private final StringProperty fathername;
+    private String surname;
+    private String name;
+    private String fathername;
 
-    private final ObjectProperty<LocalDate> dateOfBirth;
-    private final StringProperty dateOfBirthString;
+    private LocalDate dateOfBirth;
 
-    private final StringProperty address;
-    private final StringProperty phone;
-    private final StringProperty sex;
-    private final StringProperty complaints;
-    private final StringProperty medicalHistory;
-    private final boolean status;
+    private String address;
+    private String phone;
+    private String sex;
+    private String complaints;
+    private String medicalHistory;
+    private boolean status;
 
     private final ObservableList<TreatmentRecord> treatmentRecords;
     private final ObservableList<DiagnosisRecord> diagnosisRecords;
     private final ObservableList<TemperatureSheetRecord> temperatureSheetRecords;
 
     public Patient(int patientID, String surname, String name, String fathername, LocalDate dateOfBirth, String address, String phone, String sex, String complaints, String medicalHistory, boolean status, ObservableList<TreatmentRecord> treatmentRecords, ObservableList<DiagnosisRecord> diagnosisRecords, ObservableList<TemperatureSheetRecord> temperatureSheetRecords) {
+
         this.patientID = patientID;
-        this.surname = new SimpleStringProperty(this, "surname", surname);
-        this.name = new SimpleStringProperty(this, "name", name);
-        this.fathername = new SimpleStringProperty(this, "fathername", fathername);
-
-        this.dateOfBirth = new SimpleObjectProperty<>(this, "dateOfBirth", dateOfBirth);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        this.dateOfBirthString = new SimpleStringProperty(this, "dateOfBirthString", dateOfBirth.format(formatter));
-
-        this.address = new SimpleStringProperty(this, "address", address);
-        this.phone = new SimpleStringProperty(this, "phone", phone);
-        this.sex = new SimpleStringProperty(this, "sex", sex);
-        this.complaints = new SimpleStringProperty(this, "complaints", complaints);
-        this.medicalHistory = new SimpleStringProperty(this, "medicalHistory", medicalHistory);
+        this.surname = surname;
+        this.name = name;
+        this.fathername = fathername;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phone = phone;
+        this.sex = sex;
+        this.complaints = complaints;
+        this.medicalHistory = medicalHistory;
         this.status = status;
 
         this.treatmentRecords = treatmentRecords;
@@ -56,27 +46,98 @@ public class Patient {
         this.temperatureSheetRecords = temperatureSheetRecords;
     }
 
-    public int getPatientID() {return patientID;}
-    public StringProperty getSurnameProperty() {return surname;}
-    public StringProperty getNameProperty() {return name;}
-    public StringProperty getFathernameProperty() {return fathername;}
+    public int getPatientID() {
+        return patientID;
+    }
 
-    public ObjectProperty<LocalDate> getDateOfBirthProperty() {return dateOfBirth;}
-    public StringProperty getDateOfBirthStringProperty() {return dateOfBirthString;}
+    public String getSurname() {
+        return surname;
+    }
 
-    public StringProperty getAddressProperty() {return address;}
-    public StringProperty getPhoneProperty() {return phone;}
-    public StringProperty getSex() {return sex;}
-    public StringProperty getComplaintsProperty() {return complaints;}
-    public StringProperty getMedicalHistoryProperty() {return medicalHistory;}
-    public boolean getStatus() {return status;}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFathername() {
+        return fathername;
+    }
+
+    public void setFathername(String fathername) {
+        this.fathername = fathername;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(String complaints) {
+        this.complaints = complaints;
+    }
+
+    public String getMedicalHistory() {
+        return medicalHistory;
+    }
+
+    public void setMedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public ObservableList<TreatmentRecord> getTreatmentRecords() {
         return treatmentRecords;
     }
+
     public ObservableList<DiagnosisRecord> getDiagnosisRecords() {
         return diagnosisRecords;
     }
+
     public ObservableList<TemperatureSheetRecord> getTemperatureSheetRecords() {
         return temperatureSheetRecords;
     }

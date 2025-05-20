@@ -3,6 +3,7 @@ package org.example.medcard;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.example.medcard.Models.Model;
+import org.example.medcard.Utils.Logger.LoggerService;
 import org.slf4j.Logger;
 
 public class App extends Application {

@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 import org.example.medcard.Controllers.Doctor.WindowControllers.DWindowControllerManager;
-import org.example.medcard.Controllers.Doctor.RecordControllers.TemperatureSheetRecord.DeleteTemperatureSheetRecordController;
+import org.example.medcard.Controllers.Doctor.WindowControllers.DialogWindows.TemperatureSheetRecord.DeleteTemperatureSheetRecordController;
 import org.example.medcard.Models.Model;
 import org.example.medcard.Models.Records.TemperatureSheetRecord;
 import org.example.medcard.Views.Doctor.CellFactories.TemperatureSheetCellFactory;
@@ -44,22 +44,16 @@ public class DTemperatureSheetController extends DListviewWindowController imple
     @Override
     public void addRecord() {
         boolean isToday = false;
-        for (TemperatureSheetRecord record : temperatureSheetRecords) {
-            if (Objects.equals(record.getCheckDateProperty().get(), LocalDate.now())) {
+        for (TemperatureSheetRecord record : temperatureSheetRecords.reversed()) {
+            if (Objects.equals(record.getCheckDate(), LocalDate.now())) {
                 isToday = true;
+                break;
             }
         }
         if (!isToday) {
-            //Model.getInstance().addTemperatureSheetRecord(Model.getInstance().getSelectedPatient());
+            Model.getInstance().addTemperatureSheetRecord();
+            updateList();
         }
-    }
-
-    @Override
-    public void deleteRecord() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/DeleteTemperatureSheetRecord.fxml"));
-        DeleteTemperatureSheetRecordController deleteTemperatureSheetRecordController = new DeleteTemperatureSheetRecordController();
-        loader.setController(deleteTemperatureSheetRecordController);
-        showDialogWindow(loader, (Stage) Model.getInstance().getViewFactory().getDoctorTemperatureSheetView().getScene().getWindow());
     }
 
     @Override
@@ -68,7 +62,7 @@ public class DTemperatureSheetController extends DListviewWindowController imple
         searchfield.setText("");
 
         temperatureSheetRecords = Model.getInstance().getSelectedPatient().getTemperatureSheetRecords();
-        temperatureSheetRecords.sort(Comparator.comparing((TemperatureSheetRecord temperatureSheetRecord) -> temperatureSheetRecord.getCheckDateProperty().get()).reversed());
+        temperatureSheetRecords.sort(Comparator.comparing(TemperatureSheetRecord::getCheckDate).reversed());
 
         filteredTemperatureSheetRecords = new FilteredList<>(temperatureSheetRecords, p -> true);
         sortedTemperatureSheetRecords = new SortedList<>(filteredTemperatureSheetRecords);
@@ -127,10 +121,10 @@ public class DTemperatureSheetController extends DListviewWindowController imple
     @Override
     public void sortList() {
         if (radio_from_newest.isSelected()) {
-            sortedTemperatureSheetRecords.setComparator(Comparator.comparing((TemperatureSheetRecord temperatureSheetRecord) -> temperatureSheetRecord.getCheckDateProperty().get()).reversed());
+            sortedTemperatureSheetRecords.setComparator(Comparator.comparing(TemperatureSheetRecord::getCheckDate).reversed());
         }
         if (radio_from_oldest.isSelected()) {
-            sortedTemperatureSheetRecords.setComparator(Comparator.comparing((TemperatureSheetRecord temperatureSheetRecord) -> temperatureSheetRecord.getCheckDateProperty().get()));
+            sortedTemperatureSheetRecords.setComparator(Comparator.comparing(TemperatureSheetRecord::getCheckDate));
         }
     }
 }

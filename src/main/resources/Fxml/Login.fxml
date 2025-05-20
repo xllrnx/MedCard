@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane prefHeight="533.0" prefWidth="800.0" styleClass="container" stylesheets="@../Styles/Login.css"
+<AnchorPane prefHeight="533.0" prefWidth="800.0" styleClass="container" stylesheets="@../Stylesheets/Login.css"
             xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.medcard.Controllers.LoginController">
     <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="533.0" prefWidth="222.0" styleClass="side_panel"

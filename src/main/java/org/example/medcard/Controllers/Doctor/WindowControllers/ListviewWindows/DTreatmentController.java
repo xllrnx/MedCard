@@ -10,8 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 import org.example.medcard.Controllers.Doctor.WindowControllers.DWindowControllerManager;
-import org.example.medcard.Controllers.Doctor.RecordControllers.Patient.AddPatientController;
-import org.example.medcard.Controllers.Doctor.RecordControllers.Patient.DeletePatientController;
 import org.example.medcard.Models.Model;
 import org.example.medcard.Models.Records.TreatmentRecord;
 import org.example.medcard.Views.Doctor.CellFactories.TreatmentCellFactory;
@@ -47,17 +45,7 @@ public class DTreatmentController extends DListviewWindowController implements I
 
     @Override
     public void addRecord() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/AddPatient.fxml"));
-        AddPatientController addPatientControllerController = new AddPatientController();
-        loader.setController(addPatientControllerController);
-        showDialogWindow(loader, (Stage) Model.getInstance().getViewFactory().getDoctorTreatmentView().getScene().getWindow());
-    }
-
-    @Override
-    public void deleteRecord() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/DeletePatient.fxml"));
-        DeletePatientController deletePatientControllerController = new DeletePatientController();
-        loader.setController(deletePatientControllerController);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/DialogWindows/TreatmentRecord/TreatmentRecordAdd.fxml"));
         showDialogWindow(loader, (Stage) Model.getInstance().getViewFactory().getDoctorTreatmentView().getScene().getWindow());
     }
 
@@ -70,7 +58,7 @@ public class DTreatmentController extends DListviewWindowController implements I
         searchfield.setText("");
 
         ObservableList<TreatmentRecord> treatmentRecords = Model.getInstance().getSelectedPatient().getTreatmentRecords();
-        treatmentRecords.sort(Comparator.comparing((TreatmentRecord treatmentRecord) -> treatmentRecord.getPrescriptionTimeProperty().get()).reversed());
+        treatmentRecords.sort(Comparator.comparing(TreatmentRecord::getPrescriptionDate).reversed().thenComparing(TreatmentRecord::getPrescriptionTime));
 
         filteredTreatmentRecords = new FilteredList<>(treatmentRecords, p -> true);
         sortedTreatmentRecords = new SortedList<>(filteredTreatmentRecords);
@@ -85,55 +73,56 @@ public class DTreatmentController extends DListviewWindowController implements I
         String lowerCaseFilter = searchfield.getText().trim().toLowerCase();
 
         filteredTreatmentRecords.setPredicate(treatmentRecord -> {
-            String prescription = treatmentRecord.getPrescriptionProperty().get().toLowerCase();
-            String prescriptionTime = treatmentRecord.getPrescriptionTimeStringProperty().get().toLowerCase();
-            boolean containsFilter = prescription.contains(lowerCaseFilter) || prescriptionTime.contains(lowerCaseFilter);
+            String drug = treatmentRecord.getDrug().toLowerCase();
+            String prescriptionDate = treatmentRecord.getPrescriptionDate().toString().toLowerCase();
+            String prescriptionTime = treatmentRecord.getPrescriptionTime().toString().toLowerCase();
+            boolean containsFilter = drug.contains(lowerCaseFilter) || prescriptionDate.contains(lowerCaseFilter) || prescriptionTime.contains(lowerCaseFilter);
 
-            String status = treatmentRecord.getStatusProperty().get();
+            String status = treatmentRecord.getStatus();
             String selectedBoxes = getSelectedBoxes();
 
             List<String> suitableStatuses = new ArrayList<>();
             switch (selectedBoxes) {
-                case "tff" :
+                case "tff":
                     suitableStatuses.add("Виконано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                case "ftf" :
+                case "ftf":
                     suitableStatuses.add("Заплановано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                case "fft" :
+                case "fft":
                     suitableStatuses.add("Скасовано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                case "ttf" :
+                case "ttf":
                     suitableStatuses.add("Виконано");
                     suitableStatuses.add("Заплановано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                case "tft" :
+                case "tft":
                     suitableStatuses.add("Виконано");
                     suitableStatuses.add("Скасовано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                case "ftt" :
+                case "ftt":
                     suitableStatuses.add("Заплановано");
                     suitableStatuses.add("Скасовано");
                     if (lowerCaseFilter.isEmpty()) {
                         return suitableStatuses.contains(status);
                     }
                     return suitableStatuses.contains(status) && containsFilter;
-                default :
+                default:
                     if (lowerCaseFilter.isEmpty()) {
                         return true;
                     }
@@ -165,10 +154,10 @@ public class DTreatmentController extends DListviewWindowController implements I
     @Override
     public void sortList() {
         if (radio_from_newest.isSelected()) {
-            sortedTreatmentRecords.setComparator(Comparator.comparing((TreatmentRecord treatmentRecord) -> treatmentRecord.getPrescriptionTimeProperty().get()).reversed());
+            sortedTreatmentRecords.setComparator(Comparator.comparing(TreatmentRecord::getPrescriptionDate).reversed().thenComparing(TreatmentRecord::getPrescriptionTime, Comparator.reverseOrder()));
         }
         if (radio_from_oldest.isSelected()) {
-            sortedTreatmentRecords.setComparator(Comparator.comparing((TreatmentRecord treatmentRecord) -> treatmentRecord.getPrescriptionTimeProperty().get()));
+            sortedTreatmentRecords.setComparator(Comparator.comparing(TreatmentRecord::getPrescriptionDate).thenComparing(TreatmentRecord::getPrescriptionTime));
         }
     }
 }
