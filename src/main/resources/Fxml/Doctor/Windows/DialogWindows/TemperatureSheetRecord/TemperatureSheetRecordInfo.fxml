@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="368.0" prefWidth="475.0" styleClass="dialog_window" stylesheets="@../../../../../Stylesheets/Doctor/WindowStyles/DDialogWindow.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.medcard.Controllers.Doctor.WindowControllers.DialogWindows.TemperatureSheetRecord.TemperatureSheetRecordInfoController">
+    <VBox alignment="TOP_CENTER" layoutX="25.0" layoutY="25.0" prefHeight="286.0" prefWidth="456.0" spacing="15.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main_text" text="Інформація про обстеження" />
+        <VBox prefHeight="197.0" prefWidth="456.0" spacing="10.0">
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Дата: " />
+                <Text fx:id="check_date" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="00-00-0000" />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text=" " />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Час: " />
+                <Text fx:id="check_time" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="00:00" />
+            </TextFlow>
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="ЧСС(Пульс): " />
+                <Text fx:id="pulse" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Пульс" />
+            </TextFlow>
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Температура: " />
+                <Text fx:id="temperature" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Температура" />
+            </TextFlow>
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Тиск: " />
+                <Text fx:id="systolic" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Сист" />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="/" />
+                <Text fx:id="diastolic" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Діаст" />
+            </TextFlow>
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Відповідальний(-на): " />
+                <Text fx:id="executor" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Відповідальний(-на)" />
+            </TextFlow>
+            <TextFlow maxHeight="-Infinity" minHeight="-Infinity" prefHeight="65.0" prefWidth="541.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Додаткова інформація: " />
+                <Text fx:id="additional_info" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Додаткова інформація" />
+            </TextFlow>
+        </VBox>
+        <Button fx:id="close_button" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="red_button" text="Закрити" />
+    </VBox>
+</AnchorPane>

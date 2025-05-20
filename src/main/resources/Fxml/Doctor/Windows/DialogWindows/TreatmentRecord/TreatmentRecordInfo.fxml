@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="274.0" prefWidth="496.0" styleClass="dialog_window"
+            stylesheets="@../../../../../Stylesheets/Doctor/WindowStyles/DDialogWindow.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.medcard.Controllers.Doctor.WindowControllers.DialogWindows.TreatmentRecord.TreatmentRecordInfoController">
+    <VBox alignment="TOP_CENTER" layoutX="33.6" layoutY="35.199999999999996" prefHeight="294.0" prefWidth="437.0"
+          spacing="15.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0"
+          AnchorPane.topAnchor="15.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main_text" text="Інформація про призначення"/>
+        <VBox prefHeight="242.0" prefWidth="456.0" spacing="10.0">
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Препарат: "/>
+                <Text fx:id="drug" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                      text="Препарат"/>
+            </TextFlow>
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Спосіб уведення: "/>
+                <Text fx:id="method" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                      text="Спосіб уведення"/>
+            </TextFlow>
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Дата: "/>
+                <Text fx:id="prescription_date" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                      text="00-00-0000"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text=" "/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Час: "/>
+                <Text fx:id="prescription_time" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                      text="00:00"/>
+            </TextFlow>
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Призначив(-ла): "/>
+                <Text fx:id="author" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                      text="Призначив(-ла)"/>
+            </TextFlow>
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Статус: "/>
+                <Text fx:id="status" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                      text="Статус"/>
+            </TextFlow>
+            <TextFlow prefHeight="22.0" prefWidth="581.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Відповідальний(-на): "/>
+                <Text fx:id="executor" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                      text="Відповідальний(-на)"/>
+            </TextFlow>
+            <TextFlow maxHeight="-Infinity" minHeight="-Infinity" prefHeight="65.0" prefWidth="541.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Додаткова інформація: "/>
+                <Text fx:id="additional_info" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text"
+                      text="Додаткова інформація"/>
+            </TextFlow>
+        </VBox>
+        <Button fx:id="close_button" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0"
+                styleClass="red_button" text="Закрити"/>
+    </VBox>
+</AnchorPane>
