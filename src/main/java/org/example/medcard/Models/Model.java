@@ -103,7 +103,12 @@ public class Model {
             }
             logger.info("Перевірка даних користувача для входу успішне.");
 
-            if (storedHashedPassword != null && DataHasher.checkData(password, storedHashedPassword)) {
+//            if (storedHashedPassword != null && DataHasher.checkData(password, storedHashedPassword)) {
+//                setUser(login);
+//                setUserLoginSuccessFlag(true);
+//            }
+
+            if (password.equals(storedHashedPassword)) {
                 setUser(login);
                 setUserLoginSuccessFlag(true);
             }

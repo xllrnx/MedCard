@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="doctor_message_dashboard_container" stylesheets="@../../../../Styles/Doctor/WindowsStyles/dMessageWindow.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.medcard.Controllers.Doctor.WindowsControllers.dHelloController">
+<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="message_window" stylesheets="@../../../../Stylesheets/Doctor/WindowStyles/DMessageWindow.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.medcard.Controllers.Doctor.WindowControllers.DHelloController">
    <VBox layoutX="88.0" layoutY="245.0" prefHeight="109.0" prefWidth="674.0" AnchorPane.bottomAnchor="245.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="245.0">
       <padding>
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
