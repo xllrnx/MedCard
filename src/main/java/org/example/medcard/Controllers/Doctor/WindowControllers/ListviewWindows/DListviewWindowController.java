@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.example.medcard.LoggerService;
+import org.example.medcard.Utils.Logger.LoggerService;
 import org.example.medcard.Models.Model;
 import org.example.medcard.Models.Patient;
 import org.slf4j.Logger;
@@ -46,12 +46,8 @@ public abstract class DListviewWindowController {
         searchfield_filter_button.setOnAction(event -> onFilter());
         searchfield_filter_button2.setOnAction(event -> onFilter());
 
-        searchfield.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterList();
-        });
-        sortGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            sortList();
-        });
+        searchfield.textProperty().addListener((observable, oldValue, newValue) -> filterList());
+        sortGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> sortList());
 
         updateSelectedPatient(Model.getInstance().getSelectedPatient());
         updateList();
@@ -65,9 +61,9 @@ public abstract class DListviewWindowController {
             selected_patient_fathername.setText("");
         } else {
             selected_patient_info.setText("Обраний пацієнт: ");
-            selected_patient_surname.setText(patient.getSurnameProperty().get());
-            selected_patient_name.setText(patient.getNameProperty().get());
-            selected_patient_fathername.setText(patient.getFathernameProperty().get());
+            selected_patient_surname.setText(patient.getSurname());
+            selected_patient_name.setText(patient.getName());
+            selected_patient_fathername.setText(patient.getFathername());
         }
     }
 
@@ -79,7 +75,6 @@ public abstract class DListviewWindowController {
     }
 
     public abstract void addRecord();
-    public abstract void deleteRecord();
 
     public void showDialogWindow(FXMLLoader loader, Stage owner) {
         try {

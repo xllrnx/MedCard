@@ -1,0 +1,195 @@
+drop table if exists persons cascade;
+drop table if exists users cascade;
+drop table if exists patients cascade;
+drop table if exists treatmentrecords cascade;
+drop table if exists diagnosisRecords cascade;
+drop table if exists temperatureSheetRecords cascade;
+
+create table persons (
+    personID serial not null primary key,
+
+    surname varchar(50) not null,
+    name varchar(50) not null,
+    fatherName varchar(50) not null
+);
+create table users (
+    userID serial not null primary key,
+    personID int not null,
+
+    login varchar(50) not null unique,
+    password varchar(50) not null,
+
+    type varchar(50) not null,
+
+    foreign key (personID) references persons(personID)
+);
+create table patients (
+    patientID serial not null primary key,
+    personID int not null,
+
+    dateOfBirth date not null,
+    address varchar(50),
+    phone varchar(20),
+    sex varchar(20),
+    complaints varchar(50),
+    medicalHistory varchar(50),
+    status boolean not null,
+
+    foreign key (patientID) references patients(patientID),
+    foreign key (personID) references persons(personID)
+);
+create table treatmentRecords (
+    recordID serial not null primary key,
+    patientID int not null,
+
+    drug varchar(50) not null,
+    method varchar(50) not null,
+
+    prescriptionDate date not null,
+    prescriptionTime time not null,
+
+    status varchar(20) not null,
+    additionalInfo varchar(50),
+
+    authorID int not null,
+    executorID int,
+
+    foreign key (patientID) references patients(patientID),
+    foreign key (authorID) references users(UserID),
+    foreign key (executorID) references users(UserID)
+);
+create table diagnosisRecords (
+    recordID serial not null primary key,
+    patientID int not null,
+
+    analysis varchar(50) not null,
+    cabinet varchar(10) not null,
+
+    prescriptionDate date not null,
+    prescriptionTime time not null,
+
+    status varchar(20) not null,
+    result varchar(50),
+    additionalInfo varchar(50),
+
+    authorID int not null,
+    executorID int,
+
+    foreign key (patientID) references patients(patientID),
+    foreign key (authorID) references users(UserID),
+    foreign key (executorID) references users(UserID)
+);
+create table temperatureSheetRecords (
+    recordID serial not null primary key,
+    patientID int not null,
+
+    checkDate date not null,
+
+    morningPulse int,
+    morningSystolic int,
+    morningDiastolic int,
+    morningTemperature numeric(4,2),
+
+    eveningPulse int,
+    eveningSystolic int,
+    eveningDiastolic int,
+    eveningTemperature numeric(4,2),
+
+    additionalInfo varchar(50),
+
+    executorID int,
+
+    foreign key (patientID) references patients(patientID),
+    foreign key (executorID) references users(UserID)
+);
+
+
+
+-- Вставка даних у таблицю persons (персонал)
+INSERT INTO persons (surname, name, fatherName) VALUES
+                                                    ('Шевченко', 'Тарас', 'Григорович'),      -- ID 1
+                                                    ('Франко', 'Іван', 'Якович'),             -- ID 2
+                                                    ('Леся', 'Українка', 'Петрівна'),         -- ID 3
+                                                    ('Куліш', 'Пантелеймон', 'Олександрович'),-- ID 4
+                                                    ('Костенко', 'Ліна', 'Василівна');        -- ID 5
+
+-- Вставка даних у таблицю users
+INSERT INTO users (personID, login, password, type) VALUES
+    (1, 'xllrnx', '12345', 'doctor'),
+    (2, 'xllrnx1', '12345', '''doctor'),
+    (3, 'xllrnx2', '12345', 'doctor'),
+    (4, 'xllrnx3', '12345', 'doctor'),
+    (5, 'xllrnx4', '12345', 'doctor');
+
+-- Вставка даних у таблицю persons (пацієнти)
+INSERT INTO persons (surname, name, fatherName) VALUES
+    ('Гончар', 'Олесь', 'Теренович'),         -- ID 6
+    ('Довженко', 'Олександр', 'Петрович'),    -- ID 7
+    ('Стус', 'Василь', 'Семенович'),          -- ID 8
+    ('Симоненко', 'Василь', 'Андрійович'),    -- ID 9
+    ('Тичина', 'Павло', 'Григорович');        -- ID 10
+
+-- Вставка даних у таблицю patients
+INSERT INTO patients (personID, dateOfBirth, address, phone, sex, complaints, medicalHistory, status) VALUES
+    (6, '2000-06-01', 'вул. Шевченка, 10', '0501234567', 'чоловік', 'Головний біль', 'ГРВІ', true),      -- ID 1
+    (7, '2025-05-01', 'вул. Франка, 15', '0679876543', 'чоловік', 'Біль у горлі', 'ангіна', true),        -- ID 2
+    (8, '2025-04-01', 'вул. Грушевського, 8', '0633456789', 'чоловік', 'Температура', 'грип', false),     -- ID 3
+    (9, '2025-03-01', 'вул. Лесі, 12', '0931122334', 'чоловік', 'Слабкість', 'пневмонія', true),          -- ID 4
+    (10, '2025-02-01', 'вул. Січових Стрільців, 5', '0975566778', 'чоловік', 'кашель', 'бронхіт', true);  -- ID 5
+
+-- Вставка даних у таблицю treatmentRecords
+INSERT INTO treatmentRecords (
+    patientID, drug, method, prescriptionDate, prescriptionTime,
+    authorID, executorID, status, additionalInfo
+) VALUES
+      (1, 'Парацетамол', 'таблетки', '2025-05-11', '08:00', 1, 4, 'Виконано', '2 рази на день'),
+      (1, 'Амоксицилін', 'капсули', '2025-05-12', '09:30', 2, 4, 'Виконано', ''),
+      (1, 'Ібупрофен', 'таблетки', '2025-05-13', '10:15', 3, NULL, 'Заплановано', ''),
+      (1, 'Цефтріаксон', 'інʼєкції', '2025-05-14', '11:00', 1, 5, 'Виконано', '1 раз на день'),
+      (1, 'Лоратадин', 'таблетки', '2025-05-15', '07:45', 2, NULL, 'Скасовано', 'після їжі');
+
+-- Вставка даних у таблицю diagnosisRecords
+INSERT INTO diagnosisRecords (
+    patientID, analysis, cabinet, prescriptionDate, prescriptionTime,
+    authorID, executorID, status, result, additionalInfo
+) VALUES
+      (1, 'Загальний аналіз крові', '101', '2025-05-11', '08:30', 1, 4, 'Виконано', 'Без відхилень', ''),
+      (1, 'Флюорографія', '203', '2025-05-12', '09:00', 2, NULL, 'Заплановано', NULL, ''),
+      (1, 'ЕКГ', '305', '2025-05-13', '09:45', 3, 5, 'Виконано', 'Легка тахікардія', ''),
+      (1, 'УЗД', '210', '2025-05-14', '10:00', 2, NULL, 'Заплановано', NULL, ''),
+      (1, 'Біохімічний аналіз крові', '102', '2025-05-15', '10:30', 1, NULL, 'Скасовано', NULL, '');
+
+-- Вставка даних у таблицю temperatureSheetRecords
+INSERT INTO temperatureSheetRecords (
+    patientID, checkDate,
+    morningPulse, morningSystolic, morningDiastolic, morningTemperature,
+    eveningPulse, eveningSystolic, eveningDiastolic, eveningTemperature,
+    executorID, additionalInfo
+) VALUES
+      (1, '2025-05-15', 72, 120, 80, 36.7, 75, 118, 78, 36.8, 4, ''),
+      (1, '2025-05-16', 68, 115, 75, 36.6, 70, 117, 76, 36.7, 4, ''),
+      (1, '2025-05-18', 80, 130, 85, 37.5, 82, 128, 84, 37.6, 5, ''),
+      (1, '2025-05-17', 85, 140, 90, 38.0, 87, 138, 88, 38.1, 5, ''),
+      (1, '2025-05-18', 65, 110, 70, 36.4, 66, 112, 72, 36.5, 4, '');
+
+
+select * from patients join persons on patients.personID = persons.personID;
+
+select tr.*,
+    p.fatherName as "authorFatherName", p.name as "authorName", p.surname as "authorSurname",
+    p2.fatherName as "executorFatherName", p2.name as "executorName", p2.surname as "executorSurname"
+from treatmentRecords tr left join persons p on tr.authorID = p.personID left join persons p2 on tr.executorID = p2.personID
+where tr.patientID = 1;
+
+select dr.*,
+       p.fatherName as "authorFatherName", p.name as "authorName", p.surname as "authorSurname",
+       p2.fatherName as "executorFatherName", p2.name as "executorName", p2.surname as "executorSurname"
+from diagnosisRecords dr left join persons p on dr.authorID = p.personID left join persons p2 on dr.executorID = p2.personID
+where dr.patientID = 1;
+
+select tsr.*,
+       p.fatherName as "executorFatherName", p.name as "executorName", p.surname as "executorSurname"
+from temperatureSheetRecords tsr left join persons p on tsr.executorID = p.personID
+where tsr.patientID = 1;
+
+select personID from persons order by personID desc limit 1

@@ -15,6 +15,7 @@ import org.example.medcard.Models.Model;
 import org.example.medcard.Models.Patient;
 
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class DPatientCellController implements Initializable {
@@ -46,10 +47,11 @@ public class DPatientCellController implements Initializable {
             status_circle.setOnMouseEntered(event -> tooltip.setText("Виписаний."));
         }
 
-        surname.textProperty().bind(patient.getSurnameProperty());
-        name.textProperty().bind(patient.getNameProperty());
-        fathername.textProperty().bind(patient.getFathernameProperty());
-        date_of_birth.textProperty().bind(patient.getDateOfBirthStringProperty());
+        surname.setText(patient.getSurname());
+        name.setText(patient.getName());
+        fathername.setText(patient.getFathername());
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        date_of_birth.setText(patient.getDateOfBirth().format(dateFormatter));
 
         select_button.setOnAction(event -> onSelect());
         delete_button.setOnAction(event -> onDelete());
@@ -58,10 +60,10 @@ public class DPatientCellController implements Initializable {
     private void onSelect() {
         Model.getInstance().setSelectedPatient(this.patient);
 
-        System.out.printf("Patient selected: " + this.patient.getSurnameProperty().get()
-                + " " + this.patient.getNameProperty().get() + " " + this.patient.getFathernameProperty().get() + "\n");
-        System.out.println("Model selected patient: " + Model.getInstance().getSelectedPatient().getSurnameProperty().get()
-                + " " + Model.getInstance().getSelectedPatient().getNameProperty().get() + " " + Model.getInstance().getSelectedPatient().getFathernameProperty().get() + "\n");
+        System.out.printf("Patient selected: " + this.patient.getSurname()
+                + " " + this.patient.getName() + " " + this.patient.getFathername() + "\n");
+        System.out.println("Model selected patient: " + Model.getInstance().getSelectedPatient().getSurname()
+                + " " + Model.getInstance().getSelectedPatient().getName() + " " + Model.getInstance().getSelectedPatient().getFathername() + "\n");
 
         DWindowControllerManager.getDSelectPatientController().updateSelectedPatient(this.patient);
         if (DWindowControllerManager.getDInformationController() != null) {
@@ -71,7 +73,7 @@ public class DPatientCellController implements Initializable {
         updateListController(DWindowControllerManager.getDDiagnosisController());
         updateListController(DWindowControllerManager.getDTemperatureSheetController());
     }
-    
+
     private void updateListController(DListviewWindowController controller) {
         if (controller != null) {
             controller.updateSelectedPatient(this.patient);
@@ -81,7 +83,7 @@ public class DPatientCellController implements Initializable {
 
     private void onDelete() {
         Model.getInstance().setPatientToDelete(this.patient);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/DeletePatient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/DialogWindows/Patient/PatientDelete.fxml"));
         DWindowControllerManager.getDSelectPatientController().showDialogWindow(loader, (Stage) Model.getInstance().getViewFactory().getDoctorSelectPatientView().getScene().getWindow());
     }
 }

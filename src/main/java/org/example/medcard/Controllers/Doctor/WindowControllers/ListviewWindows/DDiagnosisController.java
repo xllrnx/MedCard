@@ -10,8 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 import org.example.medcard.Controllers.Doctor.WindowControllers.DWindowControllerManager;
-import org.example.medcard.Controllers.Doctor.RecordControllers.Patient.AddPatientController;
-import org.example.medcard.Controllers.Doctor.RecordControllers.Patient.DeletePatientController;
 import org.example.medcard.Models.Model;
 import org.example.medcard.Models.Records.DiagnosisRecord;
 import org.example.medcard.Views.Doctor.CellFactories.DiagnosisCellFactory;
@@ -47,17 +45,7 @@ public class DDiagnosisController extends DListviewWindowController implements I
 
     @Override
     public void addRecord() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/AddPatient.fxml"));
-        AddPatientController addPatientControllerController = new AddPatientController();
-        loader.setController(addPatientControllerController);
-        showDialogWindow(loader, (Stage) Model.getInstance().getViewFactory().getDoctorDiagnosisView().getScene().getWindow());
-    }
-
-    @Override
-    public void deleteRecord() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/DeletePatient.fxml"));
-        DeletePatientController deletePatientControllerController = new DeletePatientController();
-        loader.setController(deletePatientControllerController);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/DialogWindows/DiagnosisRecord/DiagnosisRecordAdd.fxml"));
         showDialogWindow(loader, (Stage) Model.getInstance().getViewFactory().getDoctorDiagnosisView().getScene().getWindow());
     }
 
@@ -70,7 +58,7 @@ public class DDiagnosisController extends DListviewWindowController implements I
         searchfield.setText("");
 
         ObservableList<DiagnosisRecord> diagnosisRecords = Model.getInstance().getSelectedPatient().getDiagnosisRecords();
-        diagnosisRecords.sort(Comparator.comparing((DiagnosisRecord diagnosisRecord) -> diagnosisRecord.getPrescriptionTimeProperty().get()).reversed());
+        diagnosisRecords.sort(Comparator.comparing(DiagnosisRecord::getPrescriptionDate).reversed().thenComparing(DiagnosisRecord::getPrescriptionTime));
 
         filteredDiagnosisRecords = new FilteredList<>(diagnosisRecords, p -> true);
         sortedDiagnosisRecords = new SortedList<>(filteredDiagnosisRecords);
@@ -86,11 +74,12 @@ public class DDiagnosisController extends DListviewWindowController implements I
 
         filteredDiagnosisRecords.setPredicate(diagnosisRecord -> {
 
-            String prescription = diagnosisRecord.getPrescriptionProperty().get().toLowerCase();
-            String prescriptionTime = diagnosisRecord.getPrescriptionTimeStringProperty().get().toLowerCase();
-            boolean containsFilter = prescription.contains(lowerCaseFilter) || prescriptionTime.contains(lowerCaseFilter);
+            String analysis = diagnosisRecord.getAnalysis().toLowerCase();
+            String prescriptionDate = diagnosisRecord.getPrescriptionDate().toString().toLowerCase();
+            String prescriptionTime = diagnosisRecord.getPrescriptionTime().toString().toLowerCase();
+            boolean containsFilter = analysis.contains(lowerCaseFilter) || prescriptionDate.contains(lowerCaseFilter) || prescriptionTime.contains(lowerCaseFilter);
 
-            String status = diagnosisRecord.getStatusProperty().get();
+            String status = diagnosisRecord.getStatus();
             String selectedBoxes = getSelectedBoxes();
 
             List<String> suitableStatuses = new ArrayList<>();
@@ -167,10 +156,10 @@ public class DDiagnosisController extends DListviewWindowController implements I
     @Override
     public void sortList() {
         if (radio_from_newest.isSelected()) {
-            sortedDiagnosisRecords.setComparator(Comparator.comparing((DiagnosisRecord diagnosisRecord) -> diagnosisRecord.getPrescriptionTimeProperty().get()).reversed());
+            sortedDiagnosisRecords.setComparator(Comparator.comparing(DiagnosisRecord::getPrescriptionDate).reversed().thenComparing(DiagnosisRecord::getPrescriptionTime, Comparator.reverseOrder()));
         }
         if (radio_from_oldest.isSelected()) {
-            sortedDiagnosisRecords.setComparator(Comparator.comparing((DiagnosisRecord diagnosisRecord) -> diagnosisRecord.getPrescriptionTimeProperty().get()));
+            sortedDiagnosisRecords.setComparator(Comparator.comparing(DiagnosisRecord::getPrescriptionDate).thenComparing(DiagnosisRecord::getPrescriptionTime));
         }
     }
 }

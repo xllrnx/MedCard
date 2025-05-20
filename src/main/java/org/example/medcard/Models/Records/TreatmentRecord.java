@@ -1,46 +1,93 @@
 package org.example.medcard.Models.Records;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class TreatmentRecord {
-    private final StringProperty prescription;
+    private String drug;
+    private String method;
 
-    private final ObjectProperty<LocalDateTime> prescriptionTime;
-    private final StringProperty prescriptionTimeString;
+    private LocalDate prescriptionDate;
+    private LocalTime prescriptionTime;
 
-    private final StringProperty status;
-    private final StringProperty additionalInfo;
+    private String status;
+    private String additionalInfo;
 
+    private String author;
+    private String executor;
 
-    public TreatmentRecord(String prescription, LocalDateTime prescriptionTime, String status, String additionalInfo) {
-        this.prescription = new SimpleStringProperty(this, "prescription", prescription);
-
-        this.prescriptionTime = new SimpleObjectProperty<>(this, "prescriptionTime", prescriptionTime);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        this.prescriptionTimeString = new SimpleStringProperty(this, "prescriptionTimeString", prescriptionTime.format(formatter));
-
-        this.status = new SimpleStringProperty(this, "status", status);
-        this.additionalInfo = new SimpleStringProperty(this, "additionalInfo", additionalInfo);
+    public TreatmentRecord(String drug, String method, LocalDate prescriptionDate, LocalTime prescriptionTime, String author, String executor, String status, String additionalInfo) {
+        this.drug = drug;
+        this.method = method;
+        this.prescriptionDate = prescriptionDate;
+        this.prescriptionTime = prescriptionTime;
+        this.author = author;
+        this.executor = executor;
+        this.status = status;
+        this.additionalInfo = additionalInfo;
     }
 
-    public StringProperty getPrescriptionProperty() {
-        return prescription;
+    public String getDrug() {
+        return drug;
     }
 
-    public ObjectProperty<LocalDateTime> getPrescriptionTimeProperty() {
+    public void setDrug(String drug) {
+        this.drug = drug;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public LocalDate getPrescriptionDate() {
+        return prescriptionDate;
+    }
+
+    public void setPrescriptionDate(LocalDate prescriptionDate) {
+        this.prescriptionDate = prescriptionDate;
+    }
+
+    public LocalTime getPrescriptionTime() {
         return prescriptionTime;
     }
-    public StringProperty getPrescriptionTimeStringProperty() {
-        return prescriptionTimeString;
+
+    public void setPrescriptionTime(LocalTime prescriptionTime) {
+        this.prescriptionTime = prescriptionTime;
     }
 
-    public StringProperty getStatusProperty() {
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getExecutor() {
+        return executor;
+    }
+
+    public void setExecutor(String executor) {
+        this.executor = executor;
+    }
+
+    public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
     }
 }

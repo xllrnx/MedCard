@@ -42,25 +42,23 @@ public class DInformationController implements Initializable {
             selected_patient_fathername.setText("");
         } else {
             selected_patient_info.setText("Обраний пацієнт: ");
-            selected_patient_surname.setText(patient.getSurnameProperty().get());
-            selected_patient_name.setText(patient.getNameProperty().get());
-            selected_patient_fathername.setText(patient.getFathernameProperty().get());
+            selected_patient_surname.setText(patient.getSurname());
+            selected_patient_name.setText(patient.getName());
+            selected_patient_fathername.setText(patient.getFathername());
         }
     }
 
     public void updateInfo(Patient patient) {
-        patient_surname.setText(patient.getSurnameProperty().get());
-        patient_name.setText(patient.getNameProperty().get());
-        patient_fathername.setText(patient.getFathernameProperty().get());
-        patient_date_of_birth.setText(patient.getDateOfBirthStringProperty().get());
-        patient_complaints.setText(patient.getComplaintsProperty().get());
-        patient_medical_history.setText(patient.getMedicalHistoryProperty().get());
+        patient_surname.setText(patient.getSurname());
+        patient_name.setText(patient.getName());
+        patient_fathername.setText(patient.getFathername());
+        patient_date_of_birth.setText(String.valueOf(patient.getDateOfBirth()));
+        patient_complaints.setText(patient.getComplaints());
+        patient_medical_history.setText(patient.getMedicalHistory());
     }
 
 
     public void onEditPatientInfo(){}
     public void onEditComplaints() {}
     public void onEditMedicalHistory() {}
-
-
 }

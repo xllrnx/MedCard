@@ -1,12 +1,21 @@
 package org.example.medcard.Models;
 
 public class User {
+    int userID;
     String type;
     String surname;
     String name;
     String fatherName;
 
     public User() {
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getType() {

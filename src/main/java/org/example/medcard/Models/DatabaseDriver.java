@@ -1,7 +1,7 @@
 package org.example.medcard.Models;
 
-import org.example.medcard.LoggerService;
-import org.example.medcard.Utils.SQLStatements;
+import org.example.medcard.Utils.Logger.LoggerService;
+import org.example.medcard.Utils.Enums.SQLStatements;
 import org.slf4j.Logger;
 
 import java.sql.*;
@@ -29,17 +29,32 @@ public class DatabaseDriver {
 
         } catch (SQLException e) {
             String errorId = UUID.randomUUID().toString();
-            logger.error("Помилка підключення до БД [ErrorID={}]", errorId);
+            logger.error("Помилка підключення до БД [ErrorID={}]", errorId, e);
         }
     }
 
     // User Section
-    public ResultSet getUserData(String login, String password) {
+    public ResultSet getUserPassword(String login) {
         ResultSet resultSet = null;
         try {
-            prepStatement = connection.prepareStatement(SQLStatements.SEARCH_USER.getStatement());
+            prepStatement = connection.prepareStatement(SQLStatements.GET_USER_PASSWORD.getStatement());
             prepStatement.setString(1, login);
-            prepStatement.setString(2, password);
+
+            logger.info("Спроба виконання запиту getUserPassword({}).", prepStatement);
+
+            resultSet = prepStatement.executeQuery();
+            logger.info("Виконання запиту getUserPassword({}) успішне.", prepStatement);
+        } catch (SQLException e) {
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка виконання запиту getUserPassword, [ErrorID={}]", errorId, e);
+        }
+        return resultSet;
+    }
+    public ResultSet getUserData(String login) {
+        ResultSet resultSet = null;
+        try {
+            prepStatement = connection.prepareStatement(SQLStatements.GET_USER_DATA.getStatement());
+            prepStatement.setString(1, login);
 
             logger.info("Спроба виконання запиту getUserData({}).", prepStatement);
 
@@ -47,19 +62,18 @@ public class DatabaseDriver {
             logger.info("Виконання запиту getUserData({}) успішне.", prepStatement);
         } catch (SQLException e) {
             String errorId = UUID.randomUUID().toString();
-            logger.error("Помилка виконання запиту getUserData, [ErrorID={}]", errorId);
+            logger.error("Помилка виконання запиту getUserData, [ErrorID={}]", errorId, e);
         }
         return resultSet;
     }
 
     // Doctor Section
-    public void createPerson(int personID, String surname, String name, String fathername) {
+    public void createPerson(String surname, String name, String fathername) {
         try {
             prepStatement = connection.prepareStatement(SQLStatements.CREATE_PERSON.getStatement());
-            prepStatement.setInt(1, personID);
-            prepStatement.setString(2, surname);
-            prepStatement.setString(3, name);
-            prepStatement.setString(4, fathername);
+            prepStatement.setString(1, surname);
+            prepStatement.setString(2, name);
+            prepStatement.setString(3, fathername);
 
             logger.info("Спроба виконання запиту createPerson({}).", prepStatement);
 
@@ -67,24 +81,16 @@ public class DatabaseDriver {
             logger.info("Виконання запиту createPerson({}) успішне.", prepStatement);
         } catch (SQLException e) {
             String errorId = UUID.randomUUID().toString();
-            logger.error("Помилка виконання запиту createPerson, [ErrorID={}]", errorId);
+            logger.error("Помилка виконання запиту createPerson, [ErrorID={}]", errorId, e);
         }
     }
 
-    public void createPatient(int patientID, int personID, LocalDate date_of_birth) {
+    public void createPatient(int personID, LocalDate date_of_birth) {
         try {
             prepStatement = connection.prepareStatement(SQLStatements.CREATE_PATIENT.getStatement());
-            prepStatement.setInt(1, patientID);
-            prepStatement.setInt(2, personID);
-
-            prepStatement.setDate(3, Date.valueOf(date_of_birth));
-
-            prepStatement.setString(4, "");
-            prepStatement.setString(5, "");
-            prepStatement.setString(6, "");
-            prepStatement.setString(7, "");
-            prepStatement.setString(8, "");
-            prepStatement.setBoolean(9, true);
+            prepStatement.setInt(1, personID);
+            prepStatement.setDate(2, Date.valueOf(date_of_birth));
+            prepStatement.setBoolean(8, true);
 
             logger.info("Спроба виконання запиту createPatient({}).", prepStatement);
 
@@ -92,7 +98,7 @@ public class DatabaseDriver {
             logger.info("Виконання запиту createPatient({}) успішне.", prepStatement);
         } catch (SQLException e) {
             String errorId = UUID.randomUUID().toString();
-            logger.error("Помилка виконання запиту createPatient, [ErrorID={}]", errorId);
+            logger.error("Помилка виконання запиту createPatient, [ErrorID={}]", errorId, e);
         }
     }
 
@@ -107,7 +113,7 @@ public class DatabaseDriver {
             logger.info("Виконання запиту deletePatient({}) успішне.", prepStatement);
         } catch (SQLException e) {
             String errorId = UUID.randomUUID().toString();
-            logger.error("Помилка виконання запиту deletePatient, [ErrorID={}]", errorId);
+            logger.error("Помилка виконання запиту deletePatient, [ErrorID={}]", errorId, e);
         }
     }
 
@@ -122,7 +128,7 @@ public class DatabaseDriver {
             logger.info("Виконання запиту editPatient({}) успішне.", prepStatement);
         } catch (SQLException e) {
             String errorId = UUID.randomUUID().toString();
-            logger.error("Помилка виконання запиту editPatient, [ErrorID={}]", errorId);
+            logger.error("Помилка виконання запиту editPatient, [ErrorID={}]", errorId, e);
         }
     }
 
@@ -138,7 +144,7 @@ public class DatabaseDriver {
             logger.info("Виконання запиту getAllPatientsData({}) успішне.", prepStatement);
         } catch (SQLException e) {
             String errorId = UUID.randomUUID().toString();
-            logger.error("Помилка виконання запиту getAllPatientsData, [ErrorID={}]", errorId);
+            logger.error("Помилка виконання запиту getAllPatientsData, [ErrorID={}]", errorId, e);
         }
         return resultSet;
     }
@@ -148,17 +154,21 @@ public class DatabaseDriver {
         ResultSet resultSet;
         int id = 0;
         try {
-            prepStatement = connection.prepareStatement(SQLStatements.GET_LAST_ID.getStatement());
-            prepStatement.setString(1, "persons");
-            logger.info("Спроба виконання запиту getLastPersonId({}).", prepStatement);
+            String column = "personID";
+            String table = "persons";
 
-            resultSet = prepStatement.executeQuery();
+            String query = String.format(SQLStatements.GET_PATIENTS.getStatement(), column, table, column);
+            Statement statement = connection.createStatement();
+
+            logger.info("Спроба виконання запиту getLastPersonId({}).", query);
+
+            resultSet = statement.executeQuery(query);
             resultSet.next();
-            id = resultSet.getInt("lastID");
-            logger.info("Виконання запиту getLastPersonId({}) успішне.", prepStatement);
+            id = resultSet.getInt("personID");
+            logger.info("Виконання запиту getLastPersonId({}) успішне.", query);
         } catch (SQLException e) {
             String errorId = UUID.randomUUID().toString();
-            logger.error("Помилка виконання запиту getLastPersonId, [ErrorID={}]", errorId);
+            logger.error("Помилка виконання запиту getLastPersonId, [ErrorID={}]", errorId, e);
         }
         return id;
     }
@@ -167,18 +177,21 @@ public class DatabaseDriver {
         ResultSet resultSet;
         int id = 0;
         try {
-            prepStatement = connection.prepareStatement(SQLStatements.GET_LAST_ID.getStatement());
-            prepStatement.setString(1, "patients");
+            String column = "patientID";
+            String table = "patients";
+
+            String query = String.format(SQLStatements.GET_PATIENTS.getStatement(), column, table, column);
+            Statement statement = connection.createStatement();
 
             logger.info("Спроба виконання запиту getLastPatientId({}).", prepStatement);
 
-            resultSet = prepStatement.executeQuery();
+            resultSet = statement.executeQuery(query);
             resultSet.next();
-            id = resultSet.getInt("lastID");
+            id = resultSet.getInt("patientID");
             logger.info("Виконання запиту getLastPatientId({}) успішне.", prepStatement);
         } catch (SQLException e) {
             String errorId = UUID.randomUUID().toString();
-            logger.error("Помилка виконання запиту getLastPatientId, [ErrorID={}]", errorId);
+            logger.error("Помилка виконання запиту getLastPatientId, [ErrorID={}]", errorId, e);
         }
         return id;
     }
@@ -230,4 +243,20 @@ public class DatabaseDriver {
         }
         return resultSet;
     }
+
+    public void addTemperatureSheetRecord(int patientID) {
+        try {
+            prepStatement = connection.prepareStatement(SQLStatements.CREATE_TEMPERATURE_SHEET_RECORD.getStatement());
+            prepStatement.setInt(1, patientID);
+            prepStatement.setDate(2, Date.valueOf(LocalDate.now()));
+            logger.info("Спроба виконання запиту addTemperatureSheetRecord({}).", prepStatement);
+
+            prepStatement.executeUpdate();
+            logger.info("Виконання запиту addTemperatureSheetRecord({}) успішне.", prepStatement);
+        } catch (SQLException e) {
+            String errorId = UUID.randomUUID().toString();
+            logger.error("Помилка виконання запиту addTemperatureSheetRecord, [ErrorID={}]", errorId, e);
+        }
+    }
+
 }

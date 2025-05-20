@@ -8,8 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.medcard.Controllers.Doctor.DoctorController;
-import org.example.medcard.Controllers.Nurse.NurseController;
-import org.example.medcard.LoggerService;
+import org.example.medcard.Utils.Logger.LoggerService;
+import org.example.medcard.Utils.Enums.MenuOptions;
 import org.slf4j.Logger;
 
 import java.util.UUID;
@@ -127,6 +127,7 @@ public class ViewFactory {
                 doctorInformationView = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/DInformation.fxml")).load();
                 logger.info("Завантаження вікна DoctorInformation успішне.");
             } catch (Exception e) {
+                e.printStackTrace();
                 String errorId = UUID.randomUUID().toString();
                 logger.error("Помилка завантаження вікна DoctorInformation [ErrorID={}]", errorId);
             }
@@ -341,6 +342,8 @@ public class ViewFactory {
         try {
             logger.info("Спроба завантаження вікна DoctorWindow.");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Doctor.fxml"));
+            DoctorController doctorController = new DoctorController();
+            loader.setController(doctorController);
             createStage(loader);
             logger.info("Завантаження вікна DoctorWindow успішне.");
         } catch (Exception e) {
@@ -351,7 +354,7 @@ public class ViewFactory {
     public void showDoctorAddPatientWindow(Stage owner) {
         try {
             logger.info("Спроба завантаження вікна DoctorAddPatient.");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/AddPatient.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/DialogWindows/Patient/PatientAdd.fxml"));
             createStage(loader);
             logger.info("Завантаження вікна DoctorAddPatient успішне.");
         } catch (Exception e) {
@@ -363,7 +366,7 @@ public class ViewFactory {
     public void showDoctorDeletePatientWindow() {
         try {
             logger.info("Спроба завантаження вікна DoctorDeletePatient.");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/DeletePatient.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/DialogWindows/Patient/PatientDelete.fxml"));
             createStage(loader);
             logger.info("Завантаження вікна DoctorDeletePatient успішне.");
         } catch (Exception e) {
@@ -375,19 +378,19 @@ public class ViewFactory {
     /**
      * Displays the nurse interface.
      */
-    public void showNurseWindow() {
-        try {
-            logger.info("Спроба завантаження вікна NurseWindow.");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Nurse/Nurse.fxml"));
-            NurseController nurseController = new NurseController();
-            loader.setController(nurseController);
-            createStage(loader);
-            logger.info("Завантаження вікна NurseWindow успішне.");
-        } catch (Exception e) {
-            String errorId = UUID.randomUUID().toString();
-            logger.error("Помилка завантаження вікна NurseWindow [ErrorID={}]", errorId);
-        }
-    }
+//    public void showNurseWindow() {
+//        try {
+//            logger.info("Спроба завантаження вікна NurseWindow.");
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Nurse/Nurse.fxml"));
+//            NurseController nurseController = new NurseController();
+//            loader.setController(nurseController);
+//            createStage(loader);
+//            logger.info("Завантаження вікна NurseWindow успішне.");
+//        } catch (Exception e) {
+//            String errorId = UUID.randomUUID().toString();
+//            logger.error("Помилка завантаження вікна NurseWindow [ErrorID={}]", errorId);
+//        }
+//    }
 
     /**
      * Creates and displays a new stage from an FXML loader.

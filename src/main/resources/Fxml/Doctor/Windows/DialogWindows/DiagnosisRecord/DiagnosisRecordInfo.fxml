@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="394.0" prefWidth="496.0" styleClass="dialog_window" stylesheets="@../../../../../Stylesheets/Doctor/WindowStyles/DDialogWindow.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.medcard.Controllers.Doctor.WindowControllers.DialogWindows.DiagnosisRecord.DiagnosisRecordInfoController">
+    <VBox alignment="TOP_CENTER" layoutX="5.0" layoutY="2.0" prefHeight="430.0" prefWidth="440.0" spacing="15.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main_text" text="Інформація про призначення" />
+         <VBox prefHeight="335.0" prefWidth="490.0" spacing="10.0">
+         <TextFlow prefHeight="22.0" prefWidth="581.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Назва аналізу: " />
+               <Text fx:id="analysis" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Назва аналізу" />
+            </children>
+         </TextFlow>
+         <TextFlow prefHeight="22.0" prefWidth="581.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Кабінет: " />
+               <Text fx:id="cabinet" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Кабінет" />
+            </children>
+         </TextFlow>
+         <TextFlow prefHeight="22.0" prefWidth="581.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Дата: " />
+               <Text fx:id="prescription_date" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="00-00-0000" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text=" " />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Час: " />
+               <Text fx:id="prescription_time" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="00:00" />
+            </children>
+         </TextFlow>
+         <TextFlow prefHeight="22.0" prefWidth="581.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Призначив(-ла): " />
+               <Text fx:id="author" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Призначив(-ла)" />
+            </children>
+         </TextFlow>
+         <TextFlow prefHeight="22.0" prefWidth="581.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Статус: " />
+               <Text fx:id="status" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Статус" />
+            </children>
+         </TextFlow>
+         <TextFlow prefHeight="22.0" prefWidth="581.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Відповідальний(-на): " />
+               <Text fx:id="executor" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Відповідальний(-на)" />
+            </children>
+         </TextFlow>
+         <TextFlow maxHeight="-Infinity" minHeight="-Infinity" prefHeight="65.0" prefWidth="477.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Результати: " />
+               <Text fx:id="result" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Результати" />
+            </children>
+         </TextFlow>
+         <TextFlow maxHeight="-Infinity" minHeight="-Infinity" prefHeight="65.0" prefWidth="541.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold_text" text="Додаткова інформація: " />
+               <Text fx:id="additional_info" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default_text" text="Додаткова інформація" />
+            </children>
+         </TextFlow>
+         </VBox>
+      <Button fx:id="close_button" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="red_button" text="Закрити" />
+    </VBox>
+</AnchorPane>

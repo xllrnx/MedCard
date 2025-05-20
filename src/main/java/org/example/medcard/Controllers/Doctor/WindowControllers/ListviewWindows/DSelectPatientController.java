@@ -9,7 +9,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
-import org.example.medcard.Controllers.Doctor.RecordControllers.Patient.DeletePatientController;
 import org.example.medcard.Controllers.Doctor.WindowControllers.DWindowControllerManager;
 import org.example.medcard.Models.Model;
 import org.example.medcard.Models.Patient;
@@ -46,14 +45,7 @@ public class DSelectPatientController extends DListviewWindowController implemen
 
     @Override
     public void addRecord() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/AddPatient.fxml"));
-        showDialogWindow(loader, (Stage) Model.getInstance().getViewFactory().getDoctorSelectPatientView().getScene().getWindow());
-    }
-
-
-    @Override
-    public void deleteRecord() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/RecordsWindows/Patient/DeletePatient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Doctor/Windows/DialogWindows/Patient/PatientAdd.fxml"));
         showDialogWindow(loader, (Stage) Model.getInstance().getViewFactory().getDoctorSelectPatientView().getScene().getWindow());
     }
 
@@ -84,10 +76,10 @@ public class DSelectPatientController extends DListviewWindowController implemen
 
         filteredPatients.setPredicate(patient -> {
 
-            String patientName = patient.getSurnameProperty().get().toLowerCase() + " " +
-                    patient.getNameProperty().get().toLowerCase() + " " +
-                    patient.getFathernameProperty().get().toLowerCase();
-            String dateOfBirth = patient.getDateOfBirthStringProperty().get().toLowerCase();
+            String patientName = patient.getSurname().toLowerCase() + " " +
+                    patient.getName().toLowerCase() + " " +
+                    patient.getFathername().toLowerCase();
+            String dateOfBirth = patient.getDateOfBirth().toString().toLowerCase();
             boolean containsFilter = patientName.contains(lowerCaseFilter) || dateOfBirth.contains(lowerCaseFilter);
 
             boolean patientStatus = patient.getStatus();
@@ -135,16 +127,16 @@ public class DSelectPatientController extends DListviewWindowController implemen
             sortedPatients.setComparator(Comparator.comparing(Patient::getPatientID).reversed());
         }
         if (radio_alphabetical.isSelected()) {
-            sortedPatients.setComparator(Comparator.comparing((Patient patient) -> patient.getSurnameProperty().get()));
+            sortedPatients.setComparator(Comparator.comparing(Patient::getSurname));
         }
         if (radio_reverse_alphabetical.isSelected()) {
-            sortedPatients.setComparator(Comparator.comparing((Patient patient) -> patient.getSurnameProperty().get()).reversed());
+            sortedPatients.setComparator(Comparator.comparing(Patient::getSurname).reversed());
         }
         if (radio_from_youngest.isSelected()) {
-            sortedPatients.setComparator(Comparator.comparing((Patient patient) -> patient.getDateOfBirthProperty().get()));
+            sortedPatients.setComparator(Comparator.comparing(Patient::getDateOfBirth).reversed());
         }
         if (radio_from_oldest.isSelected()) {
-            sortedPatients.setComparator(Comparator.comparing((Patient patient) -> patient.getDateOfBirthProperty().get()).reversed());
+            sortedPatients.setComparator(Comparator.comparing(Patient::getDateOfBirth));
         }
     }
 }

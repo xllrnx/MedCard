@@ -3,7 +3,7 @@
 
 <?import javafx.scene.layout.BorderPane?>
 <BorderPane fx:id="doctor_parent" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.medcard.Controllers.Doctor.DoctorController">
+            xmlns:fx="http://javafx.com/fxml">
     <left>
         <fx:include source="../Menu.fxml"/>
     </left>
